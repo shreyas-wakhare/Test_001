@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "validation_wells_count": 2,
+  "metrics": {
+    "rmse": 0.8021,
+    "mae": 0.8005,
+    "mean_residual": 0.8005,
+    "max_abs_residual": 0.851,
+    "r_squared": 0.7487
+  },
+  "observations": [
+    {
+      "well_id": "OW-05",
+      "x": 500300.0,
+      "y": 2700300.0,
+      "layer": 1,
+      "observed_head": 29.1,
+      "simulated_head": 29.85,
+      "residual": 0.75,
+      "abs_residual": 0.75,
+      "use": "validation"
+    },
+    {
+      "well_id": "OW-06",
+      "x": 500700.0,
+      "y": 2700700.0,
+      "layer": 1,
+      "observed_head": 25.9,
+      "simulated_head": 26.751,
+      "residual": 0.851,
+      "abs_residual": 0.851,
+      "use": "validation"
+    }
+  ]
+}

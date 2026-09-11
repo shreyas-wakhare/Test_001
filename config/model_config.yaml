@@ -1,0 +1,18 @@
+# DWEX Groundwater Modelling Platform - Model & Physics Configuration
+application:
+  name: "DWEX AI Groundwater Modelling System"
+  environment: "development"
+  version: "0.1.0"
+
+modflow:
+  executable: "tools/modflow6/mf6.exe"
+  timeout_seconds: 300
+  double_precision: true
+  verbose: true
+
+project:
+  name: "DWEX Baseline Groundwater System"
+  length_unit: "meters"
+  time_unit: "days"
+  # CRS will be populated during Phase 1 based on authenticated project data
+  coordinate_reference_system: null

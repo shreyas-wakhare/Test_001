@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "total_iterations": 3,
+  "best_iteration": 3,
+  "best_workspace": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\model\\synthetic_test\\calibration\\iteration_003",
+  "initial_metrics": {
+    "iteration": 1,
+    "k_horizontal_layer1": 12.0,
+    "recharge_rate": 0.0008,
+    "river_conductance": 50.0,
+    "rmse": 1.8023,
+    "mae": 1.6073,
+    "mean_residual": 1.6073,
+    "max_abs_residual": 2.618,
+    "r_squared": 0.2692
+  },
+  "final_calibrated_metrics": {
+    "iteration": 3,
+    "k_horizontal_layer1": 32.0,
+    "recharge_rate": 0.0001,
+    "river_conductance": 600.0,
+    "rmse": 0.8684,
+    "mae": 0.7675,
+    "mean_residual": 0.7675,
+    "max_abs_residual": 1.113,
+    "r_squared": 0.8304
+  },
+  "iterations": [
+    {
+      "iteration": 1,
+      "k_horizontal_layer1": 12.0,
+      "recharge_rate": 0.0008,
+      "river_conductance": 50.0,
+      "rmse": 1.8023,
+      "mae": 1.6073,
+      "mean_residual": 1.6073,
+      "max_abs_residual": 2.618,
+      "r_squared": 0.2692
+    },
+    {
+      "iteration": 2,
+      "k_horizontal_layer1": 20.0,
+      "recharge_rate": 0.0003,
+      "river_conductance": 200.0,
+      "rmse": 1.1387,
+      "mae": 1.0132,
+      "mean_residual": 1.0132,
+      "max_abs_residual": 1.538,
+      "r_squared": 0.7083
+    },
+    {
+      "iteration": 3,
+      "k_horizontal_layer1": 32.0,
+      "recharge_rate": 0.0001,
+      "river_conductance": 600.0,
+      "rmse": 0.8684,
+      "mae": 0.7675,
+      "mean_residual": 0.7675,
+      "max_abs_residual": 1.113,
+      "r_squared": 0.8304
+    }
+  ]
+}

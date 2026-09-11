@@ -1,0 +1,16 @@
+# DWEX Groundwater Modelling Platform - Paths Configuration
+paths:
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  validated_data: "data/validated"
+  model_input: "model/input"
+  model_output: "model/output"
+  model_calibration: "model/calibration"
+  model_scenarios: "model/scenarios"
+  reports: "reports"
+  logs: "logs"
+  maps: "outputs/maps"
+  graphs: "outputs/graphs"
+  viz_3d: "outputs/3d"
+  qa_qc: "outputs/qa_qc"
+  tools_modflow6: "tools/modflow6"

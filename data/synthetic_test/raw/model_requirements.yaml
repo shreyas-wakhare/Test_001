@@ -1,0 +1,18 @@
+model_metadata:
+  crs: EPSG:32633
+  engine: MODFLOW 6
+  name: DWEX Synthetic Baseline Model
+  type: Groundwater Flow Simulation (GWF)
+  units:
+    length: meters
+    time: days
+qa_qc_thresholds:
+  max_water_balance_discrepancy_percent: 0.1
+  target_calibration_rmse_m: 0.5
+simulation:
+  solver:
+    complexity: MODERATE
+    inner_dvclose: 1.0e-05
+    outer_dvclose: 1.0e-05
+  steady_state: true
+  transient_period_days: 10.0

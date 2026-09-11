@@ -1,0 +1,274 @@
+{
+  "timestamp_utc": "2026-09-11T04:37:49.135793+00:00",
+  "environment_status": "READY",
+  "system": {
+    "os": "Windows",
+    "os_release": "11",
+    "os_version": "10.0.26200",
+    "architecture": "64bit",
+    "processor": "Intel64 Family 6 Model 154 Stepping 4, GenuineIntel",
+    "python_version": "3.14.3",
+    "python_executable": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Scripts\\python.exe"
+  },
+  "modflow": {
+    "executable_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\tools\\modflow6\\mf6.exe",
+    "version": "mf6.exe: 6.7.0 02/05/2026"
+  },
+  "checks": [
+    {
+      "name": "Python Runtime",
+      "category": "Runtime",
+      "status": "PASS",
+      "message": "Python 3.14.3 (64bit)",
+      "duration_seconds": 0.0002,
+      "details": {
+        "version": "3.14.3",
+        "executable": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Scripts\\python.exe",
+        "architecture": "64bit",
+        "is_64bit": true
+      }
+    },
+    {
+      "name": "NumPy",
+      "category": "Scientific Stack",
+      "status": "PASS",
+      "message": "NumPy 2.5.3",
+      "duration_seconds": 0.0629,
+      "details": {
+        "version": "2.5.3",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\numpy\\__init__.py"
+      }
+    },
+    {
+      "name": "Pandas",
+      "category": "Scientific Stack",
+      "status": "PASS",
+      "message": "Pandas 3.0.5",
+      "duration_seconds": 0.3374,
+      "details": {
+        "version": "3.0.5",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\pandas\\__init__.py"
+      }
+    },
+    {
+      "name": "SciPy",
+      "category": "Scientific Stack",
+      "status": "PASS",
+      "message": "SciPy 1.18.1",
+      "duration_seconds": 0.0075,
+      "details": {
+        "version": "1.18.1",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\scipy\\__init__.py"
+      }
+    },
+    {
+      "name": "FloPy",
+      "category": "MODFLOW Stack",
+      "status": "PASS",
+      "message": "FloPy 3.11.0",
+      "duration_seconds": 0.5769,
+      "details": {
+        "version": "3.11.0",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\flopy\\__init__.py"
+      }
+    },
+    {
+      "name": "MODFLOW 6 Executable",
+      "category": "MODFLOW Stack",
+      "status": "PASS",
+      "message": "mf6.exe: 6.7.0 02/05/2026 (mf6.exe)",
+      "duration_seconds": 0.0148,
+      "details": {
+        "path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\tools\\modflow6\\mf6.exe",
+        "version": "mf6.exe: 6.7.0 02/05/2026"
+      }
+    },
+    {
+      "name": "GeoPandas",
+      "category": "GIS Stack",
+      "status": "PASS",
+      "message": "GeoPandas 1.1.4",
+      "duration_seconds": 0.0265,
+      "details": {
+        "version": "1.1.4",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\geopandas\\__init__.py"
+      }
+    },
+    {
+      "name": "Pyogrio",
+      "category": "GIS Stack",
+      "status": "PASS",
+      "message": "Pyogrio 0.13.0",
+      "duration_seconds": 0.0238,
+      "details": {
+        "version": "0.13.0",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\pyogrio\\__init__.py"
+      }
+    },
+    {
+      "name": "Shapely",
+      "category": "GIS Stack",
+      "status": "PASS",
+      "message": "Shapely 2.1.2",
+      "duration_seconds": 0.0,
+      "details": {
+        "version": "2.1.2",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\shapely\\__init__.py"
+      }
+    },
+    {
+      "name": "PyProj",
+      "category": "GIS Stack",
+      "status": "PASS",
+      "message": "PyProj 3.8.0",
+      "duration_seconds": 0.0,
+      "details": {
+        "version": "3.8.0",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\pyproj\\__init__.py"
+      }
+    },
+    {
+      "name": "Rasterio",
+      "category": "GIS Stack",
+      "status": "PASS",
+      "message": "Rasterio 1.5.1",
+      "duration_seconds": 0.0867,
+      "details": {
+        "version": "1.5.1",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\rasterio\\__init__.py"
+      }
+    },
+    {
+      "name": "Matplotlib",
+      "category": "Visualization",
+      "status": "PASS",
+      "message": "Matplotlib 3.11.1",
+      "duration_seconds": 0.0002,
+      "details": {
+        "version": "3.11.1",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\matplotlib\\__init__.py"
+      }
+    },
+    {
+      "name": "Plotly",
+      "category": "Visualization",
+      "status": "PASS",
+      "message": "Plotly 7.0.0",
+      "duration_seconds": 0.0034,
+      "details": {
+        "version": "7.0.0",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\plotly\\__init__.py"
+      }
+    },
+    {
+      "name": "PyVista",
+      "category": "Visualization",
+      "status": "PASS",
+      "message": "PyVista 0.49.0",
+      "duration_seconds": 0.1925,
+      "details": {
+        "version": "0.49.0",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\pyvista\\__init__.py"
+      }
+    },
+    {
+      "name": "openpyxl",
+      "category": "Document Stack",
+      "status": "PASS",
+      "message": "openpyxl 3.1.5",
+      "duration_seconds": 0.1336,
+      "details": {
+        "version": "3.1.5",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\openpyxl\\__init__.py"
+      }
+    },
+    {
+      "name": "python-docx",
+      "category": "Document Stack",
+      "status": "PASS",
+      "message": "python-docx 1.2.0",
+      "duration_seconds": 0.0517,
+      "details": {
+        "version": "1.2.0",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\docx\\__init__.py"
+      }
+    },
+    {
+      "name": "pypdf",
+      "category": "Document Stack",
+      "status": "PASS",
+      "message": "pypdf 6.18.0",
+      "duration_seconds": 0.0915,
+      "details": {
+        "version": "6.18.0",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\pypdf\\__init__.py"
+      }
+    },
+    {
+      "name": "Pydantic",
+      "category": "Configuration",
+      "status": "PASS",
+      "message": "Pydantic 2.13.5",
+      "duration_seconds": 0.0,
+      "details": {
+        "version": "2.13.5",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\pydantic\\__init__.py"
+      }
+    },
+    {
+      "name": "PyYAML",
+      "category": "Configuration",
+      "status": "PASS",
+      "message": "PyYAML 6.0.3",
+      "duration_seconds": 0.0,
+      "details": {
+        "version": "6.0.3",
+        "module_path": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\.venv\\Lib\\site-packages\\yaml\\__init__.py"
+      }
+    },
+    {
+      "name": "Project Configuration",
+      "category": "Configuration",
+      "status": "PASS",
+      "message": "Loaded paths.yaml, model_config.yaml, and validation_rules.yaml",
+      "duration_seconds": 0.0036,
+      "details": {
+        "project_name": "DWEX Baseline Groundwater System",
+        "resolved_mf6": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\tools\\modflow6\\mf6.exe",
+        "raw_data_dir": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\data\\raw"
+      }
+    },
+    {
+      "name": "Filesystem Directories",
+      "category": "Filesystem",
+      "status": "PASS",
+      "message": "All 14 required directories present and writable",
+      "duration_seconds": 0.0003,
+      "details": {}
+    },
+    {
+      "name": "ruff",
+      "category": "Development Tools",
+      "status": "PASS",
+      "message": "ruff executable available",
+      "duration_seconds": 0.0015,
+      "details": {}
+    },
+    {
+      "name": "mypy",
+      "category": "Development Tools",
+      "status": "PASS",
+      "message": "mypy executable available",
+      "duration_seconds": 0.0014,
+      "details": {}
+    },
+    {
+      "name": "pytest",
+      "category": "Development Tools",
+      "status": "PASS",
+      "message": "pytest executable available",
+      "duration_seconds": 0.0013,
+      "details": {}
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "crs_summary": {
+    "domain_crs": "EPSG:32633",
+    "topography_crs": "EPSG:32633",
+    "river_crs": "EPSG:32633"
+  },
+  "crs_matched": true,
+  "domain_bounds": [
+    500000.0,
+    2700000.0,
+    501000.0,
+    2701000.0
+  ],
+  "dem_bounds": [
+    500000.0,
+    2700000.0,
+    501000.0,
+    2701000.0
+  ],
+  "dem_covers_domain": true,
+  "points_checked": 17,
+  "points_inside": 17,
+  "outside_points": [],
+  "river_intersects_domain": true,
+  "issues": []
+}

@@ -1,0 +1,83 @@
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+
+# Python cache & build artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Sensitive data / credentials
+.env
+*.key
+*.pem
+
+# Engineering Data: Preserve raw immutability, ignore ephemeral/large runs
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/DOC-20260910-WA0008.pdf
+data/processed/*
+!data/processed/.gitkeep
+data/validated/*
+!data/validated/.gitkeep
+
+# Numerical Model Simulation Outputs & Scratch
+model/input/*
+!model/input/.gitkeep
+model/output/*
+!model/output/.gitkeep
+model/calibration/*
+!model/calibration/.gitkeep
+model/scenarios/*
+!model/scenarios/.gitkeep
+
+# MODFLOW Simulation Binaries / Files
+*.hds
+*.cbc
+*.cbb
+*.lst
+*.dis
+*.nam
+*.ims
+*.npf
+*.ic
+*.chd
+*.wel
+*.rch
+*.ghb
+*.drn
+*.riv
+*.oc
+
+# Visualizations & QA/QC outputs
+outputs/maps/*
+!outputs/maps/.gitkeep
+outputs/graphs/*
+!outputs/graphs/.gitkeep
+outputs/3d/*
+!outputs/3d/.gitkeep
+outputs/qa_qc/*
+!outputs/qa_qc/.gitkeep
+
+# Logs & Temporary files
+logs/*.log
+*.tmp
+temp/
+scratch/
+
+# IDE / OS specific
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

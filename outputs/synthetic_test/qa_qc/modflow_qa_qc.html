@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DWEX MODFLOW 6 Numerical QA/QC Audit</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #0f172a; color: #f8fafc; padding: 30px; }
+        .card { background: #1e293b; border-radius: 8px; padding: 25px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); max-width: 900px; margin: auto; }
+        h1 { margin-top: 0; color: #38bdf8; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { background: #334155; text-align: left; padding: 12px; color: #94a3b8; }
+        .badge { padding: 6px 14px; border-radius: 4px; font-weight: bold; display: inline-block; }
+        .badge-pass { background: #065f46; color: #6ee7b7; }
+        .badge-fail { background: #991b1b; color: #fca5a5; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>DWEX Groundwater — MODFLOW 6 QA/QC Numerical Audit</h1>
+        <p><b>Audit Status:</b> <span class="badge badge-pass">PASS</span></p>
+        <p><b>Execution Time:</b> 0.269 s | <b>Workspace:</b> <code>C:\Users\Shreyas-Wakhare\Desktop\TEST_001\model\synthetic_test\input</code></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Verification Criteria</th>
+                    <th>Result</th>
+                    <th>Numerical Findings</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr>
+                <td style="padding: 12px; border-bottom: 1px solid #334155;"><b>Solver Convergence</b></td>
+                <td style="padding: 12px; border-bottom: 1px solid #334155; color: #10b981; font-weight: bold;">PASS</td>
+                <td style="padding: 12px; border-bottom: 1px solid #334155;">MODFLOW 6 solver converged with normal termination</td>
+            </tr>
+            
+            <tr>
+                <td style="padding: 12px; border-bottom: 1px solid #334155;"><b>Volumetric Water Balance</b></td>
+                <td style="padding: 12px; border-bottom: 1px solid #334155; color: #10b981; font-weight: bold;">PASS</td>
+                <td style="padding: 12px; border-bottom: 1px solid #334155;">Cumulative mass balance discrepancy is 0.0000% (tolerance <= 0.1%)</td>
+            </tr>
+            
+            <tr>
+                <td style="padding: 12px; border-bottom: 1px solid #334155;"><b>Head Plausibility & Gradient</b></td>
+                <td style="padding: 12px; border-bottom: 1px solid #334155; color: #10b981; font-weight: bold;">PASS</td>
+                <td style="padding: 12px; border-bottom: 1px solid #334155;">Heads range [26.79 m, 32.00 m] with consistent West-East flow</td>
+            </tr>
+            
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

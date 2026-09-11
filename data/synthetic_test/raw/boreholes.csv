@@ -1,0 +1,11 @@
+borehole_id,x,y,ground_elevation,total_depth,layer,lithology,top_elevation,bottom_elevation
+BH-01,500150.0,2700850.0,33.2,50.0,1,Alluvial Sand & Gravel,33.2,10.0
+BH-01,500150.0,2700850.0,33.2,50.0,2,Silty Sand & Sandstone,10.0,-15.0
+BH-02,500850.0,2700850.0,27.1,45.0,1,Fine Alluvial Sand,27.1,10.0
+BH-02,500850.0,2700850.0,27.1,45.0,2,Fractured Sandstone,10.0,-15.0
+BH-03,500500.0,2700500.0,30.0,48.0,1,Medium to Coarse Sand,30.0,10.0
+BH-03,500500.0,2700500.0,30.0,48.0,2,Silty Sand,10.0,-15.0
+BH-04,500200.0,2700200.0,32.5,50.0,1,Coarse Sand,32.5,10.0
+BH-04,500200.0,2700200.0,32.5,50.0,2,Bedrock / Sandstone,10.0,-15.0
+BH-05,500800.0,2700200.0,26.8,44.0,1,Alluvial Silt & Sand,26.8,10.0
+BH-05,500800.0,2700200.0,26.8,44.0,2,Fractured Sandstone,10.0,-15.0

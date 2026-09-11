@@ -1,0 +1,130 @@
+{
+  "project_name": "DWEX Synthetic Conceptual Hydrogeological Model",
+  "crs": "EPSG:32633",
+  "domain": {
+    "bounds": [
+      500000.0,
+      2700000.0,
+      501000.0,
+      2701000.0
+    ],
+    "dimensions": {
+      "width_m": 1000.0,
+      "height_m": 1000.0
+    },
+    "elevation_range": [
+      26.0,
+      35.498783111572266
+    ]
+  },
+  "hydrostratigraphy": {
+    "num_layers": 2,
+    "layers": [
+      {
+        "layer_index": 1,
+        "name": "Alluvial Sand & Gravel (Upper Aquifer)",
+        "hydro_type": "unconfined",
+        "k_horizontal": 20.0,
+        "k_vertical": 2.0,
+        "specific_yield": 0.2,
+        "specific_storage": 0.0001,
+        "top_elevation": null,
+        "bottom_elevation": 10.0
+      },
+      {
+        "layer_index": 2,
+        "name": "Silty Sand & Fractured Bedrock (Lower Aquifer)",
+        "hydro_type": "convertible",
+        "k_horizontal": 6.0,
+        "k_vertical": 0.6000000000000001,
+        "specific_yield": 0.1,
+        "specific_storage": 1e-05,
+        "top_elevation": 10.0,
+        "bottom_elevation": -15.0
+      }
+    ]
+  },
+  "boundary_conditions": {
+    "west": {
+      "type": "Constant Head (CHD)",
+      "description": "Regional inflow from western highlands",
+      "head_elevation": 32.0,
+      "layer": 1
+    },
+    "east": {
+      "type": "River Boundary (RIV)",
+      "description": "River boundary draining regional groundwater",
+      "stage": 24.0,
+      "riverbed_bottom": 22.5,
+      "conductance": 50.0,
+      "layer": 1
+    },
+    "surface_recharge": {
+      "type": "Areal Recharge (RCH)",
+      "rate_m_day": 0.0005,
+      "description": "Net infiltration across model footprint"
+    },
+    "stresses": [
+      {
+        "type": "Pumping Well (WEL)",
+        "id": "PW-01",
+        "x": 500500.0,
+        "y": 2700500.0,
+        "layer": 1,
+        "pumping_rate_m3_day": -500.0,
+        "description": "Simulated dewatering / extraction test well"
+      }
+    ]
+  },
+  "groundwater_flow_direction": "West-to-East regional gradient controlled by topography and river drainage",
+  "observation_targets": [
+    {
+      "well_id": "OW-01",
+      "x": 500200.0,
+      "y": 2700800.0,
+      "observed_head": 30.5,
+      "layer": 1,
+      "use": "calibration"
+    },
+    {
+      "well_id": "OW-02",
+      "x": 500400.0,
+      "y": 2700600.0,
+      "observed_head": 28.2,
+      "layer": 1,
+      "use": "calibration"
+    },
+    {
+      "well_id": "OW-03",
+      "x": 500600.0,
+      "y": 2700400.0,
+      "observed_head": 26.5,
+      "layer": 1,
+      "use": "calibration"
+    },
+    {
+      "well_id": "OW-04",
+      "x": 500800.0,
+      "y": 2700200.0,
+      "observed_head": 24.8,
+      "layer": 1,
+      "use": "calibration"
+    },
+    {
+      "well_id": "OW-05",
+      "x": 500300.0,
+      "y": 2700300.0,
+      "observed_head": 29.1,
+      "layer": 1,
+      "use": "validation"
+    },
+    {
+      "well_id": "OW-06",
+      "x": 500700.0,
+      "y": 2700700.0,
+      "observed_head": 25.9,
+      "layer": 1,
+      "use": "validation"
+    }
+  ]
+}

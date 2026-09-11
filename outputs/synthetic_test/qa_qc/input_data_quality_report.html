@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DWEX Input Data Quality Report</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #0f172a; color: #f8fafc; padding: 30px; }
+        .card { background: #1e293b; border-radius: 8px; padding: 25px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); max-width: 900px; margin: auto; }
+        h1 { margin-top: 0; color: #38bdf8; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { background: #334155; text-align: left; padding: 12px 10px; color: #94a3b8; }
+        .badge { padding: 6px 12px; border-radius: 4px; font-weight: bold; display: inline-block; }
+        .badge-pass { background: #065f46; color: #6ee7b7; }
+        .badge-fail { background: #991b1b; color: #fca5a5; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>DWEX Groundwater Modelling — Input Data QA/QC Report</h1>
+        <p><b>Validation Status:</b> <span class="badge badge-pass">PASS</span></p>
+        <p><b>Dataset Mode:</b> SYNTHETIC TEST DATA (Strict Engineering Validation)</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Domain Category</th>
+                    <th>Result</th>
+                    <th>Audit Findings</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><b>boreholes</b></td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; color: #f59e0b; font-weight: bold;">WARN</td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">Duplicate borehole ID: BH-01</td>
+            </tr>
+            
+            <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><b>boreholes</b></td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; color: #f59e0b; font-weight: bold;">WARN</td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">Duplicate borehole ID: BH-02</td>
+            </tr>
+            
+            <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><b>boreholes</b></td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; color: #f59e0b; font-weight: bold;">WARN</td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">Duplicate borehole ID: BH-03</td>
+            </tr>
+            
+            <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><b>boreholes</b></td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; color: #f59e0b; font-weight: bold;">WARN</td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">Duplicate borehole ID: BH-04</td>
+            </tr>
+            
+            <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><b>boreholes</b></td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; color: #f59e0b; font-weight: bold;">WARN</td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">Duplicate borehole ID: BH-05</td>
+            </tr>
+            
+            <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><b>boreholes</b></td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; color: #10b981; font-weight: bold;">PASS</td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">Validated 10 borehole stratigraphic intervals successfully.</td>
+            </tr>
+            
+            <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><b>hydraulic_properties</b></td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; color: #10b981; font-weight: bold;">PASS</td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">All hydraulic conductivity and storage values are physically plausible.</td>
+            </tr>
+            
+            <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><b>groundwater_levels</b></td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; color: #10b981; font-weight: bold;">PASS</td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">Validated 6 monitoring well head records.</td>
+            </tr>
+            
+            <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;"><b>pumping_wells</b></td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; color: #10b981; font-weight: bold;">PASS</td>
+                <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">Validated 1 pumping well stress schedules.</td>
+            </tr>
+            
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

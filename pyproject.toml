@@ -1,0 +1,112 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dwex-groundwater"
+version = "0.1.0"
+description = "DWEX AI-Assisted Groundwater Modelling and Environmental Engineering Platform"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "DWEX Engineering Team" }
+]
+license = { text = "Proprietary" }
+dependencies = [
+    # Core scientific computing
+    "numpy>=1.26.0",
+    "pandas>=2.0.0",
+    "scipy>=1.12.0",
+    
+    # MODFLOW interface
+    "flopy>=3.9.0",
+    
+    # Spatial / GIS (using pyogrio as modern vector engine for geopandas)
+    "geopandas>=1.0.0",
+    "pyogrio>=0.10.0",
+    "shapely>=2.0.0",
+    "pyproj>=3.6.0",
+    "rasterio>=1.4.0",
+    
+    # Visualization
+    "matplotlib>=3.8.0",
+    "plotly>=5.20.0",
+    "pyvista>=0.44.0",
+    
+    # Document & Data processing
+    "openpyxl>=3.1.0",
+    "python-docx>=1.1.0",
+    "pypdf>=5.0.0",
+    
+    # Configuration & Validation
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.2.0",
+    "pyyaml>=6.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.5.0",
+    "mypy>=1.10.0",
+    "types-pyyaml>=6.0.12",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+pythonpath = ["src"]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "C4", "UP"]
+ignore = ["E501", "B008"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/*" = ["E402"]
+"tests/*" = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = false
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "pandas.*",
+    "flopy.*",
+    "geopandas.*",
+    "rasterio.*",
+    "shapely.*",
+    "pyproj.*",
+    "pyogrio.*",
+    "pyvista.*",
+    "docx.*",
+    "pypdf.*",
+    "openpyxl.*",
+    "scipy.*",
+    "plotly.*",
+    "matplotlib.*"
+]
+ignore_missing_imports = true
