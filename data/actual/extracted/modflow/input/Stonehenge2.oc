@@ -1,0 +1,20 @@
+# MODFLOW 6 Output Control Package (OC)
+# Directs saving of heads and budget (syntax configuration only; mf6.exe NOT RUN)
+BEGIN options
+  BUDGET  FILEOUT  Stonehenge2.cbc
+  HEAD  FILEOUT  Stonehenge2.hds
+END options
+
+BEGIN period  1
+  SAVE  HEAD  LAST
+  SAVE  BUDGET  LAST
+  PRINT  HEAD  LAST
+  PRINT  BUDGET  LAST
+END period  1
+
+BEGIN period  2
+  SAVE  HEAD  LAST
+  SAVE  BUDGET  LAST
+  PRINT  HEAD  LAST
+  PRINT  BUDGET  LAST
+END period  2

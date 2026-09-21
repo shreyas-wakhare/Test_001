@@ -1,0 +1,35 @@
+# MODFLOW 6 Discretization Package (DIS)
+# Stonehenge-2; DLTM / EPSG:3997. The polygon mask is a computational
+# representation of the approved surveyed plot; all five geological layers use it.
+BEGIN options
+  LENGTH_UNITS  meters
+  XORIGIN  4.86945000E+05
+  YORIGIN  2.77255000E+06
+END options
+
+BEGIN dimensions
+  NLAY  5
+  NROW  28
+  NCOL  26
+END dimensions
+
+BEGIN griddata
+  delr
+    CONSTANT  2.50000000
+  delc
+    CONSTANT  2.50000000
+  top
+    CONSTANT  8.25000000
+  botm  LAYERED
+    CONSTANT   6.75000000  # L1 bottom
+    CONSTANT  -4.75000000  # L2 bottom
+    CONSTANT -14.75000000  # L3 bottom
+    CONSTANT -19.75000000  # L4 bottom
+    CONSTANT -31.75000000  # L5 bottom
+  idomain  LAYERED
+    OPEN/CLOSE  Stonehenge2_idomain_mask.dat
+    OPEN/CLOSE  Stonehenge2_idomain_mask.dat
+    OPEN/CLOSE  Stonehenge2_idomain_mask.dat
+    OPEN/CLOSE  Stonehenge2_idomain_mask.dat
+    OPEN/CLOSE  Stonehenge2_idomain_mask.dat
+END griddata

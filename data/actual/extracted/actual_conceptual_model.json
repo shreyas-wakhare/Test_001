@@ -1,0 +1,1659 @@
+{
+  "01_model_metadata": {
+    "model_name": "Stonehenge-2 Dewatering Conceptual Groundwater Model",
+    "project_name": "4B+G+10 Residential Building (Stonehenge -2)",
+    "project_reference": "P393D",
+    "plot_reference": "JVC15AMRM004",
+    "location": "Al Barsha South Fourth, Jumeirah Village Circle (JVC), Dubai, UAE",
+    "country": "United Arab Emirates",
+    "city": "Dubai",
+    "purpose": "BASE CONCEPTUAL GROUNDWATER / DEWATERING MODEL",
+    "model_type": "Three-Dimensional Hydrogeological Conceptual Dewatering Model",
+    "workflow_phase": "Phase 1 \u2014 Step 3: Conceptual Model Creation",
+    "workflow_step": "Step 3",
+    "model_status": "actual_conceptual_model.json",
+    "conceptual_model_status": "GENERATED_PENDING_ENGINEER_APPROVAL",
+    "governing_workflow": "ModflowSteps.md (FROZEN)",
+    "ultimate_source_of_truth": "data/actual/extracted/PreModflowApproval.md",
+    "supporting_source": "data/actual/extracted/actual_engineering_dataset.json",
+    "research_source": "data/actual/extracted/HydrogeologicalParameterResearch.md",
+    "data_gap_source": "data/actual/extracted/HydrogeologicalDataGapResearch.md",
+    "CRS": "WGS 84 / Dubai Local TM (DLTM) (EPSG:3997)",
+    "units": {
+      "length": "meter",
+      "time": "day",
+      "discharge": "m3/day",
+      "discharge_hourly": "m3/hr",
+      "hydraulic_conductivity": "m/day",
+      "specific_yield": "dimensionless",
+      "specific_storage": "1/meter",
+      "elevation": "m DMD (Dubai Mining Datum)"
+    },
+    "model_scope": "BASE_CONCEPTUAL_MODEL_ONLY",
+    "scenario_policy": "SINGLE_BASE_CONCEPTUAL_MODEL (No alternative scenarios, no sensitivity cases in active parameters)",
+    "modflow_generation_status": "NOT_PERFORMED (Conceptual modeling phase only; native MODFLOW 6 package generation deferred to Phase 2 \u2014 Step 4 following manual engineer sign-off)",
+    "mf6_execution_status": "NOT_EXECUTED",
+    "governance_notes": "This artifact represents the proposed conceptual groundwater model synthesized exclusively from the approved engineering decisions in PreModflowApproval.md. It is NOT approved_conceptual_model.json, which requires formal manual human engineering sign-off."
+  },
+  "02_model_domain_geometry": {
+    "domain_distinction": {
+      "engineering_domain": "Physical site boundary defined by surveyed CAD coordinates enclosing 1633.18 m\u00b2 with a perimeter of 168.0 m.",
+      "future_numerical_model_grid": "Numerical discretization (cell sizes, row/column counts, regional buffer extent) is strictly deferred to Phase 2 (FloPy / MODFLOW 6 input file generation) and is NOT invented in this conceptual model."
+    },
+    "CRS": "EPSG:3997",
+    "coordinate_reference_system": {
+      "name": "WGS 84 / Dubai Local TM (DLTM)",
+      "code": "EPSG:3997",
+      "projection": "Transverse Mercator",
+      "unit": "meter",
+      "central_meridian": 55.3333333333333,
+      "latitude_of_origin": 0.0,
+      "false_easting": 500000.0,
+      "false_northing": 0.0,
+      "provenance": {
+        "source_id": "SRC-002",
+        "source_file": "MS-1-P393D - R5.pdf",
+        "pages": [
+          16
+        ],
+        "section": "Drawing DEW-1-P393D Coordinate Callouts"
+      }
+    },
+    "approved_plot_boundary": {
+      "area_m2": 1633.18,
+      "perimeter_m": 168.0,
+      "geometry_type": "Polygon",
+      "status": "APPROVED",
+      "approval_reference": "CONFLICT-001 (PreModflowApproval.md)",
+      "classification": "approved_engineering_input"
+    },
+    "boundary_coordinates": [
+      {
+        "corner_id": "Corner_1_NW",
+        "easting_m": 486976.064,
+        "northing_m": 2772616.704,
+        "crs": "EPSG:3997",
+        "classification": "raw_fact",
+        "provenance": {
+          "source_id": "SRC-002",
+          "source_file": "MS-1-P393D - R5.pdf",
+          "pages": [
+            16
+          ],
+          "section": "Drawing DEW-1-P393D Rev 07"
+        }
+      },
+      {
+        "corner_id": "Corner_2_NE",
+        "easting_m": 487005.204,
+        "northing_m": 2772591.303,
+        "crs": "EPSG:3997",
+        "classification": "raw_fact",
+        "provenance": {
+          "source_id": "SRC-002",
+          "source_file": "MS-1-P393D - R5.pdf",
+          "pages": [
+            16
+          ],
+          "section": "Drawing DEW-1-P393D Rev 07"
+        }
+      },
+      {
+        "corner_id": "Corner_3_SE",
+        "easting_m": 486975.639,
+        "northing_m": 2772557.378,
+        "crs": "EPSG:3997",
+        "classification": "raw_fact",
+        "provenance": {
+          "source_id": "SRC-002",
+          "source_file": "MS-1-P393D - R5.pdf",
+          "pages": [
+            16
+          ],
+          "section": "Drawing DEW-1-P393D Rev 07"
+        }
+      },
+      {
+        "corner_id": "Corner_4_SW",
+        "easting_m": 486950.063,
+        "northing_m": 2772579.673,
+        "crs": "EPSG:3997",
+        "classification": "raw_fact",
+        "provenance": {
+          "source_id": "SRC-002",
+          "source_file": "MS-1-P393D - R5.pdf",
+          "pages": [
+            16
+          ],
+          "section": "Drawing DEW-1-P393D Rev 07"
+        }
+      }
+    ],
+    "coordinate_units": "meter",
+    "plot_area": {
+      "value": 1633.18,
+      "unit": "m2",
+      "status": "APPROVED",
+      "classification": "approved_engineering_input",
+      "approval_reference": "CONFLICT-001",
+      "derivation": "Shoelace formula applied to 4 DLTM surveyed corner coordinates from Drawing DEW-1-P393D Rev 07",
+      "rejected_alternative": "1755.0 m\u00b2 narrative rectangular approximation rejected under CONFLICT-001",
+      "provenance": {
+        "primary": "PreModflowApproval.md (Section 02, 13 CONFLICT-001, 18)",
+        "supporting_source": "MS-1-P393D - R5.pdf (Page 16, Drawing DEW-1-P393D Rev 07)"
+      }
+    },
+    "perimeter": {
+      "value": 168.0,
+      "unit": "m",
+      "status": "APPROVED",
+      "classification": "approved_engineering_input",
+      "boundary_segments": [
+        {
+          "segment_id": "Segment_1_NW_to_NE",
+          "length_m": 38.66,
+          "callout_mm": 38660,
+          "provenance": "Drawing DEW-1-P393D Rev 07 (p. 16)"
+        },
+        {
+          "segment_id": "Segment_2_NE_to_SE",
+          "length_m": 45.0,
+          "callout_mm": 45000,
+          "provenance": "Drawing DEW-1-P393D Rev 07 (p. 16)"
+        },
+        {
+          "segment_id": "Segment_3_SE_to_SW",
+          "length_m": 33.93,
+          "callout_mm": 33930,
+          "provenance": "Drawing DEW-1-P393D Rev 07 (p. 16)"
+        },
+        {
+          "segment_id": "Segment_4_SW_to_NW",
+          "length_m": 45.27,
+          "callout_mm": 45270,
+          "provenance": "Drawing DEW-1-P393D Rev 07 (p. 16)"
+        }
+      ]
+    },
+    "boundary_geometry_source": "MS-1-P393D - R5.pdf (Page 16, Drawing DEW-1-P393D Rev 07)",
+    "geometry_provenance": {
+      "primary": "PreModflowApproval.md (Section 02 & Section 13 CONFLICT-001)",
+      "supporting_source": "actual_engineering_dataset.json (section_02_spatial_gis_information)"
+    },
+    "spatial_interpretation": "The model domain is defined by an irregular quadrilateral polygon enclosing 1633.18 m\u00b2 with four distinct perimeter segments totaling 168.0 m. The plot is oriented at approximately 40 degrees counterclockwise from grid North.",
+    "kmz_site_anchor": {
+      "role": "REGIONAL_GEOGRAPHIC_ANCHOR_ONLY",
+      "placemark_name": "E6168D - TMF Found",
+      "coordinates_wgs84": [
+        55.20432203890749,
+        25.05890758988347
+      ],
+      "crs": "EPSG:4326",
+      "is_boundary_polygon": false,
+      "interpretation": "The KMZ file provides a regional geographic anchor point and does NOT constitute the approved plot boundary polygon (logged and resolved under GAP-001 in PreModflowApproval.md).",
+      "provenance": "E6168D - TMF Found.kmz (SRC-001)"
+    },
+    "top_view": {
+      "north_arrow": {
+        "direction": "Grid North (EPSG:3997 DLTM)",
+        "plot_orientation_relative_to_north_deg": -40.0,
+        "description": "Grid North corresponds to positive Northing axis; site boundary long axis is rotated approximately 40\u00b0 counterclockwise from Grid North."
+      },
+      "approved_plot_boundary": {
+        "area_m2": 1633.18,
+        "perimeter_m": 168.0,
+        "geometry_type": "Polygon",
+        "corner_count": 4
+      },
+      "plot_boundary_coordinates": [
+        {
+          "corner_id": "Corner_1_NW",
+          "easting_m": 486976.064,
+          "northing_m": 2772616.704
+        },
+        {
+          "corner_id": "Corner_2_NE",
+          "easting_m": 487005.204,
+          "northing_m": 2772591.303
+        },
+        {
+          "corner_id": "Corner_3_SE",
+          "easting_m": 486975.639,
+          "northing_m": 2772557.378
+        },
+        {
+          "corner_id": "Corner_4_SW",
+          "easting_m": 486950.063,
+          "northing_m": 2772579.673
+        }
+      ],
+      "excavation_footprint": {
+        "description": "Internal excavation footprint offset immediately inside the 4-sided secant pile wall.",
+        "enclosed_area_approx_m2": 1633.18,
+        "excavation_levels": "Levels 01 to 08 (-3.70 to -8.00 m DMD)"
+      },
+      "secant_pile_wall": {
+        "type": "Secant Pile Wall On 4 Sides",
+        "alignment": "Offset immediately inside site boundary on all 4 sides",
+        "perimeter_m": 168.0,
+        "toe_levels_m_dmd": [
+          -9.3,
+          -10.0,
+          -11.65
+        ],
+        "hfb_representation": "YES (MODFLOW 6 Horizontal Flow Barrier)",
+        "wall_thickness_m": 0.5,
+        "wall_k_m_s": 1e-10,
+        "wall_k_m_day": 8.64e-06,
+        "hydchr_day_inv": 1.728e-05,
+        "partial_penetration": true,
+        "segment_wise_toe_levels_m_dmd": {
+          "north": -11.65,
+          "west_north": -11.65,
+          "west_south": -9.3,
+          "east_north": -11.65,
+          "east_south": -10.0,
+          "south_west": -9.3,
+          "south_east": -10.0
+        }
+      },
+      "wall_perimeter": {
+        "value": 168.0,
+        "unit": "m"
+      },
+      "deepwells": {
+        "count": 6,
+        "well_ids": [
+          "DW-01",
+          "DW-02",
+          "DW-03",
+          "DW-04",
+          "DW-05",
+          "DW-06"
+        ],
+        "layout_pattern": "Distributed along the internal perimeter of the shoring enclosure to intercept inward groundwater flow."
+      },
+      "well_coordinates": [
+        {
+          "well_id": "DW-01",
+          "easting_m": 486976.438,
+          "northing_m": 2772571.467,
+          "position_note": "Southern perimeter sector"
+        },
+        {
+          "well_id": "DW-02",
+          "easting_m": 486973.338,
+          "northing_m": 2772582.31,
+          "position_note": "Central-south internal sector"
+        },
+        {
+          "well_id": "DW-03",
+          "easting_m": 486961.597,
+          "northing_m": 2772582.131,
+          "position_note": "Western perimeter sector"
+        },
+        {
+          "well_id": "DW-04",
+          "easting_m": 486976.158,
+          "northing_m": 2772593.866,
+          "position_note": "Central-north internal sector"
+        },
+        {
+          "well_id": "DW-05",
+          "easting_m": 486976.572,
+          "northing_m": 2772606.274,
+          "position_note": "Northern perimeter sector"
+        },
+        {
+          "well_id": "DW-06",
+          "easting_m": 486995.809,
+          "northing_m": 2772586.338,
+          "position_note": "Eastern perimeter sector"
+        }
+      ],
+      "key_dimensions": {
+        "segment_NW_NE_m": 38.66,
+        "segment_NE_SE_m": 45.0,
+        "segment_SE_SW_m": 33.93,
+        "segment_SW_NW_m": 45.27,
+        "plot_enclosed_area_m2": 1633.18,
+        "shoring_perimeter_m": 168.0
+      },
+      "coordinate_system": "WGS 84 / Dubai Local TM (DLTM) EPSG:3997 (units: meter)",
+      "legend": {
+        "plot_boundary": "Red dashed polygon connecting surveyed Corner 1 to Corner 4",
+        "secant_pile_wall": "Heavy dark line immediately inside plot boundary (perimeter = 168 m)",
+        "deepwells": "Blue circled targets DW-01 to DW-06 (6 nos, 700 mm borehole, 8-inch casing)",
+        "french_drains": "0.50m x 0.50m aggregate perimeter collector channels leading to deepwells",
+        "discharge_line": "2400 m HDPE discharge route connecting site to Nakheel stormwater line"
+      },
+      "visualization_notes": "Structured engineering top/plan view capturing the spatial relationship between the surveyed plot limit, the continuous 4-sided secant pile shoring perimeter, and the 6 abstraction deepwells distributed internally."
+    }
+  },
+  "03_model_layers_hydrogeology": {
+    "stratigraphic_framework": {
+      "total_conceptual_layers": 5,
+      "ground_surface_model_plane_m_dmd": 8.25,
+      "existing_ground_surface_decision_m_dmd": 8.45,
+      "reconciliation_notes": "Approved ground surface plane for numerical top of Layer 1 is +8.25 m DMD (REV-005 in PreModflowApproval.md, based on arithmetic mean of 5 borehole elevations: 8.15 to 8.35 m DMD). Existing ground elevation of +8.45 m DMD from calculation sheet CAL-1-P393D is retained as CONFLICT-004 decision.",
+      "model_bottom_elevation_m_dmd": -31.75,
+      "total_stratigraphic_thickness_m": 40.0
+    },
+    "layers": [
+      {
+        "model_layer_id": 1,
+        "conceptual_layer_id": "L1",
+        "geological_name": "Aeolian Dune Sand / Silt",
+        "lithology": "Fine Sand with Silt",
+        "material_description": "Medium dense to very dense, light brown to brown, slightly silty, fine SAND",
+        "top_elevation": 8.25,
+        "bottom_elevation": 6.75,
+        "thickness": 1.5,
+        "depth_range": [
+          0.0,
+          1.5
+        ],
+        "weathering_condition": "Unweathered modern aeolian deposit",
+        "grain_or_material_characteristics": "Fine grained, slightly silty, non-cohesive, medium dense to very dense",
+        "SPT_information": "N-values range from 18 to >50 (mean ~35)",
+        "UCS_information": "N/A (unconsolidated soil formation)",
+        "hydrogeological_role": "Vadose Zone / Unsaturated Cover",
+        "aquifer_or_confining_behavior": "Unsaturated permeable soil cover (static water table is at +6.25 m DMD, below Layer 1 base)",
+        "hydraulic_role": "Transmits surface infiltration where unpaved; largely desaturated under ambient conditions",
+        "groundwater_relevance": "Located entirely above the static groundwater table (+6.25 m DMD)",
+        "well_screen_interaction": "No screen interaction; deepwells are solid cased through this interval",
+        "excavation_interaction": "Stage 1 bulk excavation completely removes this layer down to +6.75 m DMD in the dry",
+        "shoring_interaction": "Secant pile wall penetrates completely through Layer 1",
+        "hydraulic_properties_applicability": "not_layer_specific_in_approved_inputs",
+        "source": "Soil report.pdf",
+        "source_page": [
+          12
+        ],
+        "provenance": {
+          "source_id": "SRC-003",
+          "source_file": "Soil report.pdf",
+          "pages": [
+            12
+          ],
+          "section": "Table 2: Recommended Design Subsurface Profile"
+        },
+        "classification": "raw_fact",
+        "notes": "Top surface reconciled at +8.25 m DMD under REV-005. Fully dry prior to and during dewatering."
+      },
+      {
+        "model_layer_id": 2,
+        "conceptual_layer_id": "L2",
+        "geological_name": "Upper Weathered Sandstone",
+        "lithology": "Weathered Sandstone",
+        "material_description": "Extremely weak to very weak, light brown, fine to medium grained SANDSTONE",
+        "top_elevation": 6.75,
+        "bottom_elevation": -4.75,
+        "thickness": 11.5,
+        "depth_range": [
+          1.5,
+          13.0
+        ],
+        "weathering_condition": "Highly to moderately weathered",
+        "grain_or_material_characteristics": "Fine to medium grained sandstone, highly fractured/fissured, weakly cemented with carbonate matrix",
+        "SPT_information": "N > 50 (refusal encountered throughout)",
+        "UCS_information": "0.5 to 1.5 MPa (extremely weak to very weak rock)",
+        "hydrogeological_role": "Upper Unconfined/Semi-confined Sandstone Aquifer Unit",
+        "aquifer_or_confining_behavior": "Water table aquifer hosting the static groundwater table (+6.25 m DMD)",
+        "hydraulic_role": "Hosts unconfined water table; contributes to lateral seepage and storage release during dewatering",
+        "groundwater_relevance": "Contains the static water table (+6.25 m DMD); dewatered during Phase 1 pre-drawdown",
+        "well_screen_interaction": "Upper solid blank casing of deepwells passes through this layer (no screen)",
+        "excavation_interaction": "Excavation step levels 01 to 04 (-3.70 to -4.60 m DMD) are founded within this layer",
+        "shoring_interaction": "Secant pile wall penetrates completely through Layer 2, providing a lateral barrier across this interval",
+        "hydraulic_properties_applicability": "Approved base parameters apply: Kh = 4.32 m/day, Kv = 0.864 m/day, Sy = 0.12, Ss = 2.5e-5 m^-1",
+        "source": "Soil report.pdf",
+        "source_page": [
+          12
+        ],
+        "provenance": {
+          "source_id": "SRC-003",
+          "source_file": "Soil report.pdf",
+          "pages": [
+            12
+          ],
+          "section": "Table 2: Recommended Design Subsurface Profile"
+        },
+        "classification": "raw_fact",
+        "notes": "Contains initial static water table (+6.25 m DMD). Undergoes primary water table depression during dewatering."
+      },
+      {
+        "model_layer_id": 3,
+        "conceptual_layer_id": "L3",
+        "geological_name": "Moderately Weathered Sandstone",
+        "lithology": "Gypsiferous Sandstone",
+        "material_description": "Extremely weak to very weak, reddish brown, fine to medium grained, slightly gypsiferous SANDSTONE",
+        "top_elevation": -4.75,
+        "bottom_elevation": -14.75,
+        "thickness": 10.0,
+        "depth_range": [
+          13.0,
+          23.0
+        ],
+        "weathering_condition": "Moderately weathered, containing bedding plane gypsum laminations",
+        "grain_or_material_characteristics": "Fine to medium grained sandstone with secondary crystalline gypsum seams and horizontal laminations",
+        "SPT_information": "N > 50 (refusal)",
+        "UCS_information": "1.0 to 3.0 MPa (extremely weak to very weak rock)",
+        "hydrogeological_role": "Screened Aquifer",
+        "aquifer_or_confining_behavior": "Primary productive semi-confined aquifer layer targeted for abstraction",
+        "hydraulic_role": "Main water-bearing and water-yielding unit; hosts all deepwell intake screens (-7.80 to -14.50 m DMD)",
+        "groundwater_relevance": "Direct zone of active deepwell pumping depressurization; dictates regional cone of depression",
+        "well_screen_interaction": "100% of the deepwell screen interval (-7.80 to -14.50 m DMD, 6.7 m length) for all 6 wells is located inside Layer 3",
+        "excavation_interaction": "Excavation step levels 05 to 08 (-6.10 to -8.00 m DMD, including deepest elevator/sump pit at -8.00 m DMD) are excavated into this layer",
+        "shoring_interaction": "Secant pile wall toes (-9.30, -10.00, -11.65 m DMD) terminate inside Layer 3. The wall is partially penetrating relative to Layer 3.",
+        "hydraulic_properties_applicability": "Approved base parameters apply: Kh = 4.32 m/day, Kv = 0.864 m/day, Sy = 0.12, Ss = 2.5e-5 m^-1",
+        "source": "Soil report.pdf & Method Statement Appendix C",
+        "source_page": [
+          12,
+          19,
+          20
+        ],
+        "provenance": {
+          "source_id": "SRC-003 / SRC-002",
+          "source_file": "Soil report.pdf / MS-1-P393D - R5.pdf",
+          "pages": [
+            12,
+            19,
+            20
+          ],
+          "section": "Soil Report Table 2 & Method Statement CAL-1-P393D"
+        },
+        "classification": "raw_fact (geology) / interpretation (Screened Aquifer role)",
+        "notes": "Critical hydrogeological unit. Screened by all 6 deepwells. Secant pile toe terminates within this layer, creating a window for underflow."
+      },
+      {
+        "model_layer_id": 4,
+        "conceptual_layer_id": "L4",
+        "geological_name": "Conglomeratic Sandstone",
+        "lithology": "Conglomeratic Sandstone",
+        "material_description": "Very weak, reddish brown, slightly gypsiferous, conglomeratic SANDSTONE",
+        "top_elevation": -14.75,
+        "bottom_elevation": -19.75,
+        "thickness": 5.0,
+        "depth_range": [
+          23.0,
+          28.0
+        ],
+        "weathering_condition": "Moderately weathered conglomeratic sandstone",
+        "grain_or_material_characteristics": "Poorly sorted sandstone containing rounded to subangular lithic gravel clasts and gypsum seams",
+        "SPT_information": "N > 50 (refusal)",
+        "UCS_information": "1.5 to 3.5 MPa (very weak rock)",
+        "hydrogeological_role": "Lower Semi-pervious Transition Unit",
+        "aquifer_or_confining_behavior": "Semi-pervious transitional stratum between screened aquifer and basal confining bed",
+        "hydraulic_role": "Permits vertical upward leakage into Layer 3 under pumping gradients; forms the underflow pathway beneath well toes",
+        "groundwater_relevance": "Immediately underlies the deepwell toe (-14.50 m DMD); conduit for deep vertical underflow",
+        "well_screen_interaction": "Lies below deepwell toe (-14.50 m DMD); no screen or casing penetration",
+        "excavation_interaction": "Located far below excavation formation (deepest sump is at -8.00 m DMD, 6.75 m above Layer 4 top)",
+        "shoring_interaction": "Secant pile wall terminates 3.10 m to 5.45 m above Layer 4 top; wall does not penetrate this unit",
+        "hydraulic_properties_applicability": "not_layer_specific_in_approved_inputs",
+        "source": "Soil report.pdf",
+        "source_page": [
+          12
+        ],
+        "provenance": {
+          "source_id": "SRC-003",
+          "source_file": "Soil report.pdf",
+          "pages": [
+            12
+          ],
+          "section": "Table 2: Recommended Design Subsurface Profile"
+        },
+        "classification": "raw_fact",
+        "notes": "Acts as vertical transition layer between screened aquifer Layer 3 and basal confining bed Layer 5."
+      },
+      {
+        "model_layer_id": 5,
+        "conceptual_layer_id": "L5",
+        "geological_name": "Calcisiltite / Siltstone Basal Unit",
+        "lithology": "Calcisiltite / Siltstone",
+        "material_description": "Very weak to weak, light brown to off-white, fine grained CALCISILTITE/ SILTSTONE",
+        "top_elevation": -19.75,
+        "bottom_elevation": -31.75,
+        "thickness": 12.0,
+        "depth_range": [
+          28.0,
+          40.0
+        ],
+        "weathering_condition": "Slightly weathered to unweathered dense carbonate siltstone",
+        "grain_or_material_characteristics": "Very fine grained, dense, cemented calcareous siltstone / calcisiltite",
+        "SPT_information": "N > 50 (refusal)",
+        "UCS_information": "2.0 to 5.0 MPa (weak rock)",
+        "hydrogeological_role": "Lower Confining Bed",
+        "aquifer_or_confining_behavior": "Regional low-permeability basal aquitard / confining floor",
+        "hydraulic_role": "Retards vertical groundwater flow from deeper formations; forms effective hydraulic base of active dewatering system",
+        "groundwater_relevance": "Limits upward vertical recharge from regional deep aquifers",
+        "well_screen_interaction": "Deepwells terminate 5.25 m above Layer 5 top (-14.50 m vs -19.75 m DMD); no penetration",
+        "excavation_interaction": "Lies 11.75 m below deepest elevator/sump formation (-8.00 m vs -19.75 m DMD)",
+        "shoring_interaction": "Secant pile wall does not reach Layer 5; wall toe is 8.10 m to 10.45 m above Layer 5 top",
+        "hydraulic_properties_applicability": "not_layer_specific_in_approved_inputs",
+        "source": "Soil report.pdf & Method Statement Appendix C",
+        "source_page": [
+          12,
+          19,
+          20
+        ],
+        "provenance": {
+          "source_id": "SRC-003 / SRC-002",
+          "source_file": "Soil report.pdf / MS-1-P393D - R5.pdf",
+          "pages": [
+            12,
+            19,
+            20
+          ],
+          "section": "Soil Report Table 2 & Method Statement CAL-1-P393D"
+        },
+        "classification": "raw_fact (geology) / interpretation (Lower Confining Bed role)",
+        "notes": "Approved as the Lower Confining Bed in PreModflowApproval.md. Defines the impervious/semi-pervious base of the conceptual model."
+      }
+    ],
+    "hydrogeological_relationships": {
+      "screened_aquifer_and_confining_bed": "Layer 3 (-4.75 to -14.75 m DMD) acts as the primary screened aquifer, while Layer 5 (-19.75 to -31.75 m DMD) functions as the basal confining unit. Layer 4 (-14.75 to -19.75 m DMD) provides a 5.0 m transitional zone between them.",
+      "deepwell_screen_interaction": "All 6 deepwells (DW-01 to DW-06) have their 6.7 m screen interval placed between -7.80 and -14.50 m DMD, entirely within Layer 3. The well toe terminates at -14.50 m DMD, exactly at the base of Layer 3.",
+      "excavation_interaction": "Excavation penetrates Layer 1 (0 to 1.5 m bgl), Layer 2 (1.5 to 13.0 m bgl, hosting Levels 01 to 04), and enters Layer 3 to reach deepest formation at -8.00 m DMD (Level 08 elevator/sump pit).",
+      "secant_pile_wall_interaction": "Secant pile wall penetrates through Layer 1 and Layer 2, terminating within Layer 3 at toe levels -9.30, -10.00, and -11.65 m DMD. The wall does not reach Layer 5 (-19.75 m DMD).",
+      "underflow_concept": "Because the secant pile wall terminates at -9.30 to -11.65 m DMD while the basal confining bed begins at -19.75 m DMD, a permeable vertical gap of 8.10 m to 10.45 m exists beneath the wall toe. Groundwater underflow beneath the wall toe into the excavation drawdown cone is hydrogeologically possible and active."
+    },
+    "underground_vertical_view": {
+      "ground_surface": "+8.25 m DMD (approved reconciled Layer-1/model ground surface plane, REV-005)",
+      "existing_ground_surface_decision": "+8.45 m DMD (approved existing ground elevation decision, CONFLICT-004)",
+      "initial_groundwater": "+6.25 m DMD (approved baseline groundwater level)",
+      "all_five_geological_layers": [
+        {
+          "layer_id": 1,
+          "name": "Aeolian Dune Sand / Silt",
+          "top_m_dmd": 8.25,
+          "bottom_m_dmd": 6.75,
+          "thickness_m": 1.5,
+          "role": "Vadose Zone / Sand Cover"
+        },
+        {
+          "layer_id": 2,
+          "name": "Upper Weathered Sandstone",
+          "top_m_dmd": 6.75,
+          "bottom_m_dmd": -4.75,
+          "thickness_m": 11.5,
+          "role": "Upper Aquifer / Static Water Table"
+        },
+        {
+          "layer_id": 3,
+          "name": "Moderately Weathered Sandstone",
+          "top_m_dmd": -4.75,
+          "bottom_m_dmd": -14.75,
+          "thickness_m": 10.0,
+          "role": "Screened Aquifer"
+        },
+        {
+          "layer_id": 4,
+          "name": "Conglomeratic Sandstone",
+          "top_m_dmd": -14.75,
+          "bottom_m_dmd": -19.75,
+          "thickness_m": 5.0,
+          "role": "Transitional Stratum"
+        },
+        {
+          "layer_id": 5,
+          "name": "Calcisiltite / Siltstone Basal Unit",
+          "top_m_dmd": -19.75,
+          "bottom_m_dmd": -31.75,
+          "thickness_m": 12.0,
+          "role": "Lower Confining Bed"
+        }
+      ],
+      "excavation_bottom": "-8.00 m DMD (Level 08 elevator/sump pit, deepest formation level, CONFLICT-002)",
+      "target_dewatering": "-8.50 m DMD (0.50 m dry buffer below deepest excavation, REV-004)",
+      "secant_pile_wall": "4-sided secant pile wall extending from +8.25 m DMD down to toe levels -9.30, -10.00, and -11.65 m DMD",
+      "wall_toe_levels": [
+        -9.3,
+        -10.0,
+        -11.65
+      ],
+      "deepwell_screen": "-7.80 to -14.50 m DMD (6.7 m slotted UPVC screen located 100% inside Layer 3)",
+      "well_toe": "-14.50 m DMD (terminates at base of Layer 3)",
+      "basal_confining_unit": "-19.75 to -31.75 m DMD (Layer 5 Calcisiltite/Siltstone, regional aquitard)",
+      "underflow_concept": "The secant pile wall is partially penetrating relative to Layer 3 and does not reach Layer 5. A permeable vertical gap of 8.10 m to 10.45 m exists between the shoring toe (-9.30 to -11.65 m DMD) and the top of the basal confining unit (-19.75 m DMD). Upward and inward underflow beneath the toe will occur under pumping depressurization.",
+      "key_vertical_relationships": {
+        "ground_surface_to_water_table_m": 2.0,
+        "water_table_to_target_dewatering_drawdown_m": 14.75,
+        "deepest_excavation_to_target_dewatering_buffer_m": 0.5,
+        "deepest_excavation_to_shallowest_toe_m": 1.3,
+        "deepest_excavation_to_deepest_toe_m": 3.65,
+        "wall_toe_to_basal_confining_unit_gap_m": [
+          8.1,
+          9.75,
+          10.45
+        ],
+        "well_toe_to_basal_confining_unit_gap_m": 5.25
+      },
+      "legend": {
+        "L1": "Aeolian Dune Sand / Silt (+8.25 to +6.75 m DMD)",
+        "L2": "Upper Weathered Sandstone (+6.75 to -4.75 m DMD)",
+        "L3": "Moderately Weathered Sandstone [Screened Aquifer] (-4.75 to -14.75 m DMD)",
+        "L4": "Conglomeratic Sandstone (-14.75 to -19.75 m DMD)",
+        "L5": "Calcisiltite / Siltstone Basal Unit [Lower Confining Bed] (-19.75 to -31.75 m DMD)",
+        "GWL": "Initial Static Groundwater Table (+6.25 m DMD)",
+        "EXC": "Phased Excavation Formation (Deepest sump at -8.00 m DMD)",
+        "DEW": "Target Dewatering Drawdown Level (-8.50 m DMD)",
+        "SHORING": "Secant Pile Cutoff Wall (Toe at -9.30, -10.00, -11.65 m DMD)",
+        "WELL": "Deepwells DW-01 to DW-06 (Screen -7.80 to -14.50 m DMD, Toe -14.50 m DMD)"
+      },
+      "visualization_notes": "Conceptual vertical cross-section illustrating the hydrostratigraphic relationships between ground surface, static groundwater, phased excavation depths, partially penetrating secant pile wall, deepwell intake screens, and the basal confining unit."
+    }
+  },
+  "04_hydraulic_properties": {
+    "governing_parameters": {
+      "horizontal_hydraulic_conductivity_Kh": {
+        "parameter_name": "Horizontal Hydraulic Conductivity",
+        "symbol": "Kh",
+        "value": 4.32,
+        "unit": "m/day",
+        "value_m_s": 5e-05,
+        "status": "APPROVED",
+        "classification": "approved_engineering_input",
+        "applicable_layers": [
+          "Layer 2 (Upper Weathered Sandstone)",
+          "Layer 3 (Moderately Weathered Sandstone)"
+        ],
+        "approval_reference": "REV-001 (PreModflowApproval.md)",
+        "source": "MS-1-P393D - R5.pdf",
+        "source_page": [
+          19,
+          20
+        ],
+        "calculation_basis": "Method Statement Appendix C CAL-1-P393D CIRIA empirical calculation based on borehole SPT N-values (Navg = 50). Locked baseline parameter.",
+        "provenance": {
+          "primary": "PreModflowApproval.md (Section 08, 15 REV-001, 18)",
+          "supporting_source": "actual_engineering_dataset.json (section_08_hydrogeological_hydraulic_information)"
+        },
+        "notes": "Kx = Kh = 4.32 m/day and Ky = Kh = 4.32 m/day for isotropic horizontal flow in the model plane."
+      },
+      "vertical_anisotropy_ratio_Kh_Kv": {
+        "parameter_name": "Vertical Hydraulic Anisotropy Ratio",
+        "symbol": "Kh/Kv",
+        "value": 5.0,
+        "unit": "dimensionless",
+        "status": "APPROVED",
+        "classification": "approved_engineering_input",
+        "applicable_layers": [
+          "Layer 2 (Upper Weathered Sandstone)",
+          "Layer 3 (Moderately Weathered Sandstone)"
+        ],
+        "approval_reference": "REV-002 / GAP-005 (PreModflowApproval.md)",
+        "source": "HydrogeologicalParameterResearch.md",
+        "origin": "Research / Synthesis based on sedimentary sandstone bedding with horizontal gypsum laminations and sub-vertical jointing",
+        "provenance": {
+          "primary": "PreModflowApproval.md (Section 08, 14 GAP-005, 15 REV-002, 18)",
+          "research_source": "HydrogeologicalParameterResearch.md (Section 04 & Section 08)"
+        },
+        "notes": "Governs vertical flow resistance and under-seepage beneath the secant pile wall toe."
+      },
+      "derived_vertical_hydraulic_conductivity_Kv": {
+        "parameter_name": "Derived Vertical Hydraulic Conductivity",
+        "symbol": "Kv",
+        "value": 0.864,
+        "unit": "m/day",
+        "value_m_s": 1e-05,
+        "status": "APPROVED",
+        "classification": "derived_from_approved_input",
+        "applicable_layers": [
+          "Layer 2 (Upper Weathered Sandstone)",
+          "Layer 3 (Moderately Weathered Sandstone)"
+        ],
+        "approval_reference": "REV-002 (PreModflowApproval.md)",
+        "derivation_formula": "Kv = Kh / (Kh/Kv) = 4.32 m/day / 5.0 = 0.864 m/day (1.0e-5 m/s)",
+        "provenance": {
+          "primary": "PreModflowApproval.md (Section 08 & Section 15 REV-002)",
+          "supporting_source": "HydrogeologicalParameterResearch.md"
+        },
+        "notes": "Kz = Kv = 0.864 m/day in 3D numerical grid."
+      },
+      "specific_yield_Sy": {
+        "parameter_name": "Specific Yield",
+        "symbol": "Sy",
+        "value": 0.12,
+        "unit": "dimensionless",
+        "percentage": "12%",
+        "status": "APPROVED",
+        "classification": "approved_engineering_input",
+        "applicable_layers": [
+          "Layer 2 (Upper Weathered Sandstone)",
+          "Layer 3 (Moderately Weathered Sandstone)"
+        ],
+        "approval_reference": "REV-003 / GAP-004 (PreModflowApproval.md)",
+        "source": "HydrogeologicalParameterResearch.md",
+        "origin": "Research / Synthesis based on drainable porosity of weathered fine-to-medium sandstone under 150-day transient gravity drainage",
+        "provenance": {
+          "primary": "PreModflowApproval.md (Section 08, 14 GAP-004, 15 REV-003, 18)",
+          "research_source": "HydrogeologicalParameterResearch.md (Section 05 & Section 09)"
+        },
+        "notes": "Applied to unconfined water table drawdown and convertible layer dewatering."
+      },
+      "specific_storage_Ss": {
+        "parameter_name": "Specific Storage",
+        "symbol": "Ss",
+        "value": 2.5e-05,
+        "unit": "1/m",
+        "status": "APPROVED",
+        "classification": "approved_engineering_input",
+        "applicable_layers": [
+          "Layer 2 (Upper Weathered Sandstone)",
+          "Layer 3 (Moderately Weathered Sandstone)"
+        ],
+        "approval_reference": "REV-003 / GAP-004 (PreModflowApproval.md)",
+        "source": "HydrogeologicalParameterResearch.md",
+        "origin": "Rock Mechanics Derivation based on UCS compressive strength (0.5\u20133.0 MPa), rock mass Young's modulus (Em = 0.35\u20131.0 GPa), and fluid compressibility",
+        "provenance": {
+          "primary": "PreModflowApproval.md (Section 08, 14 GAP-004, 15 REV-003, 18)",
+          "research_source": "HydrogeologicalParameterResearch.md (Section 06 & Section 10)"
+        },
+        "notes": "Governs elastic compressive release in confined/semi-confined portion of aquifer."
+      }
+    },
+    "coordinate_direction_mapping": {
+      "Kx": {
+        "mapping": "Kx = Kh",
+        "value": 4.32,
+        "unit": "m/day",
+        "status": "APPROVED"
+      },
+      "Ky": {
+        "mapping": "Ky = Kh",
+        "value": 4.32,
+        "unit": "m/day",
+        "status": "APPROVED"
+      },
+      "Kz": {
+        "mapping": "Kz = Kv",
+        "value": 0.864,
+        "unit": "m/day",
+        "status": "APPROVED"
+      }
+    },
+    "layer_applicability_policy": {
+      "approved_aquifer_layers": "Layer 2 (Upper Weathered Sandstone) and Layer 3 (Moderately Weathered Sandstone) share the approved hydraulic parameters (Kh = 4.32 m/day, Kv = 0.864 m/day, Sy = 0.12, Ss = 2.5e-5 m^-1).",
+      "unapproved_layers": {
+        "layer_1": "not_layer_specific_in_approved_inputs",
+        "layer_4": "not_layer_specific_in_approved_inputs",
+        "layer_5": "not_layer_specific_in_approved_inputs"
+      },
+      "governance_rule": "Do not convert geological interpretations into unsupported numerical values. Research ranges from HydrogeologicalParameterResearch.md are NOT active base model parameters."
+    }
+  },
+  "05_initial_groundwater_conditions": {
+    "approved_baseline_groundwater_level": {
+      "value": 6.25,
+      "unit": "m_DMD",
+      "status": "APPROVED",
+      "classification": "approved_engineering_input",
+      "approval_reference": "PreModflowApproval.md (Section 06 & Section 18)",
+      "source": "MS-1-P393D - R5.pdf (Pages 3, 20, Section 2.0 Scope Table & Appendix C Calculation Sheet)",
+      "interpretation": "Approved governing pre-pumping baseline water level across the site."
+    },
+    "observed_groundwater_levels": [
+      {
+        "borehole_id": "BH01",
+        "ground_elevation_m_dmd": 8.35,
+        "water_depth_m": 2.1,
+        "water_elevation_m_dmd": 6.25,
+        "date": "28/02/2023 16:30",
+        "classification": "raw_fact",
+        "provenance": "Soil report.pdf (p. 6, 30)"
+      },
+      {
+        "borehole_id": "BH02",
+        "ground_elevation_m_dmd": 8.3,
+        "water_depth_m": 2.1,
+        "water_elevation_m_dmd": 6.2,
+        "date": "23/02/2023",
+        "classification": "raw_fact",
+        "provenance": "Soil report.pdf (p. 6, 33)"
+      },
+      {
+        "borehole_id": "BH03",
+        "ground_elevation_m_dmd": 8.15,
+        "water_depth_m": 2.0,
+        "water_elevation_m_dmd": 6.15,
+        "date": "01/03/2023",
+        "classification": "raw_fact",
+        "provenance": "Soil report.pdf (p. 6, 37)"
+      },
+      {
+        "borehole_id": "BH04",
+        "ground_elevation_m_dmd": 8.35,
+        "water_depth_m": 2.15,
+        "water_elevation_m_dmd": 6.2,
+        "date": "28/02/2023",
+        "classification": "raw_fact",
+        "provenance": "Soil report.pdf (p. 6, 40)"
+      },
+      {
+        "borehole_id": "BH05",
+        "ground_elevation_m_dmd": 8.25,
+        "water_depth_m": 2.1,
+        "water_elevation_m_dmd": 6.15,
+        "date": "01/03/2023",
+        "classification": "raw_fact",
+        "provenance": "Soil report.pdf (p. 6, 43)"
+      }
+    ],
+    "observed_summary": {
+      "min_observed_m_dmd": 6.15,
+      "max_observed_m_dmd": 6.25,
+      "mean_observed_m_dmd": 6.21,
+      "maximum_spatial_variation_m": 0.1,
+      "classification": "dataset_derivation"
+    },
+    "sensitivity_reference_groundwater_level": {
+      "value": 6.75,
+      "unit": "m_DMD",
+      "status": "REFERENCE_ONLY",
+      "classification": "raw_fact",
+      "source": "MS-1-P393D - R5.pdf (Page 19, Appendix C CAL-1-P393D Levels)",
+      "note": "Documented in Method Statement calculation sheet as high-water sensitivity reference. NOT used in active base conceptual model."
+    },
+    "groundwater_reference_datum": "Dubai Mining Datum (DMD)",
+    "groundwater_interpretation": "Static water levels measured across 5 geotechnical boreholes range from +6.15 to +6.25 m DMD, indicating a flat, hydrostatic pre-construction water table with negligible discernible hydraulic gradient across the 45 m plot (spatial head variation <= 0.10 m). The adopted baseline of +6.25 m DMD matches the highest observed borehole water level (BH01) and represents the approved conservative baseline for dewatering design.",
+    "initial_head_concept": "Uniform horizontal initial hydraulic head plane set to +6.25 m DMD across all active model cells at t = 0 days.",
+    "monitoring_information": {
+      "water_levels": "Checked daily by day and night shift watchman using an electric contact dip meter (KLL)",
+      "discharge_measurement": "Measured daily using standard V-notch tank and 6-inch electromagnetic flow meter as per Nakheel requirement",
+      "provenance": "MS-1-P393D - R5.pdf (p. 7, 14, Section 8.0 & Appendix A CHK-1-P393D)"
+    },
+    "provenance": {
+      "primary": "PreModflowApproval.md (Section 06)",
+      "supporting_sources": [
+        "Soil report.pdf (Table 1)",
+        "MS-1-P393D - R5.pdf (Section 2.0 & Appendix C)"
+      ]
+    }
+  },
+  "06_boundary_recharge_conditions": {
+    "model_domain_boundary": "Conceptual boundary framework defining engineering plot limits and external aquifer continuity.",
+    "hydraulic_boundary_concept": "Open regional lateral aquifer continuity. No natural impermeable lateral boundaries exist in the vicinity. The secant pile wall forms an engineered partial barrier around the excavation perimeter.",
+    "lateral_boundary_information": {
+      "package": "CHD",
+      "boundary_type": "CHD \u2014 Constant Head Boundary",
+      "boundary_head_m_dmd": 6.25,
+      "status": "RESOLVED_CHD",
+      "description": "CHD Constant Head Boundary set at +6.25 m DMD to represent regional groundwater condition.",
+      "distance_concept": "Located beyond the dewatering radius of influence (Rc = 301.5 m calculated in CAL-1-P393D).",
+      "numerical_package_assignment": "CHD (Constant Head Boundary confirmed at +6.25 m DMD for MODFLOW 6 package generation)."
+    },
+    "vertical_boundary_information": {
+      "top_boundary": "Atmospheric boundary / ground surface (+8.25 m DMD). Unconfined free surface condition for the upper water table.",
+      "bottom_boundary": "Basal confining bed (Layer 5 Calcisiltite/Siltstone from -19.75 to -31.75 m DMD). Low permeability floor acting as effective basal confining boundary."
+    },
+    "recharge_status": "APPROVED_ZERO_RECHARGE",
+    "recharge_value": 0.0,
+    "recharge_unit": "m/day",
+    "recharge_source": "PreModflowApproval.md (Recharge = 0 m/day final decision. Arid urban Dubai climate; net recharge set to zero for conservative modeling).",
+    "boundary_assumptions": [
+      "Constant-head (CHD) package confirmed at +6.25 m DMD to represent regional boundary conditions.",
+      "Recharge (RCH) set to 0 m/day across the model domain.",
+      "GHB package rejected; CHD confirmed.",
+      "The regional water table is assumed to remain stable at +6.25 m DMD at distances beyond the radius of influence (R0 = 277.9 m)."
+    ],
+    "boundary_data_gaps": "Exact lateral domain distance and boundary conductance coefficients will be established during Phase 2 numerical grid discretization based on CIRIA radius of influence calculations.",
+    "rationale": "This section strictly defines the hydrogeological boundary concept without generating numerical MODFLOW package instructions.",
+    "provenance": {
+      "primary": "PreModflowApproval.md (Section 06, 08, 11)",
+      "supporting_source": "MS-1-P393D - R5.pdf (Appendix C CAL-1-P393D)"
+    }
+  },
+  "07_dewatering_wells_pumping": {
+    "number_of_wells": 6,
+    "coordinate_system": "EPSG:3997 (DLTM)",
+    "coordinate_origin": "drawing_cad_digitized_geometry",
+    "geometry_classification": "digitized_value",
+    "approved_common_well_geometry": {
+      "well_depth_m": 21.2,
+      "well_toe_elevation_m_dmd": -14.5,
+      "screen_length_m": 6.7,
+      "screen_interval_m_dmd": [
+        -7.8,
+        -14.5
+      ],
+      "borehole_diameter_mm": 700.0,
+      "casing_diameter_inch": 8.0,
+      "casing_material": "Slotted UPVC",
+      "applicable_hydrogeological_layer": "Layer 3 (Moderately Weathered Sandstone / Screened Aquifer)"
+    },
+    "deepwells": [
+      {
+        "well_id": "DW-01",
+        "x": 486976.438,
+        "y": 2772571.467,
+        "coordinate_system": "EPSG:3997",
+        "coordinate_origin": "drawing_cad_digitized_geometry",
+        "geometry_classification": "digitized_value",
+        "well_depth": 21.2,
+        "well_toe_elevation": -14.5,
+        "screen_length": 6.7,
+        "screen_top": -7.8,
+        "screen_bottom": -14.5,
+        "borehole_diameter": 700.0,
+        "casing_information": "8-inch slotted UPVC screen",
+        "design_yield": 11.1,
+        "design_yield_unit": "m3/hr",
+        "design_daily_yield_m3_day": 266.4,
+        "applicable_hydrogeological_layer": "Layer 3 (Moderately Weathered Sandstone)",
+        "screen_layer_interaction": "Screen spans -7.80 to -14.50 m DMD, located 100% within Layer 3 Screened Aquifer.",
+        "source": "MS-1-P393D - R5.pdf",
+        "drawing": "Drawing DEW-1-P393D Rev 07 (p. 16) & Appendix C CAL-1-P393D (p. 19-20)",
+        "provenance": {
+          "source_id": "SRC-002",
+          "pages": [
+            16,
+            19,
+            20
+          ],
+          "coordinate_derivation": "Digitized from project CAD drawing DEW-1-P393D Rev 07"
+        },
+        "classification": "digitized_value (coordinates) / source_calculation (hydraulics)",
+        "notes": "Southern sector perimeter deepwell."
+      },
+      {
+        "well_id": "DW-02",
+        "x": 486973.338,
+        "y": 2772582.31,
+        "coordinate_system": "EPSG:3997",
+        "coordinate_origin": "drawing_cad_digitized_geometry",
+        "geometry_classification": "digitized_value",
+        "well_depth": 21.2,
+        "well_toe_elevation": -14.5,
+        "screen_length": 6.7,
+        "screen_top": -7.8,
+        "screen_bottom": -14.5,
+        "borehole_diameter": 700.0,
+        "casing_information": "8-inch slotted UPVC screen",
+        "design_yield": 11.1,
+        "design_yield_unit": "m3/hr",
+        "design_daily_yield_m3_day": 266.4,
+        "applicable_hydrogeological_layer": "Layer 3 (Moderately Weathered Sandstone)",
+        "screen_layer_interaction": "Screen spans -7.80 to -14.50 m DMD, located 100% within Layer 3 Screened Aquifer.",
+        "source": "MS-1-P393D - R5.pdf",
+        "drawing": "Drawing DEW-1-P393D Rev 07 (p. 16) & Appendix C CAL-1-P393D (p. 19-20)",
+        "provenance": {
+          "source_id": "SRC-002",
+          "pages": [
+            16,
+            19,
+            20
+          ],
+          "coordinate_derivation": "Digitized from project CAD drawing DEW-1-P393D Rev 07"
+        },
+        "classification": "digitized_value (coordinates) / source_calculation (hydraulics)",
+        "notes": "Central-south internal sector deepwell."
+      },
+      {
+        "well_id": "DW-03",
+        "x": 486961.597,
+        "y": 2772582.131,
+        "coordinate_system": "EPSG:3997",
+        "coordinate_origin": "drawing_cad_digitized_geometry",
+        "geometry_classification": "digitized_value",
+        "well_depth": 21.2,
+        "well_toe_elevation": -14.5,
+        "screen_length": 6.7,
+        "screen_top": -7.8,
+        "screen_bottom": -14.5,
+        "borehole_diameter": 700.0,
+        "casing_information": "8-inch slotted UPVC screen",
+        "design_yield": 11.1,
+        "design_yield_unit": "m3/hr",
+        "design_daily_yield_m3_day": 266.4,
+        "applicable_hydrogeological_layer": "Layer 3 (Moderately Weathered Sandstone)",
+        "screen_layer_interaction": "Screen spans -7.80 to -14.50 m DMD, located 100% within Layer 3 Screened Aquifer.",
+        "source": "MS-1-P393D - R5.pdf",
+        "drawing": "Drawing DEW-1-P393D Rev 07 (p. 16) & Appendix C CAL-1-P393D (p. 19-20)",
+        "provenance": {
+          "source_id": "SRC-002",
+          "pages": [
+            16,
+            19,
+            20
+          ],
+          "coordinate_derivation": "Digitized from project CAD drawing DEW-1-P393D Rev 07"
+        },
+        "classification": "digitized_value (coordinates) / source_calculation (hydraulics)",
+        "notes": "Western sector perimeter deepwell."
+      },
+      {
+        "well_id": "DW-04",
+        "x": 486976.158,
+        "y": 2772593.866,
+        "coordinate_system": "EPSG:3997",
+        "coordinate_origin": "drawing_cad_digitized_geometry",
+        "geometry_classification": "digitized_value",
+        "well_depth": 21.2,
+        "well_toe_elevation": -14.5,
+        "screen_length": 6.7,
+        "screen_top": -7.8,
+        "screen_bottom": -14.5,
+        "borehole_diameter": 700.0,
+        "casing_information": "8-inch slotted UPVC screen",
+        "design_yield": 11.1,
+        "design_yield_unit": "m3/hr",
+        "design_daily_yield_m3_day": 266.4,
+        "applicable_hydrogeological_layer": "Layer 3 (Moderately Weathered Sandstone)",
+        "screen_layer_interaction": "Screen spans -7.80 to -14.50 m DMD, located 100% within Layer 3 Screened Aquifer.",
+        "source": "MS-1-P393D - R5.pdf",
+        "drawing": "Drawing DEW-1-P393D Rev 07 (p. 16) & Appendix C CAL-1-P393D (p. 19-20)",
+        "provenance": {
+          "source_id": "SRC-002",
+          "pages": [
+            16,
+            19,
+            20
+          ],
+          "coordinate_derivation": "Digitized from project CAD drawing DEW-1-P393D Rev 07"
+        },
+        "classification": "digitized_value (coordinates) / source_calculation (hydraulics)",
+        "notes": "Central-north internal sector deepwell."
+      },
+      {
+        "well_id": "DW-05",
+        "x": 486976.572,
+        "y": 2772606.274,
+        "coordinate_system": "EPSG:3997",
+        "coordinate_origin": "drawing_cad_digitized_geometry",
+        "geometry_classification": "digitized_value",
+        "well_depth": 21.2,
+        "well_toe_elevation": -14.5,
+        "screen_length": 6.7,
+        "screen_top": -7.8,
+        "screen_bottom": -14.5,
+        "borehole_diameter": 700.0,
+        "casing_information": "8-inch slotted UPVC screen",
+        "design_yield": 11.1,
+        "design_yield_unit": "m3/hr",
+        "design_daily_yield_m3_day": 266.4,
+        "applicable_hydrogeological_layer": "Layer 3 (Moderately Weathered Sandstone)",
+        "screen_layer_interaction": "Screen spans -7.80 to -14.50 m DMD, located 100% within Layer 3 Screened Aquifer.",
+        "source": "MS-1-P393D - R5.pdf",
+        "drawing": "Drawing DEW-1-P393D Rev 07 (p. 16) & Appendix C CAL-1-P393D (p. 19-20)",
+        "provenance": {
+          "source_id": "SRC-002",
+          "pages": [
+            16,
+            19,
+            20
+          ],
+          "coordinate_derivation": "Digitized from project CAD drawing DEW-1-P393D Rev 07"
+        },
+        "classification": "digitized_value (coordinates) / source_calculation (hydraulics)",
+        "notes": "Northern sector perimeter deepwell."
+      },
+      {
+        "well_id": "DW-06",
+        "x": 486995.809,
+        "y": 2772586.338,
+        "coordinate_system": "EPSG:3997",
+        "coordinate_origin": "drawing_cad_digitized_geometry",
+        "geometry_classification": "digitized_value",
+        "well_depth": 21.2,
+        "well_toe_elevation": -14.5,
+        "screen_length": 6.7,
+        "screen_top": -7.8,
+        "screen_bottom": -14.5,
+        "borehole_diameter": 700.0,
+        "casing_information": "8-inch slotted UPVC screen",
+        "design_yield": 11.1,
+        "design_yield_unit": "m3/hr",
+        "design_daily_yield_m3_day": 266.4,
+        "applicable_hydrogeological_layer": "Layer 3 (Moderately Weathered Sandstone)",
+        "screen_layer_interaction": "Screen spans -7.80 to -14.50 m DMD, located 100% within Layer 3 Screened Aquifer.",
+        "source": "MS-1-P393D - R5.pdf",
+        "drawing": "Drawing DEW-1-P393D Rev 07 (p. 16) & Appendix C CAL-1-P393D (p. 19-20)",
+        "provenance": {
+          "source_id": "SRC-002",
+          "pages": [
+            16,
+            19,
+            20
+          ],
+          "coordinate_derivation": "Digitized from project CAD drawing DEW-1-P393D Rev 07"
+        },
+        "classification": "digitized_value (coordinates) / source_calculation (hydraulics)",
+        "notes": "Eastern sector perimeter deepwell."
+      }
+    ],
+    "approved_system_pumping": {
+      "steady_state_operation": {
+        "total_system_flow_m3_hr": 46.5,
+        "total_system_flow_m3_day": 1116.0,
+        "per_well_steady_rate_m3_hr": 7.75,
+        "per_well_steady_rate_m3_day": 186.0,
+        "status": "APPROVED",
+        "classification": "source_calculation",
+        "provenance": {
+          "primary": "PreModflowApproval.md (Section 09 & Section 11)",
+          "source_file": "MS-1-P393D - R5.pdf",
+          "pages": [
+            7,
+            20
+          ],
+          "section": "Section 7.0 Table & Appendix C Step 2 CIRIA calculation"
+        }
+      },
+      "peak_transient_operation": {
+        "peak_system_flow_m3_hr": 93.0,
+        "peak_system_flow_m3_day": 2232.0,
+        "per_well_peak_rate_m3_hr": 15.5,
+        "per_well_peak_rate_m3_day": 372.0,
+        "status": "APPROVED",
+        "classification": "source_calculation",
+        "provenance": {
+          "primary": "PreModflowApproval.md (Section 09 & Section 11)",
+          "source_file": "MS-1-P393D - R5.pdf",
+          "pages": [
+            7,
+            20
+          ],
+          "section": "Section 7.0 Note (initial drawdown flow can be twice steady state: 46.5 x 2 = 93.0 m3/hr)"
+        }
+      },
+      "rated_pump_capacity_per_well": {
+        "value_m3_hr": 11.1,
+        "value_m3_day": 266.4,
+        "status": "APPROVED",
+        "classification": "source_calculation",
+        "provenance": {
+          "primary": "PreModflowApproval.md (Section 09 & Section 11)",
+          "source_file": "MS-1-P393D - R5.pdf",
+          "pages": [
+            20
+          ],
+          "section": "Appendix C CAL-1-P393D Rev 3 Step 3 Dupuit-Thiem calculation"
+        }
+      }
+    },
+    "operational_distinctions": {
+      "design_well_capacity": "11.1 m\u00b3/hr (266.4 m\u00b3/day) per well based on Dupuit-Thiem single-well radial yield calculation.",
+      "base_steady_operating_rate": "7.75 m\u00b3/hr (186.0 m\u00b3/day) per well (46.5 m\u00b3/hr total system flow divided equally across 6 operating deepwells).",
+      "peak_operating_rate": "15.5 m\u00b3/hr (372.0 m\u00b3/day) per well (93.0 m\u00b3/hr total system flow during initial 7-day pre-excavation drawdown phase)."
+    },
+    "durations": {
+      "pre_drawdown_duration_days": 7,
+      "total_operation_duration_days": 150,
+      "status": "APPROVED",
+      "classification": "raw_fact",
+      "source": "MS-1-P393D - R5.pdf (Pages 7, 19, Section 7.5 & Appendix C Duration)"
+    },
+    "standby_and_equipment": {
+      "submersible_pumps": "Running pump(s) + 1 standby pump",
+      "electrical_generators": "Running genset(s) + 1 standby genset",
+      "french_drains": "0.50m x 0.50m gravity drains filled with aggregate channelled to deepwells",
+      "sedimentation_tank": "Baffled settlement tank with oil skimming mats and V-notch discharge monitoring",
+      "provenance": "MS-1-P393D - R5.pdf (Pages 4, 7, 9, Sections 5.1, 7.3, 10.1, 10.2)"
+    }
+  },
+  "08_excavation_shoring": {
+    "08_1_excavation_geometry": {
+      "plot_area_m2": 1633.18,
+      "perimeter_m": 168.0,
+      "ground_surface_model_plane_m_dmd": 8.25,
+      "existing_ground_surface_decision_m_dmd": 8.45,
+      "relationship": "Shoring secant pile wall is offset immediately inside the 1633.18 m\u00b2 surveyed plot boundary, enclosing an excavation perimeter of 168.0 m.",
+      "provenance": "PreModflowApproval.md (Section 02, 03, 13 CONFLICT-001/004)"
+    },
+    "08_2_excavation_levels": {
+      "level_01": {
+        "formation_level_m_dmd": -3.7,
+        "depth_below_ogl_8_10m": 11.8,
+        "classification": "raw_fact",
+        "source": "Drawing DEW-1-P393D Rev 07"
+      },
+      "level_02": {
+        "formation_level_m_dmd": -3.9,
+        "depth_below_ogl_8_10m": 12.0,
+        "classification": "raw_fact",
+        "source": "Drawing DEW-1-P393D Rev 07"
+      },
+      "level_03": {
+        "formation_level_m_dmd": -4.4,
+        "depth_below_ogl_8_10m": 12.5,
+        "classification": "raw_fact",
+        "source": "Drawing DEW-1-P393D Rev 07"
+      },
+      "level_04": {
+        "formation_level_m_dmd": -4.6,
+        "depth_below_ogl_8_10m": 12.7,
+        "classification": "raw_fact",
+        "source": "Drawing DEW-1-P393D Rev 07"
+      },
+      "level_05": {
+        "formation_level_m_dmd": -6.1,
+        "depth_below_ogl_8_10m": 14.2,
+        "classification": "raw_fact",
+        "source": "Drawing DEW-1-P393D Rev 07"
+      },
+      "level_06": {
+        "formation_level_m_dmd": -6.4,
+        "depth_below_ogl_8_10m": 14.5,
+        "classification": "raw_fact",
+        "source": "Drawing DEW-1-P393D Rev 07"
+      },
+      "level_07": {
+        "formation_level_m_dmd": -7.8,
+        "depth_below_ogl_8_10m": 15.9,
+        "classification": "raw_fact",
+        "source": "Drawing DEW-1-P393D Rev 07"
+      },
+      "level_08_elevator_sump_pit": {
+        "formation_level_m_dmd": -8.0,
+        "depth_below_ogl_8_10m": 16.1,
+        "classification": "raw_fact",
+        "source": "Drawing DEW-1-P393D Rev 07 (Revision Callouts)"
+      },
+      "deepest_excavation_level_m_dmd": -8.0,
+      "deepest_excavation_status": "APPROVED (CONFLICT-002 in PreModflowApproval.md)",
+      "target_dewatering_level_m_dmd": -8.5,
+      "target_dewatering_status": "APPROVED (REV-004 in PreModflowApproval.md)",
+      "dewatering_buffer_m": 0.5,
+      "total_drawdown_from_baseline_m": 14.75
+    },
+    "08_3_excavation_staging": {
+      "stage_1": {
+        "description": "Bulk excavation in the dry from ground surface (+8.25 m DMD) down to approximately 50 cm above static groundwater table (+6.75 m DMD).",
+        "operational_condition": "No deepwell pumping active; dry excavation of unsaturated Layer 1 dune sand.",
+        "classification": "raw_fact",
+        "provenance": "MS-1-P393D - R5.pdf (Page 4, Section 5.0)"
+      },
+      "stage_2": {
+        "description": "Deepwell pumping system operates (7-day pre-drawdown followed by continuous steady pumping) to depress groundwater level to target -8.50 m DMD, facilitating bulk and detailed excavation from +6.75 m DMD down to final formation (-8.00 m DMD) completely in the dry.",
+        "operational_condition": "Full deepwell operation with perimeter French drains channelled to deepwells.",
+        "classification": "raw_fact",
+        "provenance": "MS-1-P393D - R5.pdf (Page 4, Section 5.0)"
+      }
+    },
+    "08_4_excavation_footprint": {
+      "description": "Basement excavation footprint occupies virtually the entire internal enclosed area of the 4-sided secant pile wall (~1633 m\u00b2).",
+      "internal_offset": "Shoring secant pile wall is constructed immediately inside site perimeter, with internal excavation face offset immediately inward.",
+      "provenance": "Drawing DEW-1-P393D Rev 07 (p. 16)"
+    },
+    "08_5_secant_pile_wall_configuration": {
+      "shoring_type": "Secant Pile Wall On 4 Sides",
+      "configuration": "Continuous interlocked secant pile perimeter enclosing all four boundaries of the plot.",
+      "hfb_representation": "YES (MODFLOW 6 Horizontal Flow Barrier)",
+      "wall_thickness_m": 0.5,
+      "wall_hydraulic_conductivity_m_s": 1e-10,
+      "wall_hydraulic_conductivity_m_day": 8.64e-06,
+      "hydraulic_characteristic_hydchr_day_inv": 1.728e-05,
+      "partial_penetration": true,
+      "classification": "approved_engineering_input",
+      "provenance": "MS-1-P393D - R5.pdf & PreModflowApproval.md"
+    },
+    "08_6_wall_alignment_and_perimeter": {
+      "wall_perimeter_m": 168.0,
+      "wall_alignment": "Offset immediately inside site boundary on all 4 sides",
+      "classification": "raw_fact",
+      "provenance": "MS-1-P393D - R5.pdf (Page 16, Drawing DEW-1-P393D)"
+    },
+    "08_7_wall_toe_geometry": {
+      "toe_levels_m_dmd": [
+        -9.3,
+        -10.0,
+        -11.65
+      ],
+      "segment_wise_toe_assignment": {
+        "north_wall_m_dmd": -11.65,
+        "west_wall_north_segment_m_dmd": -11.65,
+        "west_wall_south_segment_m_dmd": -9.3,
+        "east_wall_north_segment_m_dmd": -11.65,
+        "east_wall_south_segment_m_dmd": -10.0,
+        "south_wall_west_segment_m_dmd": -9.3,
+        "south_wall_east_segment_m_dmd": -10.0
+      },
+      "unit": "m_DMD",
+      "status": "APPROVED",
+      "approval_reference": "CONFLICT-003 / REV-009 (PreModflowApproval.md)",
+      "classification": "approved_engineering_input",
+      "provenance": "Shoring CAD Plan & Drawing DEW-1-P393D Notes & Legend"
+    },
+    "08_8_wall_penetration": {
+      "top_of_wall_m_dmd": 8.25,
+      "total_wall_depth_m": [
+        17.55,
+        18.25,
+        19.9
+      ],
+      "depth_below_deepest_excavation_sump_m": [
+        1.3,
+        2.0,
+        3.65
+      ],
+      "depth_below_target_dewatering_m": [
+        0.8,
+        1.5,
+        3.15
+      ],
+      "classification": "calculated_value"
+    },
+    "08_9_groundwater_shoring_interaction": {
+      "hydraulic_barrier_behavior": "Partially penetrating vertical hydraulic cutoff barrier.",
+      "penetration_classification": "Partially penetrating cutoff wall",
+      "key_status": "NOT KEYED into basal confining unit (Layer 5 Calcisiltite/Siltstone from -19.75 to -31.75 m DMD).",
+      "underflow_mechanism": "Because the secant pile wall toe terminates between -9.30 and -11.65 m DMD while the basal aquitard begins at -19.75 m DMD, a permeable vertical window of 8.10 m to 10.45 m thickness remains beneath the wall toe through the lower portion of Layer 3 and Layer 4. Groundwater underflow around and beneath the wall toe into the deepwell drawdown cone will occur.",
+      "modeling_implication": "The conceptual model must represent this groundwater underflow consequence without prematurely overstating it as a calibrated leakage rate or numerical boundary condition."
+    },
+    "08_10_excavation_dewatering_relationship": {
+      "ground_surface_plane_m_dmd": 8.25,
+      "static_groundwater_baseline_m_dmd": 6.25,
+      "deepest_excavation_formation_m_dmd": -8.0,
+      "target_dewatering_water_level_m_dmd": -8.5,
+      "dry_buffer_m": 0.5,
+      "total_drawdown_m": 14.75,
+      "well_screen_interval_m_dmd": [
+        -7.8,
+        -14.5
+      ],
+      "well_toe_elevation_m_dmd": -14.5,
+      "relationship_summary": "Deepwells abstract groundwater from -7.80 to -14.50 m DMD (wholly beneath the excavation formation), drawing the regional water table down by 14.75 m to -8.50 m DMD. This provides a 0.50 m dry buffer beneath the lowest elevator/sump formation (-8.00 m DMD). The secant pile wall shields lateral inflow in the upper 17.55 to 19.90 m, forcing all residual inflow to travel vertically downward beneath the shoring toe."
+    },
+    "08_11_hydrogeological_layer_interaction": {
+      "vertical_sequence": [
+        {
+          "component": "Existing Ground Surface Decision",
+          "elevation_m_dmd": 8.45,
+          "classification": "approved_decision (CONFLICT-004)"
+        },
+        {
+          "component": "Reconciled Model Ground Surface Plane",
+          "elevation_m_dmd": 8.25,
+          "classification": "approved_decision (REV-005)"
+        },
+        {
+          "component": "Layer 1 (Aeolian Dune Sand / Silt)",
+          "interval_m_dmd": [
+            8.25,
+            6.75
+          ],
+          "behavior": "Vadose / unsaturated sand cover"
+        },
+        {
+          "component": "Static Groundwater Level Baseline",
+          "elevation_m_dmd": 6.25,
+          "classification": "approved_baseline"
+        },
+        {
+          "component": "Layer 2 (Upper Weathered Sandstone)",
+          "interval_m_dmd": [
+            6.75,
+            -4.75
+          ],
+          "behavior": "Water table aquifer; hosts excavation levels 01 to 04"
+        },
+        {
+          "component": "Excavation Levels 01 to 04",
+          "interval_m_dmd": [
+            -3.7,
+            -4.6
+          ],
+          "behavior": "Upper basement excavation steps"
+        },
+        {
+          "component": "Layer 3 (Moderately Weathered Sandstone)",
+          "interval_m_dmd": [
+            -4.75,
+            -14.75
+          ],
+          "behavior": "Screened aquifer; hosts deepwell screens and deepest excavation"
+        },
+        {
+          "component": "Excavation Levels 05 to 08",
+          "interval_m_dmd": [
+            -6.1,
+            -8.0
+          ],
+          "behavior": "Deep basement excavation steps"
+        },
+        {
+          "component": "Deepest Excavation Formation",
+          "elevation_m_dmd": -8.0,
+          "classification": "approved_formation (CONFLICT-002)"
+        },
+        {
+          "component": "Target Dewatering Drawdown",
+          "elevation_m_dmd": -8.5,
+          "classification": "approved_target (REV-004)"
+        },
+        {
+          "component": "Secant Pile Wall Toe Levels",
+          "elevations_m_dmd": [
+            -9.3,
+            -10.0,
+            -11.65
+          ],
+          "behavior": "Partially penetrating toe in Layer 3 (CONFLICT-003)"
+        },
+        {
+          "component": "Deepwell Screen Interval",
+          "interval_m_dmd": [
+            -7.8,
+            -14.5
+          ],
+          "behavior": "Active abstraction screen in Layer 3"
+        },
+        {
+          "component": "Deepwell Toe Elevation",
+          "elevation_m_dmd": -14.5,
+          "behavior": "Well base terminates at base of Layer 3"
+        },
+        {
+          "component": "Layer 4 (Conglomeratic Sandstone)",
+          "interval_m_dmd": [
+            -14.75,
+            -19.75
+          ],
+          "behavior": "Transitional stratum; underflow zone"
+        },
+        {
+          "component": "Layer 5 (Calcisiltite / Siltstone Basal Unit)",
+          "interval_m_dmd": [
+            -19.75,
+            -31.75
+          ],
+          "behavior": "Regional lower confining bed / aquitard"
+        }
+      ]
+    },
+    "08_12_approved_design_values": {
+      "plot_area_m2": 1633.18,
+      "perimeter_m": 168.0,
+      "existing_ground_surface_decision_m_dmd": 8.45,
+      "reconciled_model_ground_surface_plane_m_dmd": 8.25,
+      "deepest_excavation_level_m_dmd": -8.0,
+      "target_dewatering_level_m_dmd": -8.5,
+      "dewatering_buffer_m": 0.5,
+      "secant_pile_toe_levels_m_dmd": [
+        -9.3,
+        -10.0,
+        -11.65
+      ],
+      "baseline_groundwater_level_m_dmd": 6.25,
+      "deepwell_count": 6,
+      "well_depth_m": 21.2,
+      "screen_interval_m_dmd": [
+        -7.8,
+        -14.5
+      ],
+      "screen_length_m": 6.7,
+      "well_toe_m_dmd": -14.5,
+      "design_yield_m3_hr_per_well": 11.1,
+      "steady_total_discharge_m3_hr": 46.5,
+      "peak_total_discharge_m3_hr": 93.0,
+      "pre_drawdown_days": 7,
+      "total_operation_days": 150
+    },
+    "08_13_provenance": {
+      "primary_approval_document": "PreModflowApproval.md (Section 03, 04, 13 CONFLICT-001/002/003/004, 15 REV-004/005, 18)",
+      "supporting_dataset": "actual_engineering_dataset.json (section_03, section_04, section_05)",
+      "source_drawings": [
+        "MS-1-P393D - R5.pdf (Page 16, Drawing DEW-1-P393D Rev 07)",
+        "MS-1-P393D - R5.pdf (Page 17, Drawing SEC-1-P393D Rev 05)",
+        "MS-1-P393D - R5.pdf (Pages 19-20, Appendix C CAL-1-P393D)"
+      ]
+    }
+  },
+  "09_simulation_period": {
+    "pre_drawdown_period_days": 7,
+    "dewatering_operation_period_days": 143,
+    "total_model_period_days": 150,
+    "pumping_schedule": {
+      "phase_A_pre_drawdown": {
+        "duration_days": 7,
+        "time_interval_days": [
+          0,
+          7
+        ],
+        "operational_mode": "Initial heavy drawdown to lower static water table (+6.25 m DMD) below excavation formation to target level (-8.50 m DMD) prior to bulk excavation.",
+        "total_pumping_rate_m3_hr": 93.0,
+        "total_pumping_rate_m3_day": 2232.0,
+        "per_well_pumping_rate_m3_hr": 15.5,
+        "per_well_pumping_rate_m3_day": 372.0,
+        "status": "APPROVED",
+        "provenance": "MS-1-P393D - R5.pdf (Pages 7, 20, Section 7.0 Note)"
+      },
+      "phase_B_operational_maintenance": {
+        "duration_days": 143,
+        "time_interval_days": [
+          7,
+          150
+        ],
+        "operational_mode": "Continuous maintenance dewatering to maintain water level at or below target -8.50 m DMD throughout basement construction and substructure casting.",
+        "total_pumping_rate_m3_hr": 46.5,
+        "total_pumping_rate_m3_day": 1116.0,
+        "per_well_pumping_rate_m3_hr": 7.75,
+        "per_well_pumping_rate_m3_day": 186.0,
+        "status": "APPROVED",
+        "provenance": "MS-1-P393D - R5.pdf (Pages 7, 20, Section 7.0 Table & Appendix C Step 2)"
+      }
+    },
+    "base_model_temporal_scope": "Transient 150-day dewatering simulation comprising a 7-day initial pre-excavation drawdown phase and a 143-day substructure construction maintenance phase.",
+    "temporal_assumptions": [
+      "Pumping operates 24 hours per day continuously throughout the 150-day simulation period as specified in Method Statement Section 7.5.",
+      "No seasonal hydrologic variations or precipitation recharge pulses are assumed during the 150-day lifecycle in base model.",
+      "Numerical time-stepping, stress period discretization, and solver convergence settings are strictly deferred to Phase 2 numerical model construction."
+    ],
+    "provenance": {
+      "primary": "PreModflowApproval.md (Section 09 & Section 18)",
+      "supporting_source": "MS-1-P393D - R5.pdf (Pages 7, 19, Section 7.5 & Appendix C Duration)"
+    }
+  },
+  "10_assumptions_validation_provenance": {
+    "A_conceptual_assumptions": [
+      {
+        "assumption_id": "ASSUMP-001",
+        "title": "Governing Source Hierarchy",
+        "description": "PreModflowApproval.md is the ultimate engineering source of truth, superseding raw extraction discrepancies and secondary research ranges.",
+        "status": "APPROVED"
+      },
+      {
+        "assumption_id": "ASSUMP-002",
+        "title": "Single Base Conceptual Model",
+        "description": "Only the approved base conceptual model is represented. No alternative scenarios, sensitivity cases, or speculative parameter sets are active.",
+        "status": "APPROVED"
+      },
+      {
+        "assumption_id": "ASSUMP-003",
+        "title": "Uniform Initial Water Table",
+        "description": "Initial static groundwater table is represented as a uniform horizontal surface at +6.25 m DMD across the model domain based on 5 borehole observations (+6.15 to +6.25 m DMD) exhibiting negligible regional gradient.",
+        "status": "APPROVED"
+      },
+      {
+        "assumption_id": "ASSUMP-004",
+        "title": "Hydrostratigraphic Uniformity Across Site",
+        "description": "The 5 geological strata identified in Soil Report SIR2023-0018 are assumed continuous and horizontally planar across the 1633.18 m\u00b2 plot area for conceptual synthesis.",
+        "status": "APPROVED"
+      },
+      {
+        "assumption_id": "ASSUMP-005",
+        "title": "Secant Pile Cutoff HFB Barrier & Partial Penetration",
+        "description": "The secant pile wall is represented as a MODFLOW 6 HFB (wall thickness 0.50 m, Kwall = 1e-10 m/s / 8.64e-6 m/day, HYDCHR = 1.728e-5 day^-1). Cutoff is partially penetrating relative to Layer 3 and Layer 5; groundwater underflow beneath the wall toe remains physically active where wall does not penetrate deeper confining unit.",
+        "status": "APPROVED"
+      },
+      {
+        "assumption_id": "ASSUMP-006",
+        "title": "Basal Confining Floor",
+        "description": "Layer 5 (Calcisiltite / Siltstone from -19.75 to -31.75 m DMD) functions as the lower confining bed, providing the effective lower impermeable boundary of the active dewatering system.",
+        "status": "APPROVED"
+      },
+      {
+        "assumption_id": "ASSUMP-007",
+        "title": "Zero Natural Recharge",
+        "description": "Recharge is set to 0 m/day across the model domain as per final engineering decision.",
+        "status": "APPROVED"
+      },
+      {
+        "assumption_id": "ASSUMP-008",
+        "title": "Continuous Dewatering Operation",
+        "description": "All 6 deepwells pump continuously 24 hr/day throughout the 150-day period (7 days pre-drawdown at peak rate + 143 days operational maintenance at steady rate).",
+        "status": "APPROVED"
+      }
+    ],
+    "B_validation_checks": {
+      "json_schema_valid": true,
+      "required_sections_present": true,
+      "exactly_10_top_level_sections": true,
+      "section_order_verified": true,
+      "approved_values_consistent_with_PreModflowApproval": true,
+      "six_wells_present": true,
+      "well_ids_unique": true,
+      "screen_intervals_valid": true,
+      "excavation_levels_consistent": true,
+      "target_dewatering_below_deepest_excavation": true,
+      "wall_toe_levels_correctly_represented": true,
+      "layer_top_bottom_elevations_logically_ordered": true,
+      "layer_thickness_consistency": true,
+      "hydraulic_units_consistent": true,
+      "no_unapproved_ranges_in_active_base_parameters": true,
+      "no_unresolved_conflicts_used_as_active_inputs": true,
+      "no_invented_recharge": true,
+      "no_invented_modflow_boundary_packages": true,
+      "no_invented_grid_or_discretization": true,
+      "provenance_present_for_engineering_inputs": true,
+      "recharge_zero_confirmed": true,
+      "chd_boundary_confirmed": true,
+      "hfb_properties_confirmed": true,
+      "segment_wise_wall_toes_confirmed": true
+    },
+    "C_provenance": {
+      "primary_source_of_truth": {
+        "document": "PreModflowApproval.md",
+        "path": "data/actual/extracted/PreModflowApproval.md",
+        "role": "Ultimate downstream engineering source of truth containing all approved parameters and resolved conflicts",
+        "status": "REVIEW_COMPLETED_AND_APPROVED"
+      },
+      "supporting_raw_dataset": {
+        "document": "actual_engineering_dataset.json",
+        "path": "data/actual/extracted/actual_engineering_dataset.json",
+        "role": "Raw extraction dataset providing original source references, digitized CAD coordinates, and provenance tracking",
+        "status": "FROZEN_AND_UNMODIFIED"
+      },
+      "research_references": {
+        "document": "HydrogeologicalParameterResearch.md",
+        "path": "data/actual/extracted/HydrogeologicalParameterResearch.md",
+        "role": "Rock mechanics derivations, parameter bounding, and authoritative literature supporting REV-001, REV-002, REV-003",
+        "status": "VERIFIED_AND_APPROVED"
+      },
+      "data_gap_references": {
+        "document": "HydrogeologicalDataGapResearch.md",
+        "path": "data/actual/extracted/HydrogeologicalDataGapResearch.md",
+        "role": "Systematic parameter closure for GAP-001 to GAP-005",
+        "status": "VERIFIED_AND_CLOSED"
+      }
+    },
+    "governance_status": {
+      "artifact": "actual_conceptual_model.json",
+      "workflow_stage": "Phase 1 \u2014 Step 3: Conceptual Model Creation",
+      "source_of_truth": "PreModflowApproval.md",
+      "supporting_source": "actual_engineering_dataset.json",
+      "model_scope": "BASE_CONCEPTUAL_MODEL_ONLY",
+      "status": "GENERATED_PENDING_ENGINEER_APPROVAL",
+      "sign_off_instruction": "Requires formal manual engineer review and sign-off before creation of approved_conceptual_model.json (Phase 1 \u2014 Step 6)."
+    }
+  }
+}

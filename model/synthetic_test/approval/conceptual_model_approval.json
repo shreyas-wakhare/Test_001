@@ -1,7 +1,0 @@
-{
-  "status": "APPROVED_FOR_SYNTHETIC_TEST",
-  "approved_by": "PROJECT_HYDROGEOLOGIST_GATE",
-  "timestamp_utc": "2026-09-11T04:50:14.495856+00:00",
-  "synthetic": true,
-  "comments": "Approved for automated synthetic software validation testing."
-}

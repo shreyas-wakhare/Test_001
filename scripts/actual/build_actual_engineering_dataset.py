@@ -1,0 +1,1121 @@
+"""Script to build the comprehensive actual_engineering_dataset.json for Phase 1 - Step 2.
+
+Grounded strictly in raw project files:
+1. data/raw/E6168D - TMF Found.kmz (SRC-001)
+2. data/raw/MS-1-P393D - R5.pdf (SRC-002 - MAJOR SOURCE OF TRUTH)
+3. data/raw/Soil report.pdf (SRC-003)
+
+Engineering Governance & Hierarchy:
+- METHOD STATEMENT IS THE MAJOR SOURCE OF TRUTH: For all execution levels, shoring, wellfield layout,
+  pumping rates, and design criteria, MS-1-P393D - R5.pdf and its engineering drawings DEW-1-P393D /
+  SEC-1-P393D / CAL-1-P393D govern.
+- Strict PURE RAW EXTRACTION: Zero invented parameters and zero external literature values inserted
+  into Step 2. Hydrodynamic gaps (Kh/Kv, Sy, Ss) are strictly classified as 'missing' with
+  'requires_engineer_review: true'. Literature values belong to Step 3 engineer approval.
+- Source calculations vs dataset derivations vs raw facts vs interpretations vs missing explicitly distinct.
+- Provenance page schema strictly typed as list of integer page numbers: 'pages': [x, y].
+- Section 16 counts dynamically calculated from the dataset contents at build time.
+"""
+
+from __future__ import annotations
+
+import json
+from pathlib import Path
+
+
+def generate_actual_engineering_dataset() -> dict:
+    dataset: dict = {
+        "metadata": {
+            "dataset_name": "actual_engineering_dataset.json",
+            "project_name": "4B+G+10 Residential Building (Stonehenge -2)",
+            "plot_number": "JVC15AMRM004",
+            "location": "Al Barsha South Fourth, Jumeirah Village Circle (JVC), Dubai, UAE",
+            "dwex_project_reference": "P393D",
+            "workflow_stage": "Phase 1 — Step 2: Automated Engineering Extraction",
+            "governing_roadmap": "ModflowSteps.md (FROZEN)",
+            "extraction_status": "STRUCTURED_EXTRACTED_RAW_DATASET",
+            "target_downstream_artifact": "actual_conceptual_model.json (Phase 1 — Step 3)",
+            "governing_hierarchy": "METHOD STATEMENT IS THE MAJOR SOURCE OF TRUTH (MS-1-P393D - R5.pdf / Drawings DEW-1-P393D / SEC-1-P393D / CAL-1-P393D) for engineering execution parameters. In Step 2 data extraction, all discrepancies between sources are preserved as unresolved conflicts for engineer review.",
+            "governance_rule": "Pure raw project extraction. Zero invented parameters. Zero external literature values injected into Step 2 dataset. Data gaps are strictly classified as 'missing' requiring engineer review in Step 3.",
+            "classification_taxonomies": [
+                "raw_fact",
+                "source_calculation",
+                "calculated_value",
+                "digitized_value",
+                "interpretation",
+                "missing"
+            ],
+            "schema_conventions": {
+                "pages": "Strict list of integer page numbers (e.g. [16] or [6, 30]) for automated machine verification"
+            }
+        },
+        "section_01_project_identification": {
+            "project_title": {
+                "value": "4B+G+10 Resi Bldg (Stonehenge -2)",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [1], "section": "Cover / Title Block"}
+            },
+            "plot_number": {
+                "value": "JVC15AMRM004",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [1], "section": "Header / Title Block"}
+            },
+            "client": {
+                "value": "M/s. MDP Development Limited",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [1], "section": "Title Block / Section 1.0"}
+            },
+            "enabling_contractor": {
+                "value": "TMF Euro Foundation",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [14], "section": "Checklist Header"}
+            },
+            "dewatering_contractor": {
+                "value": "Dewatering Experts (DWEX)",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [1], "section": "Header Logo & Title"}
+            },
+            "lead_consultant": {
+                "value": "Federal Engineering Consultants / Eng. Adnan Saffarini Office",
+                "classification": "interpretation",
+                "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [1], "section": "Consultant Box / Method Statement Drawings"}
+            },
+            "method_statement_document": {
+                "reference": "MS-1-P393D",
+                "revision": "5",
+                "date": "13-10-23",
+                "role": "MAJOR SOURCE OF TRUTH",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [1], "section": "Revision Table"}
+            },
+            "soil_report_document": {
+                "reference": "SIR2023-0018",
+                "revision": "00",
+                "date": "14th March 2023",
+                "role": "Baseline Geotechnical Stratigraphy",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [1], "section": "Report Ref & Date"}
+            }
+        },
+        "section_02_spatial_gis_information": {
+            "coordinate_reference_systems": {
+                "project_projected_crs": {
+                    "code": "EPSG:3997",
+                    "name": "WGS 84 / Dubai Local TM (DLTM)",
+                    "projection_type": "Transverse Mercator",
+                    "unit": "meter",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D Coordinate Callouts"}
+                },
+                "geographic_crs": {
+                    "code": "EPSG:4326",
+                    "name": "WGS 84",
+                    "unit": "degree",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-001", "source_file": "E6168D - TMF Found.kmz", "pages": [1], "sheet_or_location": "doc.kml", "section": "Placemark Coordinates"}
+                }
+            },
+            "kmz_site_anchor_placemark": {
+                "placemark_name": "E6168D - TMF Found",
+                "geometry_type": "Point",
+                "coordinates": [55.20432203890749, 25.05890758988347],
+                "elevation": 0.0,
+                "crs": "EPSG:4326",
+                "timestamp": "2022-08-09",
+                "is_boundary_polygon": False,
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-001", "source_file": "E6168D - TMF Found.kmz", "pages": [1], "sheet_or_location": "doc.kml", "section": "Placemark Node"},
+                "engineering_note": "KMZ provides a regional geographic anchor pin only. Boundary geometry is available separately from Method Statement drawing coordinates."
+            },
+            "surveyed_plot_boundary_corners": [
+                {
+                    "corner_id": "Corner_1_NW",
+                    "easting_m": 486976.064,
+                    "northing_m": 2772616.704,
+                    "crs": "EPSG:3997",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D Rev 07"}
+                },
+                {
+                    "corner_id": "Corner_2_NE",
+                    "easting_m": 487005.204,
+                    "northing_m": 2772591.303,
+                    "crs": "EPSG:3997",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D Rev 07"}
+                },
+                {
+                    "corner_id": "Corner_3_SE",
+                    "easting_m": 486975.639,
+                    "northing_m": 2772557.378,
+                    "crs": "EPSG:3997",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D Rev 07"}
+                },
+                {
+                    "corner_id": "Corner_4_SW",
+                    "easting_m": 486950.063,
+                    "northing_m": 2772579.673,
+                    "crs": "EPSG:3997",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D Rev 07"}
+                }
+            ],
+            "surveyed_boundary_segment_lengths": {
+                "segment_1_NW_to_NE_m": {"value": 38.660, "unit": "m", "classification": "raw_fact", "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Dimension Callout 38660"}},
+                "segment_2_NE_to_SE_m": {"value": 45.000, "unit": "m", "classification": "raw_fact", "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Dimension Callout 45000"}},
+                "segment_3_SE_to_SW_m": {"value": 33.930, "unit": "m", "classification": "raw_fact", "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Dimension Callout 33930"}},
+                "segment_4_SW_to_NW_m": {"value": 45.270, "unit": "m", "classification": "raw_fact", "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Dimension Callout 45270"}}
+            },
+            "plot_enclosed_area": {
+                "surveyed_polygon_area_m2": {
+                    "value": 1633.18,
+                    "unit": "m2",
+                    "classification": "calculated_value",
+                    "calculation_origin": "dataset_derivation",
+                    "calculation_logic": "Shoelace formula applied to 4 DLTM surveyed corner coordinates from Drawing DEW-1-P393D",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D"}
+                },
+                "narrative_stated_plot_area_m2": {
+                    "value": 1755.0,
+                    "unit": "m2",
+                    "classification": "raw_fact",
+                    "status": "conflict",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [3], "section": "Section 2.0 Scope Table"},
+                    "engineering_note": "Narrative area is 1755.0 m², while the surveyed polygon derived from Method Statement drawing coordinates is 1633.18 m². Difference is retained as CONFLICT-001 for engineer review."
+                }
+            }
+        },
+        "section_03_site_excavation_geometry": {
+            "ground_surface_elevations": {
+                "method_statement_general_ground_m_dmd": {
+                    "value": 8.10,
+                    "unit": "m_DMD",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [3], "section": "Section 2.0 Scope Table"}
+                },
+                "soil_report_undulating_range_m_dmd": {
+                    "min_value": 8.025,
+                    "max_value": 8.433,
+                    "average_plot_level": 8.25,
+                    "average_asphalt_road_edge": 8.10,
+                    "unit": "m_DMD",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [6], "section": "Section 3.0 Project and Site Description"}
+                },
+                "calculation_sheet_ground_level_m_dmd": {
+                    "value": 8.45,
+                    "unit": "m_DMD",
+                    "classification": "raw_fact",
+                    "status": "conflict",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [19], "section": "Appendix C CAL-1-P393D Levels"}
+                }
+            },
+            "excavation_step_levels": [
+                {"level_id": "Level 01", "elevation_m_dmd": -3.70, "classification": "raw_fact", "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D"}},
+                {"level_id": "Level 02", "elevation_m_dmd": -3.90, "classification": "raw_fact", "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D"}},
+                {"level_id": "Level 03", "elevation_m_dmd": -4.40, "classification": "raw_fact", "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D"}},
+                {"level_id": "Level 04", "elevation_m_dmd": -4.60, "classification": "raw_fact", "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D"}},
+                {"level_id": "Level 05", "elevation_m_dmd": -6.10, "classification": "raw_fact", "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D"}},
+                {"level_id": "Level 06", "elevation_m_dmd": -6.40, "classification": "raw_fact", "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D"}},
+                {"level_id": "Level 07", "elevation_m_dmd": -7.80, "classification": "raw_fact", "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D"}},
+                {"level_id": "Level 08 (Elevator / Sump Pit)", "elevation_m_dmd": -8.00, "classification": "raw_fact", "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D Revision Callouts"}}
+            ],
+            "deepest_formation_and_target_dewatering": {
+                "deepest_sump_formation_m_dmd": {
+                    "value": -8.00,
+                    "unit": "m_DMD",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D Rev 07"}
+                },
+                "target_dewatering_level_m_dmd": {
+                    "value": -8.30,
+                    "unit": "m_DMD",
+                    "classification": "source_calculation",
+                    "calculation_origin": "source_document",
+                    "calculation_logic": "Method Statement Section 5.0 (Page 4) explicitly specifies that groundwater shall lower to approximately 0.50 m additional to the final excavation level. Applied to maximum excavation (-7.80 m DMD in CAL-1-P393D & Section 2.0 Scope), this directly yields -8.30 m DMD (which also provides 0.30 m clearance below the Level 08 sump pit at -8.00 m DMD).",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [4, 16, 19], "section": "Section 5.0 Description & Appendix C CAL-1-P393D Levels"},
+                    "engineering_note": "Soil Report indicates a 1.0 m drawdown below formation (-9.00 m DMD), while Method Statement derives a different target (-8.30 m DMD). Both source positions are retained; discrepancy requires engineer review."
+                }
+            },
+            "excavation_staging": {
+                "stage_1": {
+                    "description": "Excavate in dry to approximately 50 cm above the existing groundwater table (down to approximately +6.75 m DMD)",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [4], "section": "Section 5.0 Description of Dewatering System"}
+                },
+                "stage_2": {
+                    "description": "Deepwell system operates to lower groundwater table below excavation formation, facilitating excavation to final depth in dry",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [4], "section": "Section 5.0 Description of Dewatering System"}
+                }
+            }
+        },
+        "section_04_shoring_retaining_system": {
+            "shoring_type": {
+                "value": "Secant Pile Wall On 4 Sides",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [3], "section": "Section 2.0 Scope Table"}
+            },
+            "shoring_perimeter_geometry": {
+                "perimeter_m": 168.0,
+                "alignment": "Offset immediately inside site boundary on all 4 sides",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D"}
+            },
+            "secant_pile_toe_levels": {
+                "drawing_and_calc_toe_levels_m_dmd": {
+                    "values": [-9.30, -10.00, -11.65],
+                    "unit": "m_DMD",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16], "section": "Drawing DEW-1-P393D Notes & Legend"},
+                    "engineering_note": "Drawing notes call out negative toe levels (-9.30, -10.00, -11.65 m DMD). Discrepancy with Section 2.0 text is retained as CONFLICT-003 for engineer review."
+                },
+                "narrative_text_toe_levels_m_dmd": {
+                    "values_as_written": "-9.30, 10.00, &-11.65 m DMD",
+                    "classification": "raw_fact",
+                    "status": "conflict",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [3], "section": "Section 2.0 Scope Table"},
+                    "engineering_note": "Text in Section 2.0 lists positive 10.00 m DMD, while Drawing DEW-1-P393D lists -10.00 m DMD. Logged in Conflict Register as CONFLICT-003."
+                }
+            },
+            "groundwater_cutoff_implications": {
+                "penetration": "Partially penetrating cutoff wall",
+                "depth_below_sump": "Shoring toe terminates between -9.30 m and -11.65 m DMD, which is 1.30 m to 3.65 m below deepest sump (-8.00 m DMD)",
+                "base_keyed_status": "Not keyed into deep basal calcisiltite aquitard (-28.0 m DMD). Groundwater inflow under the toe will occur.",
+                "classification": "interpretation",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [16, 17], "section": "Section Layout SEC-1-P393D"}
+            }
+        },
+        "section_05_dewatering_system_wellfield": {
+            "deepwell_count": {
+                "value": 6,
+                "unit": "wells",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [5], "section": "Section 6.0 Deepwell Installation"}
+            },
+            "deepwells_catalog": [
+                {
+                    "well_id": "DW-01",
+                    "easting_m": 486976.438,
+                    "northing_m": 2772571.467,
+                    "coordinate_origin": "drawing_cad_digitized_geometry",
+                    "depth_m": 21.2,
+                    "screen_length_m": 6.7,
+                    "borehole_diameter_mm": 700.0,
+                    "casing_diameter_inch": 8.0,
+                    "casing_material": "Slotted UPVC",
+                    "toe_elevation_m_dmd": -14.50,
+                    "screen_interval_m_dmd": [-7.80, -14.50],
+                    "design_yield_m3_hr": 11.1,
+                    "design_yield_m3_day": 266.4,
+                    "classification": "digitized_value",
+                    "provenance": {
+                        "source_id": "SRC-002",
+                        "source_file": "MS-1-P393D - R5.pdf",
+                        "pages": [16, 19, 20],
+                        "section": "Drawing DEW-1-P393D Rev 07 (Graphical layout) & Appendix C CAL-1-P393D (Hydraulic design)",
+                        "coordinate_derivation": "Well locations are graphically indicated on Drawing DEW-1-P393D Rev 07 (Page 16); numerical coordinates are digitized/derived from project CAD drawing geometry rather than directly stated text callouts."
+                    }
+                },
+                {
+                    "well_id": "DW-02",
+                    "easting_m": 486973.338,
+                    "northing_m": 2772582.310,
+                    "coordinate_origin": "drawing_cad_digitized_geometry",
+                    "depth_m": 21.2,
+                    "screen_length_m": 6.7,
+                    "borehole_diameter_mm": 700.0,
+                    "casing_diameter_inch": 8.0,
+                    "casing_material": "Slotted UPVC",
+                    "toe_elevation_m_dmd": -14.50,
+                    "screen_interval_m_dmd": [-7.80, -14.50],
+                    "design_yield_m3_hr": 11.1,
+                    "design_yield_m3_day": 266.4,
+                    "classification": "digitized_value",
+                    "provenance": {
+                        "source_id": "SRC-002",
+                        "source_file": "MS-1-P393D - R5.pdf",
+                        "pages": [16, 19, 20],
+                        "section": "Drawing DEW-1-P393D Rev 07 (Graphical layout) & Appendix C CAL-1-P393D (Hydraulic design)",
+                        "coordinate_derivation": "Well locations are graphically indicated on Drawing DEW-1-P393D Rev 07 (Page 16); numerical coordinates are digitized/derived from project CAD drawing geometry rather than directly stated text callouts."
+                    }
+                },
+                {
+                    "well_id": "DW-03",
+                    "easting_m": 486961.597,
+                    "northing_m": 2772582.131,
+                    "coordinate_origin": "drawing_cad_digitized_geometry",
+                    "depth_m": 21.2,
+                    "screen_length_m": 6.7,
+                    "borehole_diameter_mm": 700.0,
+                    "casing_diameter_inch": 8.0,
+                    "casing_material": "Slotted UPVC",
+                    "toe_elevation_m_dmd": -14.50,
+                    "screen_interval_m_dmd": [-7.80, -14.50],
+                    "design_yield_m3_hr": 11.1,
+                    "design_yield_m3_day": 266.4,
+                    "classification": "digitized_value",
+                    "provenance": {
+                        "source_id": "SRC-002",
+                        "source_file": "MS-1-P393D - R5.pdf",
+                        "pages": [16, 19, 20],
+                        "section": "Drawing DEW-1-P393D Rev 07 (Graphical layout) & Appendix C CAL-1-P393D (Hydraulic design)",
+                        "coordinate_derivation": "Well locations are graphically indicated on Drawing DEW-1-P393D Rev 07 (Page 16); numerical coordinates are digitized/derived from project CAD drawing geometry rather than directly stated text callouts."
+                    }
+                },
+                {
+                    "well_id": "DW-04",
+                    "easting_m": 486976.158,
+                    "northing_m": 2772593.866,
+                    "coordinate_origin": "drawing_cad_digitized_geometry",
+                    "depth_m": 21.2,
+                    "screen_length_m": 6.7,
+                    "borehole_diameter_mm": 700.0,
+                    "casing_diameter_inch": 8.0,
+                    "casing_material": "Slotted UPVC",
+                    "toe_elevation_m_dmd": -14.50,
+                    "screen_interval_m_dmd": [-7.80, -14.50],
+                    "design_yield_m3_hr": 11.1,
+                    "design_yield_m3_day": 266.4,
+                    "classification": "digitized_value",
+                    "provenance": {
+                        "source_id": "SRC-002",
+                        "source_file": "MS-1-P393D - R5.pdf",
+                        "pages": [16, 19, 20],
+                        "section": "Drawing DEW-1-P393D Rev 07 (Graphical layout) & Appendix C CAL-1-P393D (Hydraulic design)",
+                        "coordinate_derivation": "Well locations are graphically indicated on Drawing DEW-1-P393D Rev 07 (Page 16); numerical coordinates are digitized/derived from project CAD drawing geometry rather than directly stated text callouts."
+                    }
+                },
+                {
+                    "well_id": "DW-05",
+                    "easting_m": 486976.572,
+                    "northing_m": 2772606.274,
+                    "coordinate_origin": "drawing_cad_digitized_geometry",
+                    "depth_m": 21.2,
+                    "screen_length_m": 6.7,
+                    "borehole_diameter_mm": 700.0,
+                    "casing_diameter_inch": 8.0,
+                    "casing_material": "Slotted UPVC",
+                    "toe_elevation_m_dmd": -14.50,
+                    "screen_interval_m_dmd": [-7.80, -14.50],
+                    "design_yield_m3_hr": 11.1,
+                    "design_yield_m3_day": 266.4,
+                    "classification": "digitized_value",
+                    "provenance": {
+                        "source_id": "SRC-002",
+                        "source_file": "MS-1-P393D - R5.pdf",
+                        "pages": [16, 19, 20],
+                        "section": "Drawing DEW-1-P393D Rev 07 (Graphical layout) & Appendix C CAL-1-P393D (Hydraulic design)",
+                        "coordinate_derivation": "Well locations are graphically indicated on Drawing DEW-1-P393D Rev 07 (Page 16); numerical coordinates are digitized/derived from project CAD drawing geometry rather than directly stated text callouts."
+                    }
+                },
+                {
+                    "well_id": "DW-06",
+                    "easting_m": 486995.809,
+                    "northing_m": 2772586.338,
+                    "coordinate_origin": "drawing_cad_digitized_geometry",
+                    "depth_m": 21.2,
+                    "screen_length_m": 6.7,
+                    "borehole_diameter_mm": 700.0,
+                    "casing_diameter_inch": 8.0,
+                    "casing_material": "Slotted UPVC",
+                    "toe_elevation_m_dmd": -14.50,
+                    "screen_interval_m_dmd": [-7.80, -14.50],
+                    "design_yield_m3_hr": 11.1,
+                    "design_yield_m3_day": 266.4,
+                    "classification": "digitized_value",
+                    "provenance": {
+                        "source_id": "SRC-002",
+                        "source_file": "MS-1-P393D - R5.pdf",
+                        "pages": [16, 19, 20],
+                        "section": "Drawing DEW-1-P393D Rev 07 (Graphical layout) & Appendix C CAL-1-P393D (Hydraulic design)",
+                        "coordinate_derivation": "Well locations are graphically indicated on Drawing DEW-1-P393D Rev 07 (Page 16); numerical coordinates are digitized/derived from project CAD drawing geometry rather than directly stated text callouts."
+                    }
+                }
+            ],
+            "equipment_and_redundancy": {
+                "submersible_pumps": "Running pump(s) + 1 standby pump",
+                "generators": "Running genset(s) + 1 standby genset",
+                "french_drains": "0.50m x 0.50m gravity drains filled with aggregate channelled to deepwells",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [4, 9], "section": "Sections 5.1 & 10.2"}
+            }
+        },
+        "section_06_groundwater_information": {
+            "borehole_static_water_levels": [
+                {"borehole_id": "BH01", "ground_elevation_m_dmd": 8.35, "water_depth_m": 2.10, "water_elevation_m_dmd": 6.25, "date": "28/02/2023 16:30", "classification": "raw_fact", "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [6, 30], "section": "Table 1 & Borehole Log 1"}},
+                {"borehole_id": "BH02", "ground_elevation_m_dmd": 8.30, "water_depth_m": 2.10, "water_elevation_m_dmd": 6.20, "date": "23/02/2023", "classification": "raw_fact", "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [6, 33], "section": "Table 1 & Borehole Log 2"}},
+                {"borehole_id": "BH03", "ground_elevation_m_dmd": 8.15, "water_depth_m": 2.00, "water_elevation_m_dmd": 6.15, "date": "01/03/2023", "classification": "raw_fact", "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [6, 37], "section": "Table 1 & Borehole Log 3"}},
+                {"borehole_id": "BH04", "ground_elevation_m_dmd": 8.35, "water_depth_m": 2.15, "water_elevation_m_dmd": 6.20, "date": "28/02/2023", "classification": "raw_fact", "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [6, 40], "section": "Table 1 & Borehole Log 4"}},
+                {"borehole_id": "BH05", "ground_elevation_m_dmd": 8.25, "water_depth_m": 2.10, "water_elevation_m_dmd": 6.15, "date": "01/03/2023", "classification": "raw_fact", "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [6, 43], "section": "Table 1 & Borehole Log 5"}}
+            ],
+            "baseline_groundwater_level": {
+                "adopted_baseline_m_dmd": {
+                    "value": 6.25,
+                    "unit": "m_DMD",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [3, 20], "section": "Section 2.0 Scope & Appendix C Calc"}
+                },
+                "sensitivity_high_gwl_m_dmd": {
+                    "value": 6.75,
+                    "unit": "m_DMD",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [19], "section": "Appendix C CAL-1-P393D Levels"}
+                }
+            },
+            "monitoring_protocol": {
+                "water_levels": "Checked daily by day and night shift watchman using an electric contact dip meter (KLL)",
+                "water_discharge": "Measured daily using standard V-notch tank and 6-inch flow meter",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [7, 14], "section": "Section 8.0 & Appendix A"}
+            }
+        },
+        "section_07_geology_stratigraphy": {
+            "subsurface_stratigraphic_column": [
+                {
+                    "stratum_id": 1,
+                    "geological_name": "Aeolian Dune Sand / Silt",
+                    "depth_top_m": 0.0,
+                    "depth_bottom_m": 1.50,
+                    "thickness_m": 1.50,
+                    "elevation_top_m_dmd": 8.25,
+                    "elevation_bottom_m_dmd": 6.75,
+                    "material_description": "Medium dense to very dense, light brown to brown, slightly silty, fine SAND",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [12], "section": "Table 2: Recommended Design Subsurface Profile"}
+                },
+                {
+                    "stratum_id": 2,
+                    "geological_name": "Upper Weathered Sandstone",
+                    "depth_top_m": 1.50,
+                    "depth_bottom_m": 13.00,
+                    "thickness_m": 11.50,
+                    "elevation_top_m_dmd": 6.75,
+                    "elevation_bottom_m_dmd": -4.75,
+                    "material_description": "Extremely weak to very weak, light brown, fine to medium grained SANDSTONE",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [12], "section": "Table 2: Recommended Design Subsurface Profile"}
+                },
+                {
+                    "stratum_id": 3,
+                    "geological_name": "Moderately Weathered Sandstone",
+                    "hydrogeological_interpretation": "Screened Aquifer",
+                    "depth_top_m": 13.00,
+                    "depth_bottom_m": 23.00,
+                    "thickness_m": 10.00,
+                    "elevation_top_m_dmd": -4.75,
+                    "elevation_bottom_m_dmd": -14.75,
+                    "material_description": "Extremely weak to very weak, reddish brown, fine to medium grained, slightly gypsiferous SANDSTONE",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [12], "section": "Table 2: Recommended Design Subsurface Profile"},
+                    "hydrogeological_role_provenance": {
+                        "source_id": "SRC-002",
+                        "source_file": "MS-1-P393D - R5.pdf",
+                        "pages": [19, 20],
+                        "section": "Appendix C CAL-1-P393D",
+                        "classification": "interpretation",
+                        "note": "Deepwell screens set from -7.80 to -14.50 m DMD targeting this permeable water-bearing sandstone formation."
+                    }
+                },
+                {
+                    "stratum_id": 4,
+                    "geological_name": "Conglomeratic Sandstone",
+                    "depth_top_m": 23.00,
+                    "depth_bottom_m": 28.00,
+                    "thickness_m": 5.00,
+                    "elevation_top_m_dmd": -14.75,
+                    "elevation_bottom_m_dmd": -19.75,
+                    "material_description": "Very weak, reddish brown, slightly gypsiferous, conglomeratic SANDSTONE",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [12], "section": "Table 2: Recommended Design Subsurface Profile"}
+                },
+                {
+                    "stratum_id": 5,
+                    "geological_name": "Calcisiltite / Siltstone Basal Unit",
+                    "hydrogeological_interpretation": "Lower Confining Bed",
+                    "depth_top_m": 28.00,
+                    "depth_bottom_m": 40.00,
+                    "thickness_m": 12.00,
+                    "elevation_top_m_dmd": -19.75,
+                    "elevation_bottom_m_dmd": -31.75,
+                    "material_description": "Very weak to weak, light brown to off-white, fine grained CALCISILTITE/ SILTSTONE",
+                    "classification": "raw_fact",
+                    "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [12], "section": "Table 2: Recommended Design Subsurface Profile"},
+                    "hydrogeological_role_provenance": {
+                        "source_id": "SRC-002",
+                        "source_file": "MS-1-P393D - R5.pdf",
+                        "pages": [19, 20],
+                        "section": "Appendix C CAL-1-P393D",
+                        "classification": "interpretation",
+                        "note": "Treated as low-permeability lower impermeable boundary / base of active dewatering system."
+                    }
+                }
+            ],
+            "borehole_inventory": [
+                {"borehole_id": "BH01", "total_depth_m": 30.0, "surface_elevation_m_dmd": 8.35, "start_date": "27/02/2023", "end_date": "28/02/2023", "classification": "raw_fact", "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [6], "section": "Table 1"}},
+                {"borehole_id": "BH02", "total_depth_m": 40.0, "surface_elevation_m_dmd": 8.30, "start_date": "22/02/2023", "end_date": "23/02/2023", "classification": "raw_fact", "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [6], "section": "Table 1"}},
+                {"borehole_id": "BH03", "total_depth_m": 30.0, "surface_elevation_m_dmd": 8.15, "start_date": "28/02/2023", "end_date": "01/03/2023", "classification": "raw_fact", "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [6], "section": "Table 1"}},
+                {"borehole_id": "BH04", "total_depth_m": 30.0, "surface_elevation_m_dmd": 8.35, "start_date": "27/02/2023", "end_date": "28/02/2023", "classification": "raw_fact", "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [6], "section": "Table 1"}},
+                {"borehole_id": "BH05", "total_depth_m": 30.0, "surface_elevation_m_dmd": 8.25, "start_date": "28/02/2023", "end_date": "01/03/2023", "classification": "raw_fact", "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [6], "section": "Table 1"}}
+            ]
+        },
+        "section_08_hydrogeological_hydraulic_information": {
+            "in_situ_permeability_testing_field": {
+                "value": None,
+                "unit": "m/s",
+                "classification": "missing",
+                "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [14, 15, 16], "section": "Section 7.0"},
+                "engineering_note": "No pumping test, packer test, or slug test was performed in the site geotechnical investigation."
+            },
+            "source_adopted_aquifer_permeability": {
+                "value_m_s": 5.0e-5,
+                "value_m_day": 4.32,
+                "classification": "source_calculation",
+                "calculation_origin": "source_document",
+                "calculation_logic": "Method Statement Appendix C CAL-1-P393D (Pages 19-20) calculates and adopts kavg = 5.0E-05 m/s (4.32 m/day) based on borehole SPT N-values (Navg = 50) and CIRIA empirical correlation. Not an agent interpretation.",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [19, 20], "section": "Appendix C CAL-1-P393D Section 2 Permeability Calculations"}
+            },
+            "vertical_anisotropy_ratio_Kh_Kv": {
+                "value": None,
+                "unit": "dimensionless",
+                "classification": "missing",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [], "section": "Not present in raw documents"},
+                "engineering_note": "Zero measurements in site files. Strictly classified as missing; pending engineer decision in Step 3."
+            },
+            "specific_yield_Sy": {
+                "value": None,
+                "unit": "dimensionless",
+                "classification": "missing",
+                "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [], "section": "Not present in raw documents"},
+                "engineering_note": "Zero measurements in site files. Strictly classified as missing; pending engineer decision in Step 3."
+            },
+            "specific_storage_Ss": {
+                "value": None,
+                "unit": "1/m",
+                "classification": "missing",
+                "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [], "section": "Not present in raw documents"},
+                "engineering_note": "Zero measurements in site files. Strictly classified as missing; pending engineer decision in Step 3."
+            }
+        },
+        "section_09_dewatering_pumping_operations": {
+            "steady_state_discharge_rates": {
+                "total_system_flow_m3_hr": {
+                    "value": 46.50,
+                    "unit": "m3/hr",
+                    "classification": "source_calculation",
+                    "calculation_origin": "source_document",
+                    "calculation_sheet_ref": "CAL-1-P393D Rev 3 CIRIA Equivalent Radius Method",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [7, 20], "section": "Section 7.0 Table & Appendix C Step 2"}
+                },
+                "total_system_flow_m3_day": {
+                    "value": 1116.0,
+                    "unit": "m3/day",
+                    "classification": "calculated_value",
+                    "calculation_origin": "dataset_derivation",
+                    "calculation_logic": "46.50 m3/hr * 24 hours/day",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [7, 20], "section": "Derived from steady state rate"}
+                },
+                "per_well_steady_rate_m3_hr": {
+                    "value": 7.75,
+                    "unit": "m3/hr",
+                    "classification": "calculated_value",
+                    "calculation_origin": "dataset_derivation",
+                    "calculation_logic": "46.50 m3/hr / 6 wells",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [5, 20], "section": "Equal allocation across 6 deepwells"}
+                },
+                "per_well_steady_rate_m3_day": {
+                    "value": 186.0,
+                    "unit": "m3/day",
+                    "classification": "calculated_value",
+                    "calculation_origin": "dataset_derivation",
+                    "calculation_logic": "7.75 m3/hr * 24 hours/day",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [5, 20], "section": "Equal allocation across 6 deepwells"}
+                }
+            },
+            "transient_peak_initial_discharge_rates": {
+                "peak_system_flow_m3_hr": {
+                    "value": 93.00,
+                    "unit": "m3/hr",
+                    "classification": "source_calculation",
+                    "calculation_origin": "source_document",
+                    "calculation_logic": "Method Statement Section 7.0 Note states initial drawdown flow can be twice steady state (46.50 * 2 = 93.00 m3/hr)",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [7, 20], "section": "Section 7.0 Note & Appendix C Note"}
+                },
+                "peak_system_flow_m3_day": {
+                    "value": 2232.0,
+                    "unit": "m3/day",
+                    "classification": "calculated_value",
+                    "calculation_origin": "dataset_derivation",
+                    "calculation_logic": "93.00 m3/hr * 24 hours/day",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [7, 20], "section": "Derived from peak rate"}
+                },
+                "per_well_peak_rate_m3_hr": {
+                    "value": 15.50,
+                    "unit": "m3/hr",
+                    "classification": "calculated_value",
+                    "calculation_origin": "dataset_derivation",
+                    "calculation_logic": "93.00 m3/hr / 6 wells",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [7, 20], "section": "Equal allocation across 6 wells"}
+                },
+                "per_well_peak_rate_m3_day": {
+                    "value": 372.0,
+                    "unit": "m3/day",
+                    "classification": "calculated_value",
+                    "calculation_origin": "dataset_derivation",
+                    "calculation_logic": "15.50 m3/hr * 24 hours/day",
+                    "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [7, 20], "section": "Equal allocation across 6 wells"}
+                }
+            },
+            "rated_pump_capacity_per_well": {
+                "value_m3_hr": 11.10,
+                "value_m3_day": 266.4,
+                "unit": "m3/hr",
+                "classification": "source_calculation",
+                "calculation_origin": "source_document",
+                "calculation_sheet_ref": "CAL-1-P393D Rev 3 Step 3 Dupuit-Thiem calculation",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [20], "section": "Appendix C Step 3 Deepwell Yield"}
+            },
+            "dewatering_schedule": {
+                "pre_excavation_drawdown_days": 7,
+                "total_operation_duration_days": 150,
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [7, 19], "section": "Section 7.5 & Appendix C Duration"}
+            }
+        },
+        "section_10_discharge_water_management": {
+            "discharge_location": {
+                "value": "Nakheel Line",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [7, 16], "section": "Section 7.0 Table & Drawing DEW-1-P393D"}
+            },
+            "discharge_route_length_m": {
+                "value": 2400.0,
+                "unit": "m",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [3], "section": "Section 2.0 Scope Table"}
+            },
+            "water_treatment_and_settlement": {
+                "settlement_tank": "Sedimentation tank equipped with baffle plates for suspended solids separation and oil/diesel skimming mats",
+                "water_testing_frequency": "Weekly / monthly as required by Trakhees / Nakheel / RTA",
+                "flow_measurement_device": "6-inch electromagnetic flow meter as per Nakheel requirement and V-notch tank",
+                "classification": "raw_fact",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [7, 9], "section": "Sections 7.3 & 10.1"}
+            }
+        },
+        "section_11_engineering_calculations_in_sources": {
+            "ciria_equivalent_radius_method": {
+                "calculation_name": "Dewatering Design Calculations: Equivalent Radius Method (CIRIA Report)",
+                "calculation_sheet_ref": "CAL-1-P393D Rev 3 (03-Nov-23)",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [19, 20], "section": "Appendix C"},
+                "inputs": {
+                    "plot_length_a_m": 45.0,
+                    "plot_width_b_m": 39.0,
+                    "plot_area_m2": 1755.0,
+                    "perimeter_m": 168.0,
+                    "natural_water_level_m_dmd": 6.25,
+                    "general_excavation_m_dmd": -6.10,
+                    "maximum_excavation_m_dmd": -7.80,
+                    "adopted_k_m_s": 5.0e-5,
+                    "height_of_water_H_m": 14.55,
+                    "remaining_water_height_hw_m": 1.45,
+                    "required_average_drawdown_m": 13.11,
+                    "factor_of_safety": 1.20
+                },
+                "formulas_and_results": {
+                    "equivalent_well_radius_re_m": {
+                        "formula": "re = sqrt(Area / pi)",
+                        "result": 23.6,
+                        "unit": "m",
+                        "classification": "source_calculation",
+                        "calculation_origin": "source_document"
+                    },
+                    "sichardt_radius_of_influence_R0_m": {
+                        "formula": "R0 = C * (H - hw) * sqrt(k), where C = 3000",
+                        "result": 277.9,
+                        "unit": "m",
+                        "classification": "source_calculation",
+                        "calculation_origin": "source_document"
+                    },
+                    "combined_radius_Rc_m": {
+                        "formula": "Rc = R0 + re",
+                        "result": 301.5,
+                        "unit": "m",
+                        "classification": "source_calculation",
+                        "calculation_origin": "source_document"
+                    },
+                    "steady_state_seepage_Q_m3_hr": {
+                        "formula": "Q = pi * k * (H^2 - hw^2) / ln(Rc / re)",
+                        "result": 46.50,
+                        "unit": "m3/hr",
+                        "classification": "source_calculation",
+                        "calculation_origin": "source_document"
+                    },
+                    "individual_well_yield_q_m3_hr": {
+                        "formula": "q = pi * D * Lw * k * i",
+                        "result": 11.10,
+                        "unit": "m3/hr",
+                        "classification": "source_calculation",
+                        "calculation_origin": "source_document"
+                    },
+                    "required_well_count": {
+                        "formula": "Total DWs = (Q / q) * FoS = (46.5 / 11.1) * 1.2 = 5.03 -> 6 wells",
+                        "result": 6.0,
+                        "unit": "wells",
+                        "classification": "source_calculation",
+                        "calculation_origin": "source_document"
+                    }
+                }
+            }
+        },
+        "section_12_drawings_figures_cad_references": [
+            {
+                "drawing_id": "DEW-1-P393D",
+                "revision": "07",
+                "date": "13/11/23",
+                "drawing_title": "Dewatering Layout Drawing",
+                "role": "MAJOR SOURCE OF TRUTH (Surveyed Coordinates, Layout & Levels)",
+                "source_document": "MS-1-P393D - R5.pdf",
+                "source_pages": [16],
+                "extracted_content": "4 DLTM plot limit corner coordinates, positions and IDs of DW-01 to DW-06, secant pile perimeter, Level 01 to Level 08 excavation levels, discharge line alignment to Nakheel line, generator and sedimentation tank positions."
+            },
+            {
+                "drawing_id": "SEC-1-P393D",
+                "revision": "05",
+                "date": "10/11/23",
+                "drawing_title": "Section Layout Drawing",
+                "role": "MAJOR SOURCE OF TRUTH (Vertical Shoring Penetration & Well Profile)",
+                "source_document": "MS-1-P393D - R5.pdf",
+                "source_pages": [17],
+                "extracted_content": "Vertical cross section showing secant pile wall penetration, deepwell depth, water table, excavation formations, and French drain profile."
+            },
+            {
+                "drawing_id": "CHK-1-P393D",
+                "revision": "01",
+                "date": "09/06/23",
+                "drawing_title": "Deepwell Monitoring Check-List",
+                "source_document": "MS-1-P393D - R5.pdf",
+                "source_pages": [14],
+                "extracted_content": "Monitoring protocol sheet for DW-01 to DW-06, V-notch flow readings, water levels, pump running status, and generator status."
+            },
+            {
+                "drawing_id": "CAL-1-P393D",
+                "revision": "03",
+                "date": "03/11/23",
+                "drawing_title": "Dewatering Design Calculations",
+                "role": "MAJOR SOURCE OF TRUTH (CIRIA Calculations & Permeability)",
+                "source_document": "MS-1-P393D - R5.pdf",
+                "source_pages": [19, 20],
+                "extracted_content": "Complete CIRIA Equivalent Radius and Sichardt analytical dewatering calculations."
+            },
+            {
+                "drawing_id": "PLATE-03-SIR2023",
+                "revision": "00",
+                "date": "14/03/23",
+                "drawing_title": "Borehole Location Plan",
+                "source_document": "Soil report.pdf",
+                "source_pages": [26],
+                "extracted_content": "Spatial distribution plan for boreholes BH01, BH02, BH03, BH04, and BH05 across the building footprint."
+            },
+            {
+                "drawing_id": "PLATE-05-SIR2023",
+                "revision": "00",
+                "date": "14/03/23",
+                "drawing_title": "Geotechnical Cross Section Profile",
+                "source_document": "Soil report.pdf",
+                "source_pages": [28],
+                "extracted_content": "Subsurface geological strata correlations across the 5 boreholes."
+            }
+        ],
+        "section_13_source_conflict_register": [
+            {
+                "conflict_id": "CONFLICT-001",
+                "parameter": "Plot Surface Area",
+                "source_a": {
+                    "value": 1755.0,
+                    "unit": "m2",
+                    "source": "MS-1-P393D - R5.pdf",
+                    "reference": "Pages 3 & 20 (Section 2.0 Scope Table & Appendix C Calculation Sheet)"
+                },
+                "source_b": {
+                    "value": 1633.18,
+                    "unit": "m2",
+                    "source": "MS-1-P393D - R5.pdf",
+                    "reference": "Page 16 (Drawing DEW-1-P393D Rev 07 DLTM Survey Coordinates)"
+                },
+                "conflict_description": "Narrative text assumes a simplified rectangular plot (45.0m x 39.0m = 1755 m2), whereas the actual surveyed CAD boundary coordinates form an irregular 4-sided polygon enclosing 1633.18 m2. Both values are retained without automated resolution for engineer review.",
+                "status": "UNRESOLVED",
+                "requires_engineer_review": True
+            },
+            {
+                "conflict_id": "CONFLICT-002",
+                "parameter": "Maximum Excavation Depth",
+                "source_a": {
+                    "value": -7.80,
+                    "unit": "m_DMD",
+                    "source": "MS-1-P393D - R5.pdf",
+                    "reference": "Pages 3 & 19 (Section 2.0 Scope Table & Appendix C Calc Sheet)"
+                },
+                "source_b": {
+                    "value": -8.00,
+                    "unit": "m_DMD",
+                    "source": "MS-1-P393D - R5.pdf",
+                    "reference": "Page 16 (Drawing DEW-1-P393D Rev 07, Level 08 Elevator/Sump Pit Callout)"
+                },
+                "conflict_description": "Source A (Section 2.0 Scope Table & Calc Sheet) lists maximum excavation as -7.80 m DMD (Level 07), whereas Source B (Drawing DEW-1-P393D Rev 07) shows Level 08 elevator/sump pit at -8.00 m DMD. Both values are retained without automated resolution for engineer review.",
+                "status": "UNRESOLVED",
+                "requires_engineer_review": True
+            },
+            {
+                "conflict_id": "CONFLICT-003",
+                "parameter": "Secant Pile Toe Level Sign Typo",
+                "source_a": {
+                    "value": "-9.30, 10.00, &-11.65 m DMD",
+                    "unit": "text",
+                    "source": "MS-1-P393D - R5.pdf",
+                    "reference": "Page 3 (Section 2.0 Scope Table)"
+                },
+                "source_b": {
+                    "value": "-9.30, -10.00, -11.65 m DMD",
+                    "unit": "text",
+                    "source": "MS-1-P393D - R5.pdf",
+                    "reference": "Page 16 (Drawing DEW-1-P393D Notes & Legend)"
+                },
+                "conflict_description": "Source A (Section 2.0 Scope Table, Page 3) reports toe levels as '-9.30, 10.00, &-11.65 m DMD' (positive 10.00 m DMD), whereas Source B (Drawing DEW-1-P393D Notes & Legend, Page 16) reports '-9.30, -10.00, -11.65 m DMD' (negative -10.00 m DMD). Both values are retained without automated resolution for engineer review.",
+                "status": "UNRESOLVED",
+                "requires_engineer_review": True
+            },
+            {
+                "conflict_id": "CONFLICT-004",
+                "parameter": "Existing Ground Surface Elevation",
+                "source_a": {
+                    "value": 8.10,
+                    "unit": "m_DMD",
+                    "source": "MS-1-P393D - R5.pdf",
+                    "reference": "Page 3 (Section 2.0 Scope Table)"
+                },
+                "source_b": {
+                    "value": 8.25,
+                    "unit": "m_DMD",
+                    "source": "Soil report.pdf",
+                    "reference": "Page 6 (Table 1 average of 5 boreholes: 8.15 to 8.35 m DMD)"
+                },
+                "source_c": {
+                    "value": 8.45,
+                    "unit": "m_DMD",
+                    "source": "MS-1-P393D - R5.pdf",
+                    "reference": "Page 19 (Appendix C Calculation Sheet CAL-1-P393D)"
+                },
+                "conflict_description": "Natural ground surface varies across sources (+8.10 m in MS text vs +8.25 m in Soil Report vs +8.45 m in MS calc sheet). All values are retained without automated resolution for engineer review.",
+                "status": "UNRESOLVED",
+                "requires_engineer_review": True
+            }
+        ],
+        "section_14_data_gaps_missing_information": [
+            {
+                "gap_id": "GAP-001",
+                "category": "Spatial / GIS",
+                "missing_information": "Site boundary polygon in KMZ",
+                "description": "KMZ boundary polygon unavailable. Boundary geometry is available separately from Method Statement drawing coordinates.",
+                "source_checked": "E6168D - TMF Found.kmz",
+                "classification": "missing",
+                "status": "missing",
+                "requires_engineer_review": True
+            },
+            {
+                "gap_id": "GAP-002",
+                "category": "Hydrogeology",
+                "missing_information": "In-situ hydraulic conductivity testing (Pumping / Packer / Slug tests)",
+                "description": "Aquifer permeability is not empirically proven by site testing; relies entirely on CIRIA empirical correlation in Method Statement.",
+                "source_checked": "Soil report.pdf",
+                "classification": "missing",
+                "status": "missing",
+                "requires_engineer_review": True
+            },
+            {
+                "gap_id": "GAP-003",
+                "category": "Hydrogeology",
+                "missing_information": "Long-term piezometric water level monitoring time-series",
+                "description": "Only static dip-meter measurements upon borehole completion are available. Seasonal and tidal groundwater fluctuations cannot be calibrated.",
+                "source_checked": "Soil report.pdf",
+                "classification": "missing",
+                "status": "missing",
+                "requires_engineer_review": True
+            },
+            {
+                "gap_id": "GAP-004",
+                "category": "Hydrogeology",
+                "missing_information": "Aquifer storage parameters (Specific Yield Sy and Specific Storage Ss)",
+                "description": "Required for transient MODFLOW stress period simulation; zero measurements in project files.",
+                "source_checked": "Soil report.pdf and MS-1-P393D - R5.pdf",
+                "classification": "missing",
+                "status": "missing",
+                "requires_engineer_review": True
+            },
+            {
+                "gap_id": "GAP-005",
+                "category": "Hydrogeology",
+                "missing_information": "Vertical hydraulic conductivity anisotropy ratio (Kh/Kv)",
+                "description": "Controls vertical seepage under secant wall toe; zero measurements in project files.",
+                "source_checked": "Soil report.pdf and MS-1-P393D - R5.pdf",
+                "classification": "missing",
+                "status": "missing",
+                "requires_engineer_review": True
+            }
+        ],
+        "section_15_engineer_review_items": [
+            {
+                "review_id": "REV-001",
+                "parameter": "Horizontal Hydraulic Conductivity (k = 5.0e-5 m/s = 4.32 m/day)",
+                "review_question": "Does the engineer approve adopting the Method Statement CIRIA calculated permeability k = 5.0e-5 m/s (4.32 m/day) as governing for the numerical MODFLOW simulation?",
+                "classification": "source_calculation",
+                "calculation_origin": "source_document",
+                "status": "PENDING_ENGINEER_APPROVAL",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [19, 20]}
+            },
+            {
+                "review_id": "REV-002",
+                "parameter": "Vertical Hydraulic Anisotropy Ratio (Kh/Kv)",
+                "review_question": "Vertical hydraulic conductivity is not defined in the project files. Does the engineer approve adopting an appropriate regional sedimentary rock anisotropy ratio (Kh/Kv) for the 3D MODFLOW grid?",
+                "raw_data_status": "MISSING_IN_PROJECT_FILES",
+                "classification": "missing",
+                "status": "MISSING_PARAMETER_PENDING_ENGINEER_DECISION",
+                "requires_engineer_review": True,
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": []}
+            },
+            {
+                "review_id": "REV-003",
+                "parameter": "Aquifer Storage Parameters (Specific Yield Sy and Specific Storage Ss)",
+                "review_question": "Storage parameters are not measured in the geotechnical soil report or method statement. What values of Sy and Ss should be approved by the engineer for transient simulation?",
+                "raw_data_status": "MISSING_IN_PROJECT_FILES",
+                "classification": "missing",
+                "status": "MISSING_PARAMETER_PENDING_ENGINEER_DECISION",
+                "requires_engineer_review": True,
+                "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": []}
+            },
+            {
+                "review_id": "REV-004",
+                "parameter": "Target Dewatering Drawdown Level (-8.30 m DMD)",
+                "review_question": "Soil Report indicates a 1.0 m drawdown below formation (-9.00 m DMD), while Method Statement derives a target of -8.30 m DMD (-7.80 m maximum excavation minus 0.50 m drawdown allowance). Does the engineer approve adopting -8.30 m DMD as the governing target dewatering criterion for simulation?",
+                "classification": "source_calculation",
+                "calculation_origin": "source_document",
+                "status": "PENDING_ENGINEER_APPROVAL",
+                "provenance": {"source_id": "SRC-002", "source_file": "MS-1-P393D - R5.pdf", "pages": [4, 16, 19]}
+            },
+            {
+                "review_id": "REV-005",
+                "parameter": "Reconciled Ground Surface Plane (+8.25 m DMD)",
+                "review_question": "Does the engineer approve adopting +8.25 m DMD (arithmetic mean of 5 borehole ground elevations) as the ground surface top for Layer 1 in the numerical model grid?",
+                "classification": "calculated_value",
+                "calculation_origin": "dataset_derivation",
+                "status": "PENDING_ENGINEER_APPROVAL",
+                "provenance": {"source_id": "SRC-003", "source_file": "Soil report.pdf", "pages": [6]}
+            }
+        ],
+        "section_16_data_quality_confidence_summary": {
+            "summary_counts": {},  # Dynamically computed below
+            "overall_assessment": "The raw project dataset provides high-quality, fully traceable geometry, wellfield configuration, and operational rates from the Method Statement (the major source of truth). Geological stratigraphy and static groundwater levels are well documented in the Soil Report. Hydrodynamic parameters not measured on site (pumping test K, storage, anisotropy, continuous GWL monitoring) are strictly classified as missing and queued for engineer decision in Step 3. Zero invented parameters."
+        },
+        "section_17_provenance_register": [
+            {
+                "source_id": "SRC-001",
+                "filename": "E6168D - TMF Found.kmz",
+                "file_type": "GIS / KMZ",
+                "role": "Site Location & Regional Geographic Anchor",
+                "path": "data/actual/raw/E6168D - TMF Found.kmz",
+                "key_extracted_items": [
+                    "Geographic placemark coordinates (55.204322 E, 25.058908 N WGS84)",
+                    "Absence of plot boundary polygon"
+                ]
+            },
+            {
+                "source_id": "SRC-002",
+                "filename": "MS-1-P393D - R5.pdf",
+                "file_type": "Engineering Method Statement & Approved Drawings",
+                "role": "MAJOR SOURCE OF TRUTH (Primary Governing Authority)",
+                "path": "data/actual/raw/MS-1-P393D - R5.pdf",
+                "key_extracted_items": [
+                    "Site boundary DLTM corner coordinates (Corner 1 to 4)",
+                    "Deepwell catalog (DW-01 to DW-06 positions, depths, screens)",
+                    "Excavation schedule (Levels 01 to 08, deepest sump -8.00 m DMD)",
+                    "Target dewatering drawdown level (-8.30 m DMD = -7.80 m - 0.50 m buffer)",
+                    "Secant pile wall alignment and toe levels (-9.30, -10.00, -11.65 m DMD)",
+                    "Steady-state flow (46.50 m3/hr) and peak flow (93.00 m3/hr)",
+                    "CIRIA Equivalent Radius calculations CAL-1-P393D and adopted k = 5.0e-5 m/s",
+                    "Discharge to Nakheel line (2400 m distance)"
+                ]
+            },
+            {
+                "source_id": "SRC-003",
+                "filename": "Soil report.pdf",
+                "file_type": "Geotechnical Soil Investigation Report",
+                "role": "Baseline Geotechnical Stratigraphy & Static Groundwater",
+                "path": "data/actual/raw/Soil report.pdf",
+                "key_extracted_items": [
+                    "Borehole logs BH01 to BH05 (locations, depths 30m-40m, elevations)",
+                    "Subsurface lithological strata column (sand, sandstones, calcisiltite)",
+                    "Static groundwater table measurements (+6.15 to +6.25 m DMD)",
+                    "SPT N-values and UCS rock strengths",
+                    "Confirmation of absence of in-situ permeability / pumping tests"
+                ]
+            }
+        ]
+    }
+
+    # Dynamically compute Section 16 counts from the actual contents
+    counts = {
+        "raw_facts_count": 0,
+        "source_calculations_count": 0,
+        "dataset_calculated_values_count": 0,
+        "digitized_values_count": 0,
+        "interpretations_count": 0,
+        "missing_parameters_count": 0,
+        "total_classified_items": 0,
+        "conflicts_count": len(dataset.get("section_13_source_conflict_register", [])),
+        "data_gaps_count": len(dataset.get("section_14_data_gaps_missing_information", [])),
+        "engineer_review_items_count": len(dataset.get("section_15_engineer_review_items", []))
+    }
+
+    def tally(obj):
+        if isinstance(obj, dict):
+            if "classification" in obj:
+                c = obj["classification"]
+                if c == "raw_fact":
+                    counts["raw_facts_count"] += 1
+                elif c == "source_calculation":
+                    counts["source_calculations_count"] += 1
+                elif c == "calculated_value":
+                    counts["dataset_calculated_values_count"] += 1
+                elif c == "digitized_value":
+                    counts["digitized_values_count"] += 1
+                elif c == "interpretation":
+                    counts["interpretations_count"] += 1
+                elif c == "missing":
+                    counts["missing_parameters_count"] += 1
+                counts["total_classified_items"] += 1
+            for v in obj.values():
+                tally(v)
+        elif isinstance(obj, list):
+            for item in obj:
+                tally(item)
+
+    for sec_key, sec_val in dataset.items():
+        if sec_key not in ("metadata", "section_16_data_quality_confidence_summary", "section_17_provenance_register"):
+            tally(sec_val)
+
+    dataset["section_16_data_quality_confidence_summary"]["summary_counts"] = counts
+    return dataset
+
+
+if __name__ == "__main__":
+    data = generate_actual_engineering_dataset()
+    canonical_file = Path("data/actual/extracted/actual_engineering_dataset.json")
+    canonical_file.parent.mkdir(parents=True, exist_ok=True)
+    with open(canonical_file, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+    print(f"Wrote canonical dataset to {canonical_file} ({canonical_file.stat().st_size} bytes)")
+
+    # Print summary counts for verification
+    print("\nDynamically Computed Section 16 Summary Counts:")
+    for k, v in data["section_16_data_quality_confidence_summary"]["summary_counts"].items():
+        print(f"  {k}: {v}")
