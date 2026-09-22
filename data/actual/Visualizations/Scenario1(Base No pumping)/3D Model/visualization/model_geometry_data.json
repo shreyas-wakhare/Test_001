@@ -1966,5 +1966,175 @@
     "coverage_ratio": 0.9985,
     "source_drawing": "DEW-1-P393D Rev 07 / MS-1-P393D - R5 Appendix B",
     "coordinate_system": "DLTM / EPSG:3997"
+  },
+  "shoring_wall_segments": [
+    {
+      "id": "shoring_north_red",
+      "section_id": "sec_main_red",
+      "section_name": "Red Main Section",
+      "wall_side": "North",
+      "elevation_dmd": -11.65,
+      "capping_beam_dmd": 8.25,
+      "cutoff_toe_dmd": -14.75,
+      "length_m": 41.01,
+      "start": {
+        "x": 486952.0,
+        "y": 2772580.712
+      },
+      "end": {
+        "x": 486976.569,
+        "y": 2772613.543
+      }
+    },
+    {
+      "id": "shoring_east_red",
+      "section_id": "sec_main_red",
+      "section_name": "Red Main Section",
+      "wall_side": "East (Upper)",
+      "elevation_dmd": -11.65,
+      "capping_beam_dmd": 8.25,
+      "cutoff_toe_dmd": -14.75,
+      "length_m": 25.55,
+      "start": {
+        "x": 486976.569,
+        "y": 2772613.543
+      },
+      "end": {
+        "x": 486995.759,
+        "y": 2772596.673
+      }
+    },
+    {
+      "id": "shoring_east_green",
+      "section_id": "sec_lower_green",
+      "section_name": "Green Lower Section",
+      "wall_side": "East (Lower)",
+      "elevation_dmd": -10.0,
+      "capping_beam_dmd": 8.25,
+      "cutoff_toe_dmd": -14.75,
+      "length_m": 8.35,
+      "start": {
+        "x": 486995.759,
+        "y": 2772596.673
+      },
+      "end": {
+        "x": 487002.136,
+        "y": 2772591.29
+      }
+    },
+    {
+      "id": "shoring_south_green",
+      "section_id": "sec_lower_green",
+      "section_name": "Green Lower Section",
+      "wall_side": "South (Right)",
+      "elevation_dmd": -10.0,
+      "capping_beam_dmd": 8.25,
+      "cutoff_toe_dmd": -14.75,
+      "length_m": 21.73,
+      "start": {
+        "x": 487002.136,
+        "y": 2772591.29
+      },
+      "end": {
+        "x": 486988.379,
+        "y": 2772574.474
+      }
+    },
+    {
+      "id": "shoring_south_blue",
+      "section_id": "sec_left_blue",
+      "section_name": "Blue Left Section",
+      "wall_side": "South (Left)",
+      "elevation_dmd": -9.3,
+      "capping_beam_dmd": 8.25,
+      "cutoff_toe_dmd": -14.75,
+      "length_m": 19.16,
+      "start": {
+        "x": 486988.379,
+        "y": 2772574.474
+      },
+      "end": {
+        "x": 486976.245,
+        "y": 2772559.642
+      }
+    },
+    {
+      "id": "shoring_west_blue",
+      "section_id": "sec_left_blue",
+      "section_name": "Blue Left Section",
+      "wall_side": "West (Lower)",
+      "elevation_dmd": -9.3,
+      "capping_beam_dmd": 8.25,
+      "cutoff_toe_dmd": -14.75,
+      "length_m": 13.15,
+      "start": {
+        "x": 486976.245,
+        "y": 2772559.642
+      },
+      "end": {
+        "x": 486966.2,
+        "y": 2772568.121
+      }
+    },
+    {
+      "id": "shoring_west_red",
+      "section_id": "sec_main_red",
+      "section_name": "Red Main Section",
+      "wall_side": "West (Upper)",
+      "elevation_dmd": -11.65,
+      "capping_beam_dmd": 8.25,
+      "cutoff_toe_dmd": -14.75,
+      "length_m": 18.98,
+      "start": {
+        "x": 486966.2,
+        "y": 2772568.121
+      },
+      "end": {
+        "x": 486952.0,
+        "y": 2772580.712
+      }
+    }
+  ],
+  "shoring_summary": {
+    "total_segments": 7,
+    "total_perimeter_m": 147.92,
+    "capping_beam_top_m_dmd": 8.25,
+    "structural_toe_levels_m_dmd": [
+      -11.65,
+      -10.0,
+      -9.3
+    ],
+    "modflow_cutoff_toe_m_dmd": -14.75,
+    "pile_diameter_mm": 700,
+    "drawing_source": "DEW-1-P393D Rev 07 / MS-1-P393D - R5 Appendix B",
+    "transitions": [
+      {
+        "id": "transition_west_red_blue",
+        "name": "West Wall (Red -11.65m <-> Blue -9.30m)",
+        "step_height_m": 2.35,
+        "coordinate": {
+          "x": 486966.2,
+          "y": 2772568.121
+        }
+      },
+      {
+        "id": "transition_south_blue_green",
+        "name": "South Wall (Blue -9.30m <-> Green -10.00m)",
+        "step_height_m": 0.7,
+        "coordinate": {
+          "x": 486988.379,
+          "y": 2772574.474
+        }
+      },
+      {
+        "id": "transition_east_green_red",
+        "name": "East Wall (Green -10.00m <-> Red -11.65m)",
+        "step_height_m": 1.65,
+        "coordinate": {
+          "x": 486995.759,
+          "y": 2772596.673
+        }
+      }
+    ]
   }
 }
