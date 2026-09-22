@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "cbc_file_present": true,
+  "stress_periods_completed": 2,
+  "period_1": {
+    "totim_days": 7.0,
+    "rate_total_in_m3_day": 2232.0,
+    "rate_total_out_m3_day": 2232.0,
+    "rate_chd_in_m3_day": 2231.9986,
+    "rate_sto_ss_in_m3_day": 0.0013789,
+    "rate_wel_out_m3_day": 2232.0,
+    "rate_residual_m3_day": -1.9011e-06,
+    "rate_percent_discrepancy": -0.0,
+    "cumulative_total_in_m3": 15623.9998,
+    "cumulative_total_out_m3": 15624.0,
+    "cumulative_residual_m3": -0.00015192,
+    "cumulative_percent_discrepancy": -0.0
+  },
+  "period_2": {
+    "totim_days": 150.0,
+    "rate_total_in_m3_day": 1116.0,
+    "rate_total_out_m3_day": 1116.0,
+    "rate_chd_in_m3_day": 1116.0,
+    "rate_sto_ss_in_m3_day": 0.0,
+    "rate_wel_out_m3_day": 1116.0,
+    "rate_residual_m3_day": 2.3773e-07,
+    "rate_percent_discrepancy": 0.0,
+    "cumulative_total_in_m3": 175233.6568,
+    "cumulative_total_out_m3": 175233.6568,
+    "cumulative_residual_m3": -8.4046e-05,
+    "cumulative_percent_discrepancy": 0.0
+  }
+}

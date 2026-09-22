@@ -1,0 +1,14 @@
+{
+  "manifest_type": "BASE_RUN_MANIFEST",
+  "timestamp_utc": "2026-09-21T05:47:21.116945+00:00",
+  "model": "Stonehenge2",
+  "executable": "tools/modflow6/mf6.exe",
+  "mf6_version": "6.7.0 02/05/2026",
+  "exit_code": 2,
+  "execution_status": "FAILED_DOMAIN_MISMATCH",
+  "error_summary": "Cell is outside active grid domain: 110 errors in Stonehenge2.chd; 105 HFB connection exclusions",
+  "root_cause_diagnosis": {
+    "affected_file": "data/actual/modflow/input/Stonehenge2_idomain_mask.dat",
+    "mechanism": "Line 1 contains a text header comment (# Approved-polygon...). In MODFLOW 6 OPEN/CLOSE array reading, ASCII characters were parsed as integer data, shifting the numerical IDOMAIN array by 26 elements (exactly 1 row) in Fortran memory, causing boundary cells and HFB cell pairs to fall into misaligned/inactive cells."
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "period_1": {
+    "target_m3_day": -2232.0,
+    "simulated_m3_day": -2232.0,
+    "discrepancy_m3_day": 0.0,
+    "wells": [
+      {
+        "id": "DW-01",
+        "node": 1963,
+        "layer": 3,
+        "row": 10,
+        "col": 14,
+        "target": -372.0,
+        "simulated": -372.0
+      },
+      {
+        "id": "DW-02",
+        "node": 1858,
+        "layer": 3,
+        "row": 12,
+        "col": 18,
+        "target": -372.0,
+        "simulated": -372.0
+      },
+      {
+        "id": "DW-03",
+        "node": 1853,
+        "layer": 3,
+        "row": 16,
+        "col": 18,
+        "target": -372.0,
+        "simulated": -372.0
+      },
+      {
+        "id": "DW-04",
+        "node": 1729,
+        "layer": 3,
+        "row": 18,
+        "col": 14,
+        "target": -372.0,
+        "simulated": -372.0
+      },
+      {
+        "id": "DW-05",
+        "node": 1599,
+        "layer": 3,
+        "row": 16,
+        "col": 9,
+        "target": -372.0,
+        "simulated": -372.0
+      },
+      {
+        "id": "DW-06",
+        "node": 1815,
+        "layer": 3,
+        "row": 12,
+        "col": 9,
+        "target": -372.0,
+        "simulated": -372.0
+      }
+    ]
+  },
+  "period_2": {
+    "target_m3_day": -1116.0,
+    "simulated_m3_day": -1116.0,
+    "discrepancy_m3_day": 0.0,
+    "wells": [
+      {
+        "id": "DW-01",
+        "node": 1963,
+        "layer": 3,
+        "row": 10,
+        "col": 14,
+        "target": -186.0,
+        "simulated": -186.0
+      },
+      {
+        "id": "DW-02",
+        "node": 1858,
+        "layer": 3,
+        "row": 12,
+        "col": 18,
+        "target": -186.0,
+        "simulated": -186.0
+      },
+      {
+        "id": "DW-03",
+        "node": 1853,
+        "layer": 3,
+        "row": 16,
+        "col": 18,
+        "target": -186.0,
+        "simulated": -186.0
+      },
+      {
+        "id": "DW-04",
+        "node": 1729,
+        "layer": 3,
+        "row": 18,
+        "col": 14,
+        "target": -186.0,
+        "simulated": -186.0
+      },
+      {
+        "id": "DW-05",
+        "node": 1599,
+        "layer": 3,
+        "row": 16,
+        "col": 9,
+        "target": -186.0,
+        "simulated": -186.0
+      },
+      {
+        "id": "DW-06",
+        "node": 1815,
+        "layer": 3,
+        "row": 12,
+        "col": 9,
+        "target": -186.0,
+        "simulated": -186.0
+      }
+    ]
+  }
+}

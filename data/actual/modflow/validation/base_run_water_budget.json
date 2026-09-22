@@ -1,0 +1,6 @@
+{
+  "validation_type": "BASE_RUN_WATER_BUDGET",
+  "timestamp_utc": "2026-09-21T05:47:21.117412+00:00",
+  "status": "NOT_EVALUATED_EXECUTION_FAILED",
+  "reason": "Simulation stopped during package coordinate validation before timestep 1."
+}

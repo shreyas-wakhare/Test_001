@@ -1,0 +1,59 @@
+{
+  "timestamp_utc": "2026-09-21T05:59:34.754500+00:00",
+  "git_commit": "ae3c08123726c9ca60a34a0e4752bbbb42521f2c",
+  "git_status": "M data/actual/modflow/input/Stonehenge2.ims\n M data/actual/modflow/input/Stonehenge2_idomain_mask.dat\n?? MODFLOW_BASE_RUN_VALIDATION_REPORT.md\n?? data/actual/modflow/validation/",
+  "modflow_executable": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\tools\\modflow6\\mf6.exe",
+  "modflow_version_expected": "6.7.0",
+  "input_file_hashes_sha256": {
+    "Stonehenge2.chd": "fedc6e40b555db850001a224ce2cc5be43a14a20d27f562cc992a8714d994598",
+    "Stonehenge2.dis": "3bf51643806b85bb4521643b643935ef9dbe5c57c3e15ce4e5a76a83888141bb",
+    "Stonehenge2.hfb": "8f5b5ff0f65931b4b5d6538e9393aa07436cc342517f44b674b36471d15af109",
+    "Stonehenge2.ic": "957fa7d3579d1bf4784d28a2193d5268483b361a97289e296abe380654807b32",
+    "Stonehenge2.ims": "fd156ac772adf96809bc1ed07ec5657a7b20b0eaffbe79d503c1df5ef5a3ef35",
+    "Stonehenge2.nam": "7bb7c832e1c7606407c201c05a54be2058eef48afcda996bbaf7953f24d00fa0",
+    "Stonehenge2.npf": "97732dec7301a9acc13542bb0bd75b86e3c21132b7000bd9ab1471946a0f7cc3",
+    "Stonehenge2.oc": "c1d9a2091cca13349ccdf8c667dccd01e1f39d2fedb999d88f69efe4ab3e5456",
+    "Stonehenge2.sto": "4b39a0a356ff759948ef4040b826b83a2d1d6a509e5a1507518167a7e85b1e83",
+    "Stonehenge2.tdis": "01354964f51bbe6e211784f0e7f1af154b53cf9ee39a8713eabb2db866d091ab",
+    "Stonehenge2.wel": "910eb1795cf0eb6580c62b44d52af0066503e11da69706f07d4f649ccce45024",
+    "Stonehenge2_idomain_mask.dat": "577ebf3b72a772374a2aa0e0cc946df72d1fa15ae5ba1cd2c60599e2cdb0ce59",
+    "mfsim.nam": "850ac22a5cf9d33ecb1e49f6b874fa7f6e1abd7c8ede73cc548d4157989290b5"
+  },
+  "model_dimensions": {
+    "nlay": 5,
+    "nrow": 28,
+    "ncol": 26,
+    "delr_m": 2.5,
+    "delc_m": 2.5
+  },
+  "stress_periods": [
+    {
+      "period": 1,
+      "perlen_days": 7.0,
+      "nstp": 7,
+      "tsmult": 1.0
+    },
+    {
+      "period": 2,
+      "perlen_days": 143.0,
+      "nstp": 143,
+      "tsmult": 1.0
+    }
+  ],
+  "well_count": 6,
+  "chd_layer_count": 5,
+  "chd_records": 245,
+  "hfb_records": 246,
+  "idomain_dimensions": [
+    28,
+    26
+  ],
+  "idomain_active_cells": 263,
+  "ims_linear_solver": "BICGSTAB",
+  "ims_inner_rclose": 0.001,
+  "ims_inner_dvclose": 0.0001,
+  "engineering_source_of_truth": [
+    "data/actual/extracted/PreModflowApproval.md",
+    "data/actual/extracted/actual_conceptual_model.md"
+  ]
+}

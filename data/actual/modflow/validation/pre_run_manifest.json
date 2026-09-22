@@ -1,0 +1,104 @@
+{
+  "manifest_type": "PRE_RUN_MANIFEST",
+  "timestamp_utc": "2026-09-21T05:36:43.791245+00:00",
+  "repository_root": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001",
+  "git_commit": "ae3c08123726c9ca60a34a0e4752bbbb42521f2c",
+  "input_directory": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\data\\actual\\modflow\\input",
+  "mf6_executable": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\tools\\modflow6\\mf6.exe",
+  "mf6_version": "mf6.exe: 6.7.0 02/05/2026",
+  "model_name": "Stonehenge2",
+  "grid": {
+    "nlay": 5,
+    "nrow": 28,
+    "ncol": 26,
+    "delr_m": 2.5,
+    "delc_m": 2.5,
+    "xorigin": 486945.0,
+    "yorigin": 2772550.0,
+    "crs": "EPSG:3997 (DLTM)"
+  },
+  "stress_periods": [
+    {
+      "period": 1,
+      "perlen_days": 7.0,
+      "nstp": 7,
+      "tsmult": 1.0,
+      "mode": "Peak Drawdown"
+    },
+    {
+      "period": 2,
+      "perlen_days": 143.0,
+      "nstp": 143,
+      "tsmult": 1.0,
+      "mode": "Steady Maintenance"
+    }
+  ],
+  "packages_registered": [
+    "DIS6",
+    "IC6",
+    "NPF6",
+    "STO6",
+    "WEL6",
+    "CHD6",
+    "HFB6",
+    "OC6"
+  ],
+  "input_files": {
+    "mfsim.nam": {
+      "size_bytes": 303,
+      "sha256": "850ac22a5cf9d33ecb1e49f6b874fa7f6e1abd7c8ede73cc548d4157989290b5"
+    },
+    "MODFLOW_Input_Traceability.md": {
+      "size_bytes": 6549,
+      "sha256": "1ec2f487eb88e0a4d312042d52b751924866f2d5b9d80886995adbe3e591ae12"
+    },
+    "Stonehenge2.chd": {
+      "size_bytes": 13124,
+      "sha256": "fedc6e40b555db850001a224ce2cc5be43a14a20d27f562cc992a8714d994598"
+    },
+    "Stonehenge2.dis": {
+      "size_bytes": 939,
+      "sha256": "3bf51643806b85bb4521643b643935ef9dbe5c57c3e15ce4e5a76a83888141bb"
+    },
+    "Stonehenge2.hfb": {
+      "size_bytes": 10348,
+      "sha256": "8f5b5ff0f65931b4b5d6538e9393aa07436cc342517f44b674b36471d15af109"
+    },
+    "Stonehenge2.ic": {
+      "size_bytes": 192,
+      "sha256": "957fa7d3579d1bf4784d28a2193d5268483b361a97289e296abe380654807b32"
+    },
+    "Stonehenge2.ims": {
+      "size_bytes": 359,
+      "sha256": "48c0397acc24ca2045dd406eff8a8e89c00ceae68f2e74fa5e473f78315e174c"
+    },
+    "Stonehenge2.nam": {
+      "size_bytes": 366,
+      "sha256": "7bb7c832e1c7606407c201c05a54be2058eef48afcda996bbaf7953f24d00fa0"
+    },
+    "Stonehenge2.npf": {
+      "size_bytes": 704,
+      "sha256": "97732dec7301a9acc13542bb0bd75b86e3c21132b7000bd9ab1471946a0f7cc3"
+    },
+    "Stonehenge2.oc": {
+      "size_bytes": 462,
+      "sha256": "c1d9a2091cca13349ccdf8c667dccd01e1f39d2fedb999d88f69efe4ab3e5456"
+    },
+    "Stonehenge2.sto": {
+      "size_bytes": 690,
+      "sha256": "4b39a0a356ff759948ef4040b826b83a2d1d6a509e5a1507518167a7e85b1e83"
+    },
+    "Stonehenge2.tdis": {
+      "size_bytes": 421,
+      "sha256": "01354964f51bbe6e211784f0e7f1af154b53cf9ee39a8713eabb2db866d091ab"
+    },
+    "Stonehenge2.wel": {
+      "size_bytes": 968,
+      "sha256": "910eb1795cf0eb6580c62b44d52af0066503e11da69706f07d4f649ccce45024"
+    },
+    "Stonehenge2_idomain_mask.dat": {
+      "size_bytes": 1535,
+      "sha256": "4d69c477933edb4e53356272a720c19a4b878294fd120fc3b2a96a440bbe0e46"
+    }
+  }
+}

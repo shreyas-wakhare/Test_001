@@ -1,0 +1,6 @@
+{
+  "validation_type": "WATER_BUDGET_VALIDATION",
+  "timestamp_utc": "2026-09-21T05:37:04.526219+00:00",
+  "status": "NOT_EVALUATED_SIMULATION_FAILED",
+  "reason": "Simulation stopped at initialization due to solver keyword syntax error in Stonehenge2.ims"
+}

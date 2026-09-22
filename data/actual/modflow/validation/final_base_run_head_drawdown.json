@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "times_evaluated_days": [
+    7.0,
+    150.0
+  ],
+  "layer_statistics": {
+    "layer_1": {
+      "period_1": {
+        "saturated_cell_count": 0,
+        "head_min": null,
+        "head_max": null,
+        "head_mean": null,
+        "drawdown_max": null,
+        "drawdown_min": null
+      },
+      "period_2": {
+        "saturated_cell_count": 0,
+        "head_min": null,
+        "head_max": null,
+        "head_mean": null,
+        "drawdown_max": null,
+        "drawdown_min": null
+      }
+    },
+    "layer_2": {
+      "period_1": {
+        "saturated_cell_count": 49,
+        "head_min": 6.25,
+        "head_max": 6.25,
+        "head_mean": 6.25,
+        "drawdown_max": 0.0,
+        "drawdown_min": 0.0
+      },
+      "period_2": {
+        "saturated_cell_count": 49,
+        "head_min": 6.25,
+        "head_max": 6.25,
+        "head_mean": 6.25,
+        "drawdown_max": 0.0,
+        "drawdown_min": 0.0
+      }
+    },
+    "layer_3": {
+      "period_1": {
+        "saturated_cell_count": 263,
+        "head_min": -125.2219652586891,
+        "head_max": 6.25,
+        "head_mean": -96.25099339690291,
+        "drawdown_max": 131.4719652586891,
+        "drawdown_min": 0.0
+      },
+      "period_2": {
+        "saturated_cell_count": 263,
+        "head_min": -59.48598494438241,
+        "head_max": 6.25,
+        "head_mean": -45.00049859975781,
+        "drawdown_max": 65.73598494438241,
+        "drawdown_min": 0.0
+      }
+    },
+    "layer_4": {
+      "period_1": {
+        "saturated_cell_count": 263,
+        "head_min": -53.39722630099528,
+        "head_max": 6.25,
+        "head_mean": -20.80201303938475,
+        "drawdown_max": 59.64722630099528,
+        "drawdown_min": 0.0
+      },
+      "period_2": {
+        "saturated_cell_count": 263,
+        "head_min": -23.57361798929059,
+        "head_max": 6.25,
+        "head_mean": -7.276008365305051,
+        "drawdown_max": 29.82361798929059,
+        "drawdown_min": 0.0
+      }
+    },
+    "layer_5": {
+      "period_1": {
+        "saturated_cell_count": 263,
+        "head_min": -4.668346368170682,
+        "head_max": 6.25,
+        "head_mean": 2.0711157177391866,
+        "drawdown_max": 10.918346368170681,
+        "drawdown_min": 0.0
+      },
+      "period_2": {
+        "saturated_cell_count": 263,
+        "head_min": 0.6554324754564134,
+        "head_max": 6.25,
+        "head_mean": 4.111759364750609,
+        "drawdown_max": 5.594567524543587,
+        "drawdown_min": 0.0
+      }
+    }
+  },
+  "wells_p2_heads_drawdowns": {
+    "DW-01": {
+      "head_m_dmd": -56.92670154527907,
+      "drawdown_m": 63.17670154527907
+    },
+    "DW-02": {
+      "head_m_dmd": -56.169463095983126,
+      "drawdown_m": 62.419463095983126
+    },
+    "DW-03": {
+      "head_m_dmd": -56.10845872731061,
+      "drawdown_m": 62.35845872731061
+    },
+    "DW-04": {
+      "head_m_dmd": -56.7779355772087,
+      "drawdown_m": 63.0279355772087
+    },
+    "DW-05": {
+      "head_m_dmd": -57.1036657973911,
+      "drawdown_m": 63.3536657973911
+    },
+    "DW-06": {
+      "head_m_dmd": -56.49049100227308,
+      "drawdown_m": 62.74049100227308
+    }
+  }
+}

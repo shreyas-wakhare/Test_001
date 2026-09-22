@@ -1,0 +1,18 @@
+{
+  "validation_type": "INPUT_OUTPUT_VALIDATION",
+  "timestamp_utc": "2026-09-21T05:37:04.525349+00:00",
+  "execution_status": "FAIL_SYNTAX_ERROR",
+  "failure_details": {
+    "package": "IMS6 (Iterative Model Solver)",
+    "file": "Stonehenge2.ims",
+    "error_message": "Unknown IMSLINEAR keyword (RCLOSE)",
+    "expected_modflow6_keyword": "INNER_RCLOSE",
+    "line_number": 15,
+    "exit_code": 2
+  },
+  "runtime_output_files_generated": {
+    "Stonehenge2.hds": false,
+    "Stonehenge2.cbc": false,
+    "mfsim.lst": true
+  }
+}

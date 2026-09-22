@@ -1,0 +1,157 @@
+{
+  "project": "JVC15AMRM004 \u2014 Stonehenge 2, Dubai, UAE",
+  "scenario": "Scenario 1 \u2014 Base / No Pumping",
+  "section_type": "Hydrostratigraphic Engineering Vertical Cross-Section",
+  "section_orientation": "West \u2192 East Representative Profile across Excavation & Wellfield",
+  "section_basis": "Approved MODFLOW 6 Conceptual Model Geometry & Discretization",
+  "vertical_exaggeration": "1.8x",
+  "coordinate_system": "DLTM (EPSG:3997) / Dubai Mining Datum (m DMD)",
+  "ground_elevation_m_dmd": 8.25,
+  "baseline_gwl_m_dmd": 6.25,
+  "general_excavation_m_dmd": -6.1,
+  "deepest_excavation_m_dmd": -8.0,
+  "target_dewatering_m_dmd": -8.5,
+  "target_dewatering_note": "Design Reference Only \u2014 NOT achieved under Scenario 1 No-Pumping conditions",
+  "pumping_status": "OFF",
+  "total_pumping_m3_per_day": 0.0,
+  "total_pumping_m3_per_hour": 0.0,
+  "layers": [
+    {
+      "layer": 1,
+      "name": "Layer 1 \u2014 Aeolian Dune Sand / Silt",
+      "top_elevation_m_dmd": 8.25,
+      "bottom_elevation_m_dmd": 6.75,
+      "thickness_m": 1.5,
+      "kh_m_per_day": 1.9872,
+      "kv_m_per_day": 0.864,
+      "ss_per_m": 0.0001,
+      "sy": 0.25,
+      "hydrogeological_role": "Unsaturated Vadose Zone Cover"
+    },
+    {
+      "layer": 2,
+      "name": "Layer 2 \u2014 Upper Weathered Sandstone",
+      "top_elevation_m_dmd": 6.75,
+      "bottom_elevation_m_dmd": -4.75,
+      "thickness_m": 11.5,
+      "kh_m_per_day": 4.32,
+      "kv_m_per_day": 0.864,
+      "ss_per_m": 2.5e-05,
+      "sy": 0.12,
+      "hydrogeological_role": "Upper Aquifer / Phreatic Water Table Horizon"
+    },
+    {
+      "layer": 3,
+      "name": "Layer 3 \u2014 Moderately Weathered Sandstone",
+      "top_elevation_m_dmd": -4.75,
+      "bottom_elevation_m_dmd": -14.75,
+      "thickness_m": 10.0,
+      "kh_m_per_day": 4.32,
+      "kv_m_per_day": 0.864,
+      "ss_per_m": 2.5e-05,
+      "sy": 0.12,
+      "hydrogeological_role": "Screened Aquifer / Primary Production Horizon"
+    },
+    {
+      "layer": 4,
+      "name": "Layer 4 \u2014 Conglomeratic Sandstone",
+      "top_elevation_m_dmd": -14.75,
+      "bottom_elevation_m_dmd": -19.75,
+      "thickness_m": 5.0,
+      "kh_m_per_day": 0.50112,
+      "kv_m_per_day": 0.050112,
+      "ss_per_m": 5e-06,
+      "sy": 0.08,
+      "hydrogeological_role": "Transition Unit / Open Underflow Pathway"
+    },
+    {
+      "layer": 5,
+      "name": "Layer 5 \u2014 Calcisiltite / Siltstone",
+      "top_elevation_m_dmd": -19.75,
+      "bottom_elevation_m_dmd": -31.75,
+      "thickness_m": 12.0,
+      "kh_m_per_day": 4.32e-05,
+      "kv_m_per_day": 8.64e-06,
+      "ss_per_m": 1e-06,
+      "sy": 0.03,
+      "hydrogeological_role": "Regional Basal Aquitard / Confining Bed"
+    }
+  ],
+  "wells": [
+    {
+      "id": "DW-01",
+      "grid_location": "Layer 3, Row 20, Col 13",
+      "screen_layer": 3,
+      "screen_top_m_dmd": -7.8,
+      "screen_bottom_m_dmd": -14.5,
+      "screen_length_m": 6.7,
+      "pumping_m3_per_day": 0.0
+    },
+    {
+      "id": "DW-02",
+      "grid_location": "Layer 3, Row 16, Col 12",
+      "screen_layer": 3,
+      "screen_top_m_dmd": -7.8,
+      "screen_bottom_m_dmd": -14.5,
+      "screen_length_m": 6.7,
+      "pumping_m3_per_day": 0.0
+    },
+    {
+      "id": "DW-03",
+      "grid_location": "Layer 3, Row 16, Col 7",
+      "screen_layer": 3,
+      "screen_top_m_dmd": -7.8,
+      "screen_bottom_m_dmd": -14.5,
+      "screen_length_m": 6.7,
+      "pumping_m3_per_day": 0.0
+    },
+    {
+      "id": "DW-04",
+      "grid_location": "Layer 3, Row 11, Col 13",
+      "screen_layer": 3,
+      "screen_top_m_dmd": -7.8,
+      "screen_bottom_m_dmd": -14.5,
+      "screen_length_m": 6.7,
+      "pumping_m3_per_day": 0.0
+    },
+    {
+      "id": "DW-05",
+      "grid_location": "Layer 3, Row 6, Col 13",
+      "screen_layer": 3,
+      "screen_top_m_dmd": -7.8,
+      "screen_bottom_m_dmd": -14.5,
+      "screen_length_m": 6.7,
+      "pumping_m3_per_day": 0.0
+    },
+    {
+      "id": "DW-06",
+      "grid_location": "Layer 3, Row 14, Col 21",
+      "screen_layer": 3,
+      "screen_top_m_dmd": -7.8,
+      "screen_bottom_m_dmd": -14.5,
+      "screen_length_m": 6.7,
+      "pumping_m3_per_day": 0.0
+    }
+  ],
+  "shoring_wall": {
+    "type": "Secant Pile Cutoff Wall",
+    "pile_diameter_mm": 600,
+    "top_elevation_m_dmd": 8.25,
+    "design_toe_elevations_m_dmd": [
+      -9.3,
+      -10.0,
+      -11.65
+    ],
+    "modflow_cutoff_toe_m_dmd": -14.75,
+    "underflow_status": "Open in Layer 4 (-14.75 to -19.75 m DMD)"
+  },
+  "source_files": [
+    "data/actual/extracted/actual_conceptual_model.md",
+    "data/actual/extracted/PreModflowApproval.md",
+    "data/actual/modflow/input/Stonehenge2.dis",
+    "data/actual/modflow/input/Stonehenge2.npf",
+    "data/actual/modflow/input/Stonehenge2.sto",
+    "data/actual/modflow/input/Stonehenge2.wel",
+    "data/actual/modflow/Scenario1(Base No pumping)/output/Stonehenge2.hds"
+  ]
+}

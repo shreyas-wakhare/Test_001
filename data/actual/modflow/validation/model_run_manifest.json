@@ -1,0 +1,20 @@
+{
+  "manifest_type": "MODEL_RUN_MANIFEST",
+  "timestamp_utc": "2026-09-21T05:37:04.528358+00:00",
+  "exit_code": 2,
+  "execution_status": "FAILED",
+  "error_summary": "Unknown IMSLINEAR keyword (RCLOSE) in Stonehenge2.ims",
+  "packages_read_before_failure": [
+    "NAM6",
+    "TDIS6",
+    "GWF6",
+    "DIS6",
+    "NPF6",
+    "HFB6",
+    "STO6",
+    "IC6",
+    "OC6",
+    "WEL6",
+    "CHD6"
+  ]
+}

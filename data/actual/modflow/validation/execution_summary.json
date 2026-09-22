@@ -1,0 +1,11 @@
+{
+  "execution_type": "MODFLOW_6_EXECUTION",
+  "timestamp_utc": "2026-09-21T05:36:49.044908+00:00",
+  "cwd": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\data\\actual\\modflow\\input",
+  "executable": "C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\tools\\modflow6\\mf6.exe",
+  "return_code": 2,
+  "duration_seconds": 0.06062169998767786,
+  "stdout": "                                   MODFLOW 6\n                U.S. GEOLOGICAL SURVEY MODULAR HYDROLOGIC MODEL\n                            VERSION 6.7.0 02/05/2026\n\n   MODFLOW 6 compiled Feb 05 2026 22:36:44 with Intel(R) Fortran Intel(R) 64\n   Compiler Classic for applications running on Intel(R) 64, Version 2021.6.0\n                             Build 20220226_000000\n\nThis software has been approved for release by the U.S. Geological \nSurvey (USGS). Although the software has been subjected to rigorous \nreview, the USGS reserves the right to update the software as needed \npursuant to further analysis and review. No warranty, expressed or \nimplied, is made by the USGS or the U.S. Government as to the \nfunctionality of the software and related material nor shall the \nfact of release constitute any such warranty. Furthermore, the \nsoftware is released on condition that neither the USGS nor the U.S. \nGovernment shall be held liable for any damages resulting from its \nauthorized or unauthorized use. Also refer to the USGS Water \nResources Software User Rights Notice for complete use, copyright, \nand distribution information.\n\n \n MODFLOW runs in SEQUENTIAL mode\n \n Run start date and time (yyyy/mm/dd hh:mm:ss): 2026/09/21  9:36:48\n \n Writing simulation list file: mfsim.lst\n Using Simulation name file: mfsim.nam\n \n\nERROR REPORT:\n\n  1. Unknown IMSLINEAR keyword (RCLOSE).\n\nUNIT ERROR REPORT:\n\n  1. Error occurred while reading file\n     'C:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\data\\actual\\modflow\\\n     input\\Stonehenge2.ims'\n",
+  "stderr": "",
+  "status": "FAIL"
+}

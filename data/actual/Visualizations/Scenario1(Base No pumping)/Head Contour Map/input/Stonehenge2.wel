@@ -1,0 +1,31 @@
+# MODFLOW 6 Well Package (WEL)
+# 6 Deepwells DW-01 to DW-06 screened in Layer 3 (-7.80 to -14.50 m DMD)
+BEGIN options
+  PRINT_INPUT
+  PRINT_FLOWS
+  SAVE_FLOWS
+END options
+
+BEGIN dimensions
+  MAXBOUND  6
+END dimensions
+
+BEGIN period  1
+  # Phase A: Peak Pre-Drawdown (Days 0-7) - 15.5 m3/hr (372.0 m3/day) per well; Total = 93.0 m3/hr
+   3  20  13   0.00000000  # DW-01
+   3  16  12   0.00000000  # DW-02
+   3  16   7   0.00000000  # DW-03
+   3  11  13   0.00000000  # DW-04
+   3   6  13   0.00000000  # DW-05
+   3  14  21   0.00000000  # DW-06
+END period  1
+
+BEGIN period  2
+  # Phase B: Steady Maintenance (Days 7-150) - 7.75 m3/hr (186.0 m3/day) per well; Total = 46.5 m3/hr
+   3  20  13   0.00000000  # DW-01
+   3  16  12   0.00000000  # DW-02
+   3  16   7   0.00000000  # DW-03
+   3  11  13   0.00000000  # DW-04
+   3   6  13   0.00000000  # DW-05
+   3  14  21   0.00000000  # DW-06
+END period  2

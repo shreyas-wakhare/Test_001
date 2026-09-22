@@ -1,0 +1,17 @@
+{
+  "validation_type": "BASE_RUN_PUMPING_VALIDATION",
+  "timestamp_utc": "2026-09-21T05:47:21.117906+00:00",
+  "status": "NOT_EVALUATED_EXECUTION_FAILED",
+  "input_pumping_approved": {
+    "phase_a_peak_total_m3_day": -2232.0,
+    "phase_b_steady_total_m3_day": -1116.0,
+    "wells": [
+      "DW-01",
+      "DW-02",
+      "DW-03",
+      "DW-04",
+      "DW-05",
+      "DW-06"
+    ]
+  }
+}
