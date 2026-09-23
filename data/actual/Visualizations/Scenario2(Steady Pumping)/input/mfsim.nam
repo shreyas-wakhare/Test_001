@@ -1,0 +1,18 @@
+# MODFLOW 6 Simulation Name File
+BEGIN options
+END options
+
+BEGIN timing
+  TDIS6  Stonehenge2.tdis
+END timing
+
+BEGIN models
+  gwf6  Stonehenge2.nam  Stonehenge2
+END models
+
+BEGIN exchanges
+END exchanges
+
+BEGIN solutiongroup  1
+  ims6  Stonehenge2.ims  Stonehenge2
+END solutiongroup  1
