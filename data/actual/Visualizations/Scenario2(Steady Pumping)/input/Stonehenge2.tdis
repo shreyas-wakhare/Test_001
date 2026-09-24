@@ -1,0 +1,14 @@
+# MODFLOW 6 Time Discretization Package (TDIS)
+# Total 150 days: Period 1 (7 days Phase A) + Period 2 (143 days Phase B)
+BEGIN options
+  TIME_UNITS  days
+END options
+
+BEGIN dimensions
+  NPER  2
+END dimensions
+
+BEGIN perioddata
+    7.00000000    7  1.00000000  # Period 1: Phase A (Peak Drawdown, Days 0-7)
+  143.00000000  143  1.00000000  # Period 2: Phase B (Steady Maintenance, Days 7-150)
+END perioddata

@@ -1,0 +1,9 @@
+# MODFLOW 6 Initial Conditions Package (IC)
+# Approved baseline groundwater table = +6.25 m DMD
+BEGIN options
+END options
+
+BEGIN griddata
+  strt
+    CONSTANT  6.25000000
+END griddata

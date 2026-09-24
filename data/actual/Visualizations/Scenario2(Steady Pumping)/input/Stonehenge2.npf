@@ -1,0 +1,26 @@
+# MODFLOW 6 Node Property Flow Package (NPF)
+# Final approved layer-specific conductivity baseline; computational unit: m/day.
+BEGIN options
+  SAVE_FLOWS
+END options
+
+BEGIN griddata
+  icelltype  LAYERED
+    CONSTANT  1  # L1
+    CONSTANT  1  # L2
+    CONSTANT  0  # L3
+    CONSTANT  0  # L4
+    CONSTANT  0  # L5
+  k  LAYERED
+    CONSTANT  1.9872       # L1 Kh
+    CONSTANT  4.3200       # L2 Kh
+    CONSTANT  4.3200       # L3 Kh
+    CONSTANT  0.50112      # L4 Kh
+    CONSTANT  4.32E-05     # L5 Kh
+  k33  LAYERED
+    CONSTANT  0.8640       # L1 Kv
+    CONSTANT  0.8640       # L2 Kv
+    CONSTANT  0.8640       # L3 Kv
+    CONSTANT  0.050112     # L4 Kv
+    CONSTANT  8.64E-06     # L5 Kv
+END griddata

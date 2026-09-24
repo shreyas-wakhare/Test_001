@@ -1,0 +1,34 @@
+# MODFLOW 6 Storage Package (STO)
+# Final approved layer-specific storage baseline; Ss in 1/m, Sy dimensionless.
+BEGIN options
+  SAVE_FLOWS
+END options
+
+BEGIN griddata
+  iconvert  LAYERED
+    CONSTANT  1  # L1
+    CONSTANT  1  # L2
+    CONSTANT  0  # L3
+    CONSTANT  0  # L4
+    CONSTANT  0  # L5
+  ss  LAYERED
+    CONSTANT  1.0E-04  # L1
+    CONSTANT  2.5E-05  # L2
+    CONSTANT  2.5E-05  # L3
+    CONSTANT  5.0E-06  # L4
+    CONSTANT  1.0E-06  # L5
+  sy  LAYERED
+    CONSTANT  0.25  # L1
+    CONSTANT  0.12  # L2
+    CONSTANT  0.12  # L3
+    CONSTANT  0.08  # L4
+    CONSTANT  0.03  # L5
+END griddata
+
+BEGIN period  1
+  TRANSIENT
+END period  1
+
+BEGIN period  2
+  TRANSIENT
+END period  2

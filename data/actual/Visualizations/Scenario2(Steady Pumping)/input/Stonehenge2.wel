@@ -1,0 +1,33 @@
+# MODFLOW 6 Well Package (WEL) - Scenario 2 Steady Pumping Rate Study
+# Total Pumping = 265.2600 m3/day (11.0525 m3/hr)
+# Per Well Pumping = 44.2100 m3/day (1.8421 m3/hr)
+# 6 Deepwells DW-01 to DW-06 screened in Layer 3 (-7.80 to -14.50 m DMD)
+BEGIN options
+  PRINT_INPUT
+  PRINT_FLOWS
+  SAVE_FLOWS
+END options
+
+BEGIN dimensions
+  MAXBOUND  6
+END dimensions
+
+BEGIN period  1
+  # Steady Pumping Period 1 (Days 0-7) - 1.84 m3/hr (44.21 m3/day) per well; Total = 11.05 m3/hr
+  3  20  13  -4.42100000E+01  # DW-01
+  3  16  12  -4.42100000E+01  # DW-02
+  3  16   7  -4.42100000E+01  # DW-03
+  3  11  13  -4.42100000E+01  # DW-04
+  3   6  13  -4.42100000E+01  # DW-05
+  3  14  21  -4.42100000E+01  # DW-06
+END period  1
+
+BEGIN period  2
+  # Steady Pumping Period 2 (Days 7-150) - 1.84 m3/hr (44.21 m3/day) per well; Total = 11.05 m3/hr
+  3  20  13  -4.42100000E+01  # DW-01
+  3  16  12  -4.42100000E+01  # DW-02
+  3  16   7  -4.42100000E+01  # DW-03
+  3  11  13  -4.42100000E+01  # DW-04
+  3   6  13  -4.42100000E+01  # DW-05
+  3  14  21  -4.42100000E+01  # DW-06
+END period  2

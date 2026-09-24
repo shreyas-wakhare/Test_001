@@ -1,0 +1,15 @@
+# MODFLOW 6 Groundwater Flow Model Name File (NAM)
+BEGIN options
+  SAVE_FLOWS
+END options
+
+BEGIN packages
+  DIS6  Stonehenge2.dis  dis
+  IC6  Stonehenge2.ic  ic
+  NPF6  Stonehenge2.npf  npf
+  STO6  Stonehenge2.sto  sto
+  WEL6  Stonehenge2.wel  wel_0
+  CHD6  Stonehenge2.chd  chd_0
+  HFB6  Stonehenge2.hfb  hfb_0
+  OC6  Stonehenge2.oc  oc
+END packages
