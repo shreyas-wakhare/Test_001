@@ -173,23 +173,46 @@ def compile_data_and_generate_html():
         }
     }
 
-    # 3D Flow trajectory seed particles for Scenario 2
+    # 3D Flow trajectory seed particles for Scenario 2 (Sichardt Radius of Influence R0 = 277.9m -> Wall Underflow -> Deepwell Suction)
     flow_particles = []
     np.random.seed(42)
-    for i in range(1200):
+    wells_list = base_data.get("wells", [])
+    for i in range(3000):
         angle = np.random.uniform(0, 2 * np.pi)
-        radius = np.random.uniform(25, 48)
+        # Radius distributed across Sichardt Radius of Influence R0 = 277.9 m
+        # Non-linear spacing to give dense visual flow lines near site while extending out to R0 = 277.9 m
+        u = np.random.uniform(0.0, 1.0)
+        radius = 20.0 + (277.9 - 20.0) * (u ** 1.8)
         cx = 486975.0 + radius * np.cos(angle)
         cy = 2772585.0 + radius * np.sin(angle)
-        well_idx = np.random.randint(0, len(base_data["wells"]))
-        target_well = base_data["wells"][well_idx]
+        
+        # Intermediate seepage point along Sichardt radial drawdown curve
+        mid_r = max(19.5, radius * 0.45 + 8.0)
+        mid_x = 486975.0 + mid_r * np.cos(angle)
+        mid_y = 2772585.0 + mid_r * np.sin(angle)
+
+        # Secant wall perimeter radius ~18.5m; underflow bends strictly under wall toe (-11.65m DMD)
+        underflow_r = np.random.uniform(16.5, 19.0)
+        uf_x = 486975.0 + underflow_r * np.cos(angle)
+        uf_y = 2772585.0 + underflow_r * np.sin(angle)
+        
+        well = wells_list[i % len(wells_list)]
+        
+        # Calculate water table head at particle start position based on distance radius
+        # At R0 = 277.9m, Head = +6.25m DMD (0 drawdown)
+        dd_factor = max(0.0, 1.0 - np.log(max(1.0, radius / 18.5)) / np.log(277.9 / 18.5))
+        start_z = 6.25 - 14.75 * dd_factor
+        start_z = float(max(5.25, min(6.25, start_z)))
+
         flow_particles.append({
             "id": i,
-            "start": {"x": cx, "y": cy, "z": np.random.uniform(2.0, 6.0)},
-            "underflow": {"x": 486975.0 + (radius * 0.45) * np.cos(angle), "y": 2772585.0 + (radius * 0.45) * np.sin(angle), "z": -16.5},
-            "target": {"x": target_well["x"], "y": target_well["y"], "z": -11.0},
-            "speed": float(np.random.uniform(0.6, 1.4)),
-            "offset": float(np.random.uniform(0.0, 1.0))
+            "start": {"x": cx, "y": cy, "z": start_z},                                          # Sichardt R0 Boundary (R0 = 277.9m, +6.25m DMD)
+            "mid": {"x": mid_x, "y": mid_y, "z": float(np.random.uniform(-5.5, -8.5))},         # Intermediate Radial Seepage (-6.0m to -8.5m DMD)
+            "underflow": {"x": uf_x, "y": uf_y, "z": float(np.random.uniform(-11.85, -12.45))}, # Secant Toe Underflow (-11.85m DMD)
+            "target": {"x": well["x"], "y": well["y"], "z": float(np.random.uniform(-12.50, -14.25))}, # Deepwell Suction Screen (-13.5m DMD)
+            "speed": float(np.random.uniform(0.7, 1.6)),
+            "offset": float(np.random.uniform(0.0, 1.0)),
+            "radius_m": float(radius)
         })
 
     unified_data = {
@@ -197,6 +220,8 @@ def compile_data_and_generate_html():
         "grid_cells": grid_cells,
         "scenarios": scenarios,
         "flow_particles": flow_particles,
+        "sichardt_radius_of_influence_m": 277.9,
+        "calculated_radius_rc_m": 301.5,
         "drawdown_colormap": {
             "min_dd": 0.0,
             "max_dd": 15.6247,
@@ -1102,6 +1127,9 @@ def compile_data_and_generate_html():
       groupGeologicalModel.add(groupBoundary);
       groupGeologicalModel.add(groupCadSections);
 
+      groupGeologicalModel.scale.set(1.55, 1.0, 1.55); // Visually enlarge site polygon & excavation pit for prominent clarity
+      groupGroundSite.scale.set(1.55, 1.0, 1.55);
+
       scene.add(groupAerial);
       scene.add(groupGroundSite);
       scene.add(groupGeologicalModel);
@@ -1119,6 +1147,7 @@ def compile_data_and_generate_html():
       buildDynamicWaterTableMesh();
       buildAnimatedFlowParticles();
       buildBoundaryConditions();
+      buildRadiusOfInfluenceRing();
 
       // Event Listeners
       window.addEventListener('resize', onWindowResize);
@@ -1273,12 +1302,24 @@ def compile_data_and_generate_html():
       return -6.10; // Default general excavation floor
     }}
 
-    // Stratigraphic Geological Layers (Prism Extrusions with Stepped Excavation Cutout)
+    // Stratigraphic Geological Layers (Prism Extrusions with Stepped Excavation Cutout & Extended Footprint)
     function buildTrueStratigraphicVolumes() {{
-      const activeCells = MODEL_DATA.active_cells;
       const cellSize = MODEL_DATA.grid.delr; // 2.5 m
       const boxW = cellSize * 0.985;
       const boxD = cellSize * 0.985;
+      const x_orig = 486945.0;
+      const y_orig = 2772550.0;
+      const nrow = 28;
+
+      // Extended grid bounds (-10 to +37 rows, -10 to +35 cols) ~ 115m x 120m block
+      const extendedCells = [];
+      for (let r = -10; r <= 37; r++) {{
+        for (let c = -10; c <= 35; c++) {{
+          const cx = x_orig + (c + 0.5) * cellSize;
+          const cy = y_orig + (nrow - r - 0.5) * cellSize;
+          extendedCells.push({{ row: r, col: c, x: cx, y: cy }});
+        }}
+      }}
 
       MODEL_DATA.layers.forEach(layer => {{
         const groupLayer = new THREE.Group();
@@ -1294,7 +1335,7 @@ def compile_data_and_generate_html():
           clippingPlanes: [clipPlane]
         }});
 
-        activeCells.forEach(cell => {{
+        extendedCells.forEach(cell => {{
           const inPit = isInsideShoring(cell.x, cell.y);
           let cellTop = layer.z_top;
           let cellBot = layer.z_bot;
@@ -1510,14 +1551,46 @@ def compile_data_and_generate_html():
     }}
 
     // -------------------------------------------------------------------------
-    // DYNAMIC 3D PHREATIC WATER TABLE & HEATMAP MESH
+    // DYNAMIC 3D PHREATIC WATER TABLE & HEATMAP MESH (Sichardt R₀ = 277.9 m Domain)
     // -------------------------------------------------------------------------
-    function buildDynamicWaterTableMesh() {{
+    function getWaterStateAtCoord(x, z, scenarioId) {{
       const cells = MODEL_DATA.grid_cells;
-      const nrow = MODEL_DATA.grid.nrow; // 28
-      const ncol = MODEL_DATA.grid.ncol; // 26
+      const east = x + X_ORIGIN;
+      const north = -z + Y_ORIGIN;
+      const c = Math.floor((east - 486945.0) / 2.5);
+      const r = Math.floor(28.0 - (north - 2772550.0) / 2.5);
 
-      const geom = new THREE.PlaneGeometry(ncol * 2.5, nrow * 2.5, ncol - 1, nrow - 1);
+      if (r >= 0 && r < 28 && c >= 0 && c < 26) {{
+        const idx = r * 26 + c;
+        const cell = cells[idx] || cells[0];
+        const head = scenarioId === 'sc2' ? cell.sc2_head : (scenarioId === 'sc1' ? cell.sc1_head : 6.25);
+        const drawdown = scenarioId === 'sc2' ? cell.sc2_drawdown : 0.0;
+        return {{ head, drawdown }};
+      }}
+
+      // Smooth regional interpolation spanning Sichardt Radius of Influence R0 = 277.9 m
+      const clampedR = Math.max(0, Math.min(27, r));
+      const clampedC = Math.max(0, Math.min(25, c));
+      const bndCell = cells[clampedR * 26 + clampedC] || cells[0];
+      const bndHead = scenarioId === 'sc2' ? bndCell.sc2_head : (scenarioId === 'sc1' ? bndCell.sc1_head : 6.25);
+      const bndDrawdown = scenarioId === 'sc2' ? bndCell.sc2_drawdown : 0.0;
+
+      const distFromCenter = Math.hypot(x, z);
+      const r0 = 277.9; // Sichardt Radius of Influence R0 = 277.9 m
+      const weight = Math.max(0, Math.min(1.0, 1.0 - (distFromCenter - 25.0) / (r0 - 25.0))); // smooth blend out to R0
+
+      const head = 6.25 + (bndHead - 6.25) * weight;
+      const drawdown = bndDrawdown * weight;
+      return {{ head, drawdown }};
+    }}
+
+    function buildDynamicWaterTableMesh() {{
+      const gridW = 600.0; // Spans full Sichardt Radius of Influence (R0 = 277.9m -> 556m diameter)
+      const gridH = 600.0;
+      const cols = 70;
+      const rows = 70;
+
+      const geom = new THREE.PlaneGeometry(gridW, gridH, cols - 1, rows - 1);
       geom.rotateX(-Math.PI / 2);
 
       const posAttr = geom.attributes.position;
@@ -1529,33 +1602,18 @@ def compile_data_and_generate_html():
       currentWaterColors = new Float32Array(vertexCount * 3);
       targetWaterColors = new Float32Array(vertexCount * 3);
 
-      // Initialize coordinates and vertex colors for Scenario 2
       for (let i = 0; i < vertexCount; i++) {{
-        const r = Math.floor(i / ncol);
-        const c = i % ncol;
-        const idx = Math.min(r * ncol + c, cells.length - 1);
-        const cell = cells[idx];
+        const x = posAttr.getX(i);
+        const z = posAttr.getZ(i);
 
-        const x = (cell.x - X_ORIGIN);
-        const z = -(cell.y - Y_ORIGIN);
-        posAttr.setX(i, x);
-        posAttr.setZ(i, z);
+        const state = getWaterStateAtCoord(x, z, 'sc2');
+        const hY = (state.head + BASE_MODEL_VISUAL_OFFSET) * Z_EXAG;
 
-        const sc1_h = cell.sc1_head;
-        const sc2_h = cell.sc2_head;
-        const sc1_y = (sc1_h + BASE_MODEL_VISUAL_OFFSET) * Z_EXAG;
-        const sc2_y = (sc2_h + BASE_MODEL_VISUAL_OFFSET) * Z_EXAG;
+        currentWaterHeights[i] = hY;
+        targetWaterHeights[i] = hY;
+        posAttr.setY(i, hY);
 
-        currentWaterHeights[i] = sc2_y;
-        targetWaterHeights[i] = sc2_y;
-        posAttr.setY(i, sc2_y);
-
-        // Rainbow color based on drawdown
-        const dd = cell.sc2_drawdown;
-        const cRainbow = getRainbowColor(dd, 0.0, 15.6247);
-        const cCyan = new THREE.Color(0x0ea5e9);
-
-        // Set colors
+        const cRainbow = getRainbowColor(state.drawdown, 0.0, 15.6247);
         colors[i * 3] = cRainbow.r;
         colors[i * 3 + 1] = cRainbow.g;
         colors[i * 3 + 2] = cRainbow.b;
@@ -1583,7 +1641,7 @@ def compile_data_and_generate_html():
       waterMesh.userData = {{
         type: 'water_table_surface',
         title: '3D Groundwater Surface (Phreatic Horizon)',
-        desc: 'Dynamically deformed surface displaying simulated heads and drawdown.'
+        desc: 'Slightly extended water table surface showing simulated heads and drawdown.'
       }};
       groupHead.add(waterMesh);
       interactableObjects.push(waterMesh);
@@ -1626,13 +1684,13 @@ def compile_data_and_generate_html():
       flowParticleSystem = new THREE.Points(geom, mat);
       flowParticleSystem.userData = {{
         type: 'flow_streamlines',
-        title: '3D Groundwater Flow Particle Streamlines',
-        desc: 'Particles entering via Layer 4 underflow and rising into deepwells.'
+        title: '3D Groundwater Flow Streamlines (Strict Underflow)',
+        desc: 'Particles originating in Layer 3 aquifer strictly below secant wall toe (-11.65m DMD) and rising into deepwells.'
       }};
       groupFlow.add(flowParticleSystem);
     }}
 
-    // Update particle streamlines in animation loop
+    // Update particle streamlines in animation loop (Complete Water Table -> Seepage -> Underflow -> Deepwell Suction)
     function updateFlowParticles(timeSeconds) {{
       if (!flowParticleSystem || currentScenarioId !== 'sc2') {{
         if (flowParticleSystem) flowParticleSystem.visible = false;
@@ -1643,24 +1701,54 @@ def compile_data_and_generate_html():
 
       const particles = MODEL_DATA.flow_particles || [];
       const posAttr = flowParticleSystem.geometry.attributes.position;
+      const colAttr = flowParticleSystem.geometry.attributes.color;
 
       for (let i = 0; i < particles.length; i++) {{
         const p = particles[i];
-        const t = (timeSeconds * 0.25 * p.speed + p.offset) % 1.0;
+        const t = (timeSeconds * 0.22 * p.speed + p.offset) % 1.0;
 
-        // Quadratic Bezier Curve from Start -> Underflow (Layer 4) -> Target Well
+        // 4-Point Cubic Bezier Curve:
+        // p0: Water Table Surface (+6.25m) -> p1: Outer Vertical Seepage (-6.5m) -> p2: Secant Toe Underflow (-11.85m) -> p3: Deepwell (-13.5m)
         const p0 = dltmToThree(p.start.x, p.start.y, p.start.z);
-        const p1 = dltmToThree(p.underflow.x, p.underflow.y, p.underflow.z);
-        const p2 = dltmToThree(p.target.x, p.target.y, p.target.z);
+        const p1 = dltmToThree(p.mid.x, p.mid.y, p.mid.z);
+        const p2 = dltmToThree(p.underflow.x, p.underflow.y, p.underflow.z);
+        const p3 = dltmToThree(p.target.x, p.target.y, p.target.z);
 
         const omt = 1 - t;
-        const x = omt * omt * p0.x + 2 * omt * t * p1.x + t * t * p2.x;
-        const y = omt * omt * p0.y + 2 * omt * t * p1.y + t * t * p2.y;
-        const z = omt * omt * p0.z + 2 * omt * t * p1.z + t * t * p2.z;
+        const omt2 = omt * omt;
+        const omt3 = omt2 * omt;
+        const t2 = t * t;
+        const t3 = t2 * t;
+
+        const x = omt3 * p0.x + 3 * omt2 * t * p1.x + 3 * omt * t2 * p2.x + t3 * p3.x;
+        const y = omt3 * p0.y + 3 * omt2 * t * p1.y + 3 * omt * t2 * p2.y + t3 * p3.y;
+        const z = omt3 * p0.z + 3 * omt2 * t * p1.z + 3 * omt * t2 * p2.z + t3 * p3.z;
 
         posAttr.setXYZ(i, x, y, z);
+
+        // Dynamic Color Gradient Along Streamline:
+        // Cyan (Water Surface) -> Sky Blue (Vertical Seepage) -> Emerald (Secant Toe Underflow) -> Gold (Pumping Well Suction)
+        let r = 0.22, g = 0.74, b = 0.97;
+        if (t <= 0.35) {{
+          const factor = t / 0.35;
+          r = 0.22 + (0.02 - 0.22) * factor;
+          g = 0.74 + (0.84 - 0.74) * factor;
+          b = 0.97 + (0.95 - 0.97) * factor; // Electric Sky Blue
+        }} else if (t > 0.35 && t <= 0.70) {{
+          const factor = (t - 0.35) / 0.35;
+          r = 0.02 + (0.06 - 0.02) * factor;
+          g = 0.84 + (0.77 - 0.84) * factor;
+          b = 0.95 + (0.45 - 0.95) * factor; // Emerald Underflow (-11.85m)
+        }} else {{
+          const factor = (t - 0.70) / 0.30;
+          r = 0.06 + (0.98 - 0.06) * factor;
+          g = 0.77 + (0.75 - 0.77) * factor;
+          b = 0.45 + (0.14 - 0.45) * factor; // Gold Deepwell Suction Sink
+        }}
+        colAttr.setXYZ(i, r, g, b);
       }}
       posAttr.needsUpdate = true;
+      colAttr.needsUpdate = true;
     }}
 
     // -------------------------------------------------------------------------
@@ -1718,27 +1806,19 @@ def compile_data_and_generate_html():
       }}
 
       // Prepare target heights & colors for water mesh
-      const cells = MODEL_DATA.grid_cells;
-      const ncol = MODEL_DATA.grid.ncol;
-      const vertexCount = waterMesh.geometry.attributes.position.count;
+      const posAttr = waterMesh.geometry.attributes.position;
+      const vertexCount = posAttr.count;
 
       for (let i = 0; i < vertexCount; i++) {{
-        const r = Math.floor(i / ncol);
-        const c = i % ncol;
-        const idx = Math.min(r * ncol + c, cells.length - 1);
-        const cell = cells[idx];
+        const x = posAttr.getX(i);
+        const z = posAttr.getZ(i);
 
-        let targetHead = 6.25;
-        if (scenarioId === 'sc2') {{
-          targetHead = cell.sc2_head;
-        }} else if (scenarioId === 'sc1') {{
-          targetHead = cell.sc1_head;
-        }}
-        targetWaterHeights[i] = (targetHead + BASE_MODEL_VISUAL_OFFSET) * Z_EXAG;
+        const state = getWaterStateAtCoord(x, z, scenarioId);
+        targetWaterHeights[i] = (state.head + BASE_MODEL_VISUAL_OFFSET) * Z_EXAG;
 
         let col;
         if (scenarioId === 'sc2') {{
-          col = getRainbowColor(cell.sc2_drawdown, 0.0, 15.6247);
+          col = getRainbowColor(state.drawdown, 0.0, 15.6247);
         }} else if (scenarioId === 'sc1') {{
           col = new THREE.Color(0x0ea5e9);
         }} else {{
@@ -1809,6 +1889,41 @@ def compile_data_and_generate_html():
           groupBoundary.add(mesh);
         }}
       }});
+    }}
+
+    // Sichardt Dewatering Radius of Influence Boundary Ring (R₀ = 277.9 m)
+    function buildRadiusOfInfluenceRing() {{
+      const r0 = 277.9; // Sichardt calculated Radius of Influence R0 = 277.9 m
+      const points = [];
+      const segments = 128;
+      const yElev = (6.25 + BASE_MODEL_VISUAL_OFFSET) * Z_EXAG + 0.35;
+
+      for (let i = 0; i <= segments; i++) {{
+        const theta = (i / segments) * Math.PI * 2;
+        const px = r0 * Math.cos(theta);
+        const pz = r0 * Math.sin(theta);
+        points.push(new THREE.Vector3(px, yElev, pz));
+      }}
+
+      const ringGeo = new THREE.BufferGeometry().setFromPoints(points);
+      const ringMat = new THREE.LineDashedMaterial({{
+        color: 0x38bdf8,
+        dashSize: 8.0,
+        gapSize: 5.0,
+        linewidth: 3,
+        transparent: true,
+        opacity: 0.90
+      }});
+
+      const ringLine = new THREE.Line(ringGeo, ringMat);
+      ringLine.computeLineDistances();
+      ringLine.userData = {{
+        type: 'radius_of_influence_ring',
+        title: 'Sichardt Radius of Influence Boundary (R₀ = 277.9 m)',
+        desc: 'Calculated lateral extent of drawdown influence (CAL-1-P393D: R₀ = 3000·s·√K = 277.9 m, Rc = 301.5 m). Beyond this boundary, the regional water table remains stable at +6.25 m DMD.'
+      }};
+      groupBoundary.add(ringLine);
+      interactableObjects.push(ringLine);
     }}
 
     // -------------------------------------------------------------------------
