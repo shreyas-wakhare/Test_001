@@ -6,7 +6,7 @@
   "governing_layer": 3,
   "governing_layer_name": "Layer 3 \u2014 Middle Sandstone (-4.75 to -14.75 m DMD, Deepwell Screened Horizon)",
   "drawdown_definition": "Scenario 1 Baseline Head (Layer 3) - Scenario 2 Steady Pumping Head (Layer 3)",
-  "source_head_file_scenario1": "c:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\data\\actual\\Visualizations\\Scenario1(Base No pumping)\\Head Contour Map\\output\\Stonehenge2.hds",
+  "source_head_file_scenario1": "c:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\data\\actual\\Visualizations\\Scenario1(Base No pumping)\\output\\Stonehenge2.hds",
   "source_head_file_scenario2": "c:\\Users\\Shreyas-Wakhare\\Desktop\\TEST_001\\data\\actual\\Visualizations\\Scenario2(Steady Pumping)\\output\\Stonehenge2.hds",
   "simulation_time_days": 150.0,
   "stress_period": 2,
